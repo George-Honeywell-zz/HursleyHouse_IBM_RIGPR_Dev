@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.hursleyhouse_rigpr_ibm.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "G:\\Unity_Projects\\HursleyHouse_IBM_RIGPR_Dev\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "HursleyHouse_RIGPR_IBM [Testing]"
+        }
+      }
+    }
+  ]
+}
