@@ -81,7 +81,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -113,9 +113,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d9a1df97667452b4086158035ea1908b, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Texture: {fileID: 2800000, guid: 5555dce7f78cf224f847a9acdd756b42, type: 3}
+        m_Scale: {x: 1.95, y: 0.99}
+        m_Offset: {x: -0.35, y: 0}
     - _ShadowTex:
         m_Texture: {fileID: 2800000, guid: 925c37f5f4cee6b40b1278f83b515816, type: 3}
         m_Scale: {x: 1, y: 1}
