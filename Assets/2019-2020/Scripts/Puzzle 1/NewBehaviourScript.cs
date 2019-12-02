@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class randonColourGeneration : MonoBehaviour
+public class NewBehaviousScript : MonoBehaviour
 {
     //Variable Declerations
     int[] sequence;
@@ -41,16 +41,12 @@ public class randonColourGeneration : MonoBehaviour
         yellowBlockRenderer = yellowBlock.GetComponent<Renderer>();
         blueBlockRenderer = blueBlock.GetComponent<Renderer>();
         greenBlockRenderer = greenBlock.GetComponent<Renderer>();
-        //sequenceBlockRenderer = sequenceBlock.GetComponent<Renderer>();
-
-        //Text section
-        /*
+        sequenceBlockRenderer = sequenceBlock.GetComponent<Renderer>();
         sequenceText = SequenceText.GetComponent<Text>();
         victoryText = VictoryText.GetComponent<Text>();
 
         //Displaying the starting difficulty on screen
         sequenceText.text = "Current Difficulty: " + currentDifficulty;
-        */
 
         //Creating the sequence arrays
         sequence = new int[10];
@@ -96,12 +92,12 @@ public class randonColourGeneration : MonoBehaviour
             //Displays that the player passed
             if (playerPassed)
             {
-                //victoryText.text = "Passed, press space to advance";
+                victoryText.text = "Passed, press space to advance";
             }
             //Displays that the player failed
             else
             {
-                //victoryText.text = "Failed, press space to retry";
+                victoryText.text = "Failed, press space to retry";
             }
         }
 
@@ -117,8 +113,8 @@ public class randonColourGeneration : MonoBehaviour
                     currentDifficulty++;
                     playerSequence = new int[10];
                     playerSequencePos = 0;
-                    //sequenceText.text = "Current Difficulty: " + currentDifficulty;
-                    //victoryText.text = "";
+                    sequenceText.text = "Current Difficulty: " + currentDifficulty;
+                    victoryText.text = "";
                     playerPassed = true;
                 }
                 //If the player failed the difficulty, repeats it
@@ -127,8 +123,8 @@ public class randonColourGeneration : MonoBehaviour
                     playerMarked = false;
                     playerSequence = new int[10];
                     playerSequencePos = 0;
-                    //sequenceText.text = "Current Difficulty: " + currentDifficulty;
-                    //victoryText.text = "";
+                    sequenceText.text = "Current Difficulty: " + currentDifficulty;
+                    victoryText.text = "";
                     playerPassed = true;
                 }
             }
