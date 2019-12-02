@@ -71,7 +71,7 @@ public class TwitterStuff : MonoBehaviour
         {
             Debug.Log(response);
             SearchTweetsResponse Response = JsonUtility.FromJson<SearchTweetsResponse>(response);
-            Tweets TOWU = JsonUtility.FromJson<Tweets>(response);
+            //Tweets TOWU = JsonUtility.FromJson<Tweets>(response);
             //Response.items[0].text;
             if (!Directory.Exists(newFP))
                 File.WriteAllText(newFP, response);
@@ -81,8 +81,8 @@ public class TwitterStuff : MonoBehaviour
                 File.Delete(newFP);
                 File.WriteAllText(newFP, response);
             }
-            Debug.Log(TOWU.items[0].user.name);
-            Debug.Log(TOWU.items[0].text);
+            //Debug.Log(TOWU.items[0].user.name);
+            //Debug.Log(TOWU.items[0].text);
             for (int r = 0; r < Response.statuses.Length; r++)
             {
                 Debug.Log(Response.statuses[r].user.name);

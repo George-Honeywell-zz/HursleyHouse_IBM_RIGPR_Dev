@@ -13,110 +13,101 @@ using System.Threading.Tasks;
 using System.IO;
 using UnityEngine;
 
-//public class TRANSFER
-//{
-//    public string name;
-//    public string pre_percentile;
-//    public double percentile;
-//    public string pre_significant;
-//    public bool significant;
+public class TRANSFER
+{
+    public string name;
+    public string pre_percentile;
+    public double percentile;
+    public string pre_significant;
+    public bool significant;
 
-//    public int tracker;
-//    public TRANSFER()
-//    {
-//        name = "";
-//        pre_percentile = "";
-//        percentile = 0.0f;
-//        pre_significant = "";
-//        significant = false;
+    public int tracker;
+    public TRANSFER()
+    {
+        name = "";
+        pre_percentile = "";
+        percentile = 0.0f;
+        pre_significant = "";
+        significant = false;
 
-//        tracker = 0;
-//    }
-    
-        
-//}
+        tracker = 0;
+    }
 
-//public class FACET
-//{
-//    public string name;
-//    public double percentile;
-//    public bool significant;
-//    public FACET()
-//    {
-//        name = "";
-//        percentile = 0.0f;
-//        significant = false;
-//    }
-//    public FACET(TRANSFER transfer)
-//    {
-//        name = transfer.name;
-//        percentile = transfer.percentile;
-//        significant = transfer.significant;
-//    }
-//}
 
-//public class BIGFIVE
-//{
-//    public FACET[] children = new FACET[7];
-//    public int tracker;
-//    public BIGFIVE()
-//    {
-//        for (int f = 0; f < 7; f++)
-//            children[f] = new FACET();
-//        tracker = 0;
-//    }
-//    ~BIGFIVE()
-//    {
-//        children = null;
-//    }
-//}
+}
 
-//public class PP //Personality Profile
-//{
-//    public BIGFIVE[] bigfive = new BIGFIVE[5];
-//    public TRANSFER transfer;
-//    public int tracker;
-//    public string output;
-//    public string word_count;
-//    public string processed_language;
-//    public PP()
-//    {
-//        for (int f = 0; f < 5; f++)
-//            bigfive[f] = new BIGFIVE();
-//        transfer = new TRANSFER();
-//        tracker = 0;
-//        output = "";
-//        word_count = "";
-//        processed_language = "";
-//    }
-//    ~PP()
-//    {
-//        bigfive = null;
-//    }
+public class FACET
+{
+    public string name;
+    public double percentile;
+    public bool significant;
+    public FACET()
+    {
+        name = "";
+        percentile = 0.0f;
+        significant = false;
+    }
+    public FACET(TRANSFER transfer)
+    {
+        name = transfer.name;
+        percentile = transfer.percentile;
+        significant = transfer.significant;
+    }
+}
 
-//}
-public class PImanager : MonoBehaviour
+public class BIGFIVE
+{
+    public FACET[] children = new FACET[7];
+    public int tracker;
+    public BIGFIVE()
+    {
+        for (int f = 0; f < 7; f++)
+            children[f] = new FACET();
+        tracker = 0;
+    }
+    ~BIGFIVE()
+    {
+        children = null;
+    }
+}
+
+public class PP //Personality Profile
+{
+    public BIGFIVE[] bigfive = new BIGFIVE[5];
+    public TRANSFER transfer;
+    public int tracker;
+    public string output;
+    public string word_count;
+    public string processed_language;
+    public PP()
+    {
+        for (int f = 0; f < 5; f++)
+            bigfive[f] = new BIGFIVE();
+        transfer = new TRANSFER();
+        tracker = 0;
+        output = "";
+        word_count = "";
+        processed_language = "";
+    }
+    ~PP()
+    {
+        bigfive = null;
+    }
+
+}
+
+public class W_SetupAnalyser : MonoBehaviour
 {
     Content content;
     private PersonalityInsightsService service;
+    public PP pp; //Relevant Profile
 
-    public bool READY = false;
-    //string filename = "./Assets/PII.txt";
-    string json = "./Assets/2019-2020/Watson/unity-sdk-4.0.0/unity-sdk-4.0.0/Examples/TestData/PersonalityInsights/V3/personalityInsights.json";
-    char[] buffer;
-    string info = " ";
-    public PP pp;
     private void Start()
     {
-        
-        content = new Content()
-        {
-            ContentItems = new List<ContentItem>()
-        };
-        LogSystem.InstallDefaultReactors();
-        Runnable.Run(CreateService());
+        Runnable.Run(ActivateService());
     }
-    private IEnumerator CreateService()
+
+    private IEnumerator ActivateService()
     {
         content = new Content()
         {
@@ -134,19 +125,12 @@ public class PImanager : MonoBehaviour
         service.SetServiceUrl("https://gateway-lon.watsonplatform.net/personality-insights/api");
         service.DisableSslVerification = true;
 
-        READjson();
-        yield return new WaitForSeconds(3);
-        WatsonProcess();
-        yield return new WaitForSeconds(3);
-        UsePP();
-        SAVEppAStext("OprahPI");
-
-
     }
 
-    async Task READjson()
+    public async Task ReadJson(string fileLocation)
     {
-        using (var reader = new StreamReader(json))
+        char[] buffer;
+        using (var reader = new StreamReader(fileLocation))
         {
             buffer = new char[(int)reader.BaseStream.Length];
             await reader.ReadAsync(buffer, 0, (int)reader.BaseStream.Length);
@@ -158,17 +142,17 @@ public class PImanager : MonoBehaviour
                 Contenttype = ContentItem.ContenttypeValue.TEXT_PLAIN,
                 Language = ContentItem.LanguageValue.EN,
             });
+        Debug.Log("DONE");
     }
 
-    void WatsonProcess()
+    public void WatsonAnalysis()
     {
-        Log.Debug("ExamplePersonalityInsights.Examples()", "Attempting to Profile...");
         service.Profile(OnProfile, content: content);
+        
     }
 
-    void OnProfile(DetailedResponse<Profile> response, IBMError error)
+    private void OnProfile(DetailedResponse<Profile> response, IBMError error)
     {
-        Log.Debug("ExamplePersonaltyInsightsV3.OnProfile()", "Response: {0}", response.Response);
         char[] rc = response.Response.ToCharArray(); //response char
         char[] convert = new char[1];
         string output = "";
@@ -208,7 +192,7 @@ public class PImanager : MonoBehaviour
                 }
                 else pp.transfer.tracker++;
             }
-               
+
             if (ri == true)
             {
                 if (rc[f] != '"' && rc[f] != '{' && rc[f] != '}' && rc[f] != ':')
@@ -227,7 +211,7 @@ public class PImanager : MonoBehaviour
 
                     if (pp.transfer.tracker == 0)
                     {
-                        
+
                     }
                     if (pp.transfer.tracker == 1)
                     {
@@ -236,7 +220,7 @@ public class PImanager : MonoBehaviour
                     }
                     if (pp.transfer.tracker == 2)
                     {
-                        
+
                     }
                     if (pp.transfer.tracker == 3)
                     {
@@ -248,59 +232,12 @@ public class PImanager : MonoBehaviour
                         output = new string(convert);
                         pp.transfer.pre_significant += output;
                     }
-
                 }
             }
-           
         }
-        READY = true;
+        Debug.Log("DONE");
     }
-    void SAVEppAStext(string filename)
-    {
-        string newFP = "./Assets/2019-2020/Watson/" + filename + ".txt";
-        for (int b = 0; b < 5; b++)
-        {
-            for (int f = 0; f < 7; f++)
-            {
-                
-                pp.output += pp.bigfive[b].children[f].name;
-                pp.output += "\n";
-                pp.output += pp.bigfive[b].children[f].percentile;
-                pp.output += "\n";
-                pp.output += pp.bigfive[b].children[f].significant;
-                pp.output += "\n";
-                pp.output += "\n";
-            }
-        }
-        
-        //Create New
-        if (!Directory.Exists(newFP))
-            File.WriteAllText(newFP, pp.output);
-        //Overwrite
-        if (Directory.Exists(newFP))
-        {
-            File.Delete(newFP);
-            File.WriteAllText(newFP, pp.output);
-        }
-        Log.Debug("SAVEtext", "SAVE", pp.output);
-
-    }
-
-    void UsePP()
-    {
-        for (int f = 0; f < 5; f++)
-        {
-            if (pp.bigfive[f].children[0].percentile >= 0.5f)
-                Log.Debug("Big5", pp.bigfive[f].children[0].name);
-            else Log.Debug("Not", pp.bigfive[f].children[0].name);
-
-            for (int c = 1; c < 7; c++)
-            {
-                if (pp.bigfive[f].children[c].percentile >= 0.5f)
-                    Log.Debug("Facet", pp.bigfive[f].children[c].name);
-                else Log.Debug("Not", pp.bigfive[f].children[c].name);
-            }
-        }
-    }
-
 }
+
+    
+
