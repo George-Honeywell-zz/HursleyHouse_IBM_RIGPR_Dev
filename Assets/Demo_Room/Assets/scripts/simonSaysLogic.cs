@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewBehaviousScript : MonoBehaviour
+public class simonSaysLogic : MonoBehaviour
 {
     //Variable Declerations
     int[] sequence;
@@ -28,6 +28,7 @@ public class NewBehaviousScript : MonoBehaviour
     Renderer blueBlockRenderer;
     Renderer yellowBlockRenderer;
     Renderer greenBlockRenderer;
+    Renderer sequenceBlockRenderer;
     Text sequenceText;
     Text victoryText;
 
@@ -39,11 +40,14 @@ public class NewBehaviousScript : MonoBehaviour
         yellowBlockRenderer = yellowBlock.GetComponent<Renderer>();
         blueBlockRenderer = blueBlock.GetComponent<Renderer>();
         greenBlockRenderer = greenBlock.GetComponent<Renderer>();
-        //sequenceText = SequenceText.GetComponent<Text>();
-        //victoryText = VictoryText.GetComponent<Text>();
+        
+
+        //Text section
+        sequenceText = SequenceText.GetComponent<Text>();
+        victoryText = VictoryText.GetComponent<Text>();
 
         //Displaying the starting difficulty on screen
-        //sequenceText.text = "Current Difficulty: " + currentDifficulty;
+        sequenceText.text = "Current Difficulty: " + currentDifficulty;
 
         //Creating the sequence arrays
         sequence = new int[10];
@@ -59,7 +63,7 @@ public class NewBehaviousScript : MonoBehaviour
     //Update function which is ran every frame
     void Update()
     {
-        Debug.Log(sequence[0]);
+        //Debug.Log(sequence[0]);
         //Plays the current colour sequence to the player when initiated 
         if (sequencePlayed && Input.GetKeyDown("5"))
         {
@@ -89,12 +93,12 @@ public class NewBehaviousScript : MonoBehaviour
             //Displays that the player passed
             if (playerPassed)
             {
-                //victoryText.text = "Passed, press space to advance";
+                victoryText.text = "Passed, press 6 to advance";
             }
             //Displays that the player failed
             else
             {
-                //victoryText.text = "Failed, press space to retry";
+                victoryText.text = "Failed, press 6 to retry";
             }
         }
 
@@ -110,7 +114,7 @@ public class NewBehaviousScript : MonoBehaviour
                     currentDifficulty++;
                     playerSequence = new int[10];
                     playerSequencePos = 0;
-                    //sequenceText.text = "Current Difficulty: " + currentDifficulty;
+                    sequenceText.text = "Current Difficulty: " + currentDifficulty;
                     victoryText.text = "";
                     playerPassed = true;
                 }
@@ -120,7 +124,7 @@ public class NewBehaviousScript : MonoBehaviour
                     playerMarked = false;
                     playerSequence = new int[10];
                     playerSequencePos = 0;
-                    //sequenceText.text = "Current Difficulty: " + currentDifficulty;
+                    sequenceText.text = "Current Difficulty: " + currentDifficulty;
                     victoryText.text = "";
                     playerPassed = true;
                 }
@@ -269,6 +273,7 @@ public class NewBehaviousScript : MonoBehaviour
                 yield return new WaitForSeconds(0.25f);
             }
         }
+       
         //Sets the suquence boolean to true, allowing the player to replay the boolean
         sequencePlayed = true;
     }
