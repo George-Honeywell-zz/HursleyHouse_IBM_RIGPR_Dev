@@ -101,6 +101,7 @@ public class W_SetupAnalyser : MonoBehaviour
     Content content;
     private PersonalityInsightsService service;
     public PP pp; //Relevant Profile
+    public bool WatsonAnalysisDone = false;
 
     private void Start()
     {
@@ -148,7 +149,6 @@ public class W_SetupAnalyser : MonoBehaviour
     public void WatsonAnalysis()
     {
         service.Profile(OnProfile, content: content);
-        
     }
 
     private void OnProfile(DetailedResponse<Profile> response, IBMError error)
@@ -235,7 +235,7 @@ public class W_SetupAnalyser : MonoBehaviour
                 }
             }
         }
-        Debug.Log("DONE");
+        WatsonAnalysisDone = true;
     }
 }
 

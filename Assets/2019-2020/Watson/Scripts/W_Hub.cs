@@ -29,21 +29,24 @@ public class W_Hub : MonoBehaviour
             WSA.WatsonAnalysis();
             
         }
-        if (GUILayout.Button("Graph Setup"))
+        if (WSA.WatsonAnalysisDone)
         {
-            WBP.GetPentagon(WSA.pp);
-        }
-        if (GUILayout.Button("Spawn Watson Graph"))
-        {
-            WBP.ShowGraph();
-        }
-        if (GUILayout.Button("Hide Watson Graph"))
-        {
-            WBP.HideGraph();
-        }
-        if (GUILayout.Button("Talk"))
-        {
-            Debug.Log(WFR.Respond().name);
+            if (GUILayout.Button("Graph Setup"))
+            {
+                WBP.GetPentagon(WSA.pp);
+            }
+            if (GUILayout.Button("Spawn Watson Graph"))
+            {
+                WBP.ShowGraph();
+            }
+            if (GUILayout.Button("Hide Watson Graph"))
+            {
+                WBP.HideGraph();
+            }
+            if (GUILayout.Button("Talk"))
+            {
+                Debug.Log(WFR.Respond().name);
+            }
         }
     }
 }
