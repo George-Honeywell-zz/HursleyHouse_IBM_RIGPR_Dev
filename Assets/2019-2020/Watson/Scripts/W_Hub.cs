@@ -24,29 +24,38 @@ public class W_Hub : MonoBehaviour
         {
             WSA.ReadJson("./Assets/2019-2020/Watson/unity-sdk-4.0.0/unity-sdk-4.0.0/Examples/TestData/PersonalityInsights/V3/personalityInsights.json");
         }
-        if (GUILayout.Button("Watson's Analysis"))
+        if (WSA.JsonDone)
         {
-            WSA.WatsonAnalysis();
-            
-        }
-        if (WSA.WatsonAnalysisDone)
-        {
-            if (GUILayout.Button("Graph Setup"))
+            if (GUILayout.Button("Watson's Analysis"))
             {
-                WBP.GetPentagon(WSA.pp);
+                WSA.WatsonAnalysis();
+
             }
-            if (GUILayout.Button("Spawn Watson Graph"))
+            if (WSA.WatsonAnalysisDone)
             {
-                WBP.ShowGraph();
+                if (GUILayout.Button("Graph Setup"))
+                {
+                    WBP.GetPentagon(WSA.pp);
+                }
+
+                if (WBP.SetupDone)
+                {
+                    if (GUILayout.Button("Spawn Watson Graph"))
+                    {
+                        WBP.ShowGraph();
+                    }
+                    if (GUILayout.Button("Hide Watson Graph"))
+                    {
+                        WBP.HideGraph();
+                    }
+                }
+                if (GUILayout.Button("Talk"))
+                {
+                    WFR.Text = WFR.ResponseOutput(WFR.ResponseType());
+                }
+                GUI.Label(new Rect(100, 300, 200, 50), WFR.Text, fontSize);
             }
-            if (GUILayout.Button("Hide Watson Graph"))
-            {
-                WBP.HideGraph();
-            }
-            if (GUILayout.Button("Talk"))
-            {
-                Debug.Log(WFR.Respond().name);
-            }
+        
         }
     }
 }

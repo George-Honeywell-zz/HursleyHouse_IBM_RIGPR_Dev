@@ -101,6 +101,7 @@ public class W_SetupAnalyser : MonoBehaviour
     Content content;
     private PersonalityInsightsService service;
     public PP pp; //Relevant Profile
+    public bool JsonDone = false;
     public bool WatsonAnalysisDone = false;
 
     private void Start()
@@ -143,7 +144,7 @@ public class W_SetupAnalyser : MonoBehaviour
                 Contenttype = ContentItem.ContenttypeValue.TEXT_PLAIN,
                 Language = ContentItem.LanguageValue.EN,
             });
-        Debug.Log("DONE");
+        JsonDone = true;
     }
 
     public void WatsonAnalysis()

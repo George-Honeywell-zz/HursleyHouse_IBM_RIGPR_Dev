@@ -5,6 +5,7 @@ using UnityEngine;
 public class W_Big5Pentagon : MonoBehaviour
 {
     public GameObject Graph;
+    public bool SetupDone = false;
     private void Start()
     {
         Graph = new GameObject();
@@ -54,6 +55,7 @@ public class W_Big5Pentagon : MonoBehaviour
         Graph.transform.parent = this.gameObject.transform;
         Graph.name = "Big 5 Graph";
         Graph.SetActive(false);
+        SetupDone = true;
     }
     public void ShowGraph()
     {

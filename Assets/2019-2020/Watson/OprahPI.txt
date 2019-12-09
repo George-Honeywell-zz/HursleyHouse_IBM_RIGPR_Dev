@@ -1,4 +1,4 @@
-Openness
+//Openness
 0.784850007644444
 True
 
@@ -26,7 +26,7 @@ Authority-challenging
 0.812084204622487
 True
 
-Conscientiousness
+//Conscientiousness
 0.142397932246054
 True
 
@@ -54,7 +54,7 @@ Self-efficacy
 0.911020327709989
 True
 
-Extraversion
+//Extraversion
 0.801168885324869
 True
 
@@ -82,7 +82,7 @@ Gregariousness
 0.103069392635561
 True
 
-Agreeableness
+//Agreeableness
 0.217492732420649
 True
 
@@ -110,7 +110,7 @@ Trust
 0.528372598129827
 True
 
-Emotional range
+//Emotional range
 0.73832835441826
 True
 
