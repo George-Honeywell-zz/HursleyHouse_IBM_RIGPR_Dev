@@ -22,9 +22,6 @@ public class randonColourGeneration : MonoBehaviour
     public GameObject blueBlock;
     public GameObject yellowBlock;
     public GameObject greenBlock;
-    public GameObject sequenceBlock;
-    public GameObject SequenceText;
-    public GameObject VictoryText;
     Renderer redBlockRenderer;
     Renderer blueBlockRenderer;
     Renderer yellowBlockRenderer;
@@ -41,16 +38,6 @@ public class randonColourGeneration : MonoBehaviour
         yellowBlockRenderer = yellowBlock.GetComponent<Renderer>();
         blueBlockRenderer = blueBlock.GetComponent<Renderer>();
         greenBlockRenderer = greenBlock.GetComponent<Renderer>();
-        //sequenceBlockRenderer = sequenceBlock.GetComponent<Renderer>();
-
-        //Text section
-        /*
-        sequenceText = SequenceText.GetComponent<Text>();
-        victoryText = VictoryText.GetComponent<Text>();
-
-        //Displaying the starting difficulty on screen
-        sequenceText.text = "Current Difficulty: " + currentDifficulty;
-        */
 
         //Creating the sequence arrays
         sequence = new int[10];
@@ -66,7 +53,6 @@ public class randonColourGeneration : MonoBehaviour
     //Update function which is ran every frame
     void Update()
     {
-        Debug.Log(sequence[0]);
         //Plays the current colour sequence to the player when initiated 
         if (sequencePlayed && Input.GetKeyDown("5"))
         {
@@ -96,42 +82,37 @@ public class randonColourGeneration : MonoBehaviour
             //Displays that the player passed
             if (playerPassed)
             {
-                //victoryText.text = "Passed, press space to advance";
+                StartCoroutine(Victory());
             }
             //Displays that the player failed
             else
             {
-                //victoryText.text = "Failed, press space to retry";
+                StartCoroutine(Failure());
             }
         }
 
         //Runs this code when the player has finished the sequence
         else if (playerMarked)
         {
-            if (Input.GetKeyUp("6"))
+            
+            //If the player passed the previous difficulty, proceeds to the next
+            if (playerPassed)
             {
-                //If the player passed the previous difficulty, proceeds to the next
-                if (playerPassed)
-                {
-                    playerMarked = false;
-                    currentDifficulty++;
-                    playerSequence = new int[10];
-                    playerSequencePos = 0;
-                    //sequenceText.text = "Current Difficulty: " + currentDifficulty;
-                    //victoryText.text = "";
-                    playerPassed = true;
-                }
-                //If the player failed the difficulty, repeats it
-                else
-                {
-                    playerMarked = false;
-                    playerSequence = new int[10];
-                    playerSequencePos = 0;
-                    //sequenceText.text = "Current Difficulty: " + currentDifficulty;
-                    //victoryText.text = "";
-                    playerPassed = true;
-                }
+                playerMarked = false;
+                currentDifficulty++;
+                playerSequence = new int[10];
+                playerSequencePos = 0;
+                playerPassed = true;
             }
+            //If the player failed the difficulty, repeats it
+            else
+            {
+                playerMarked = false;
+                playerSequence = new int[10];
+                playerSequencePos = 0;
+                playerPassed = true;
+            }
+            
         }
 
         //Runs this code if no other conditions are met
@@ -262,5 +243,99 @@ public class randonColourGeneration : MonoBehaviour
         greenBlockRenderer.material.SetColor("_Color", Color.green);
         //Sets the suquence boolean to true, allowing the player to replay the boolean
         sequencePlayed = true;
+    }
+
+    IEnumerator Failure()
+    {
+        //for loop that displays the random colour sequence to the player
+        
+        redBlockRenderer.material.SetColor("_Color", Color.red);
+        blueBlockRenderer.material.SetColor("_Color", Color.red);
+        yellowBlockRenderer.material.SetColor("_Color", Color.red);
+        greenBlockRenderer.material.SetColor("_Color", Color.red);
+        yield return new WaitForSeconds(0.5f);
+            
+        redBlockRenderer.material.SetColor("_Color", Color.white);
+        blueBlockRenderer.material.SetColor("_Color", Color.white);
+        yellowBlockRenderer.material.SetColor("_Color", Color.white);
+        greenBlockRenderer.material.SetColor("_Color", Color.white);
+        yield return new WaitForSeconds(0.5f);
+
+        redBlockRenderer.material.SetColor("_Color", Color.red);
+        blueBlockRenderer.material.SetColor("_Color", Color.red);
+        yellowBlockRenderer.material.SetColor("_Color", Color.red);
+        greenBlockRenderer.material.SetColor("_Color", Color.red);
+        yield return new WaitForSeconds(0.5f);
+
+        redBlockRenderer.material.SetColor("_Color", Color.white);
+        blueBlockRenderer.material.SetColor("_Color", Color.white);
+        yellowBlockRenderer.material.SetColor("_Color", Color.white);
+        greenBlockRenderer.material.SetColor("_Color", Color.white);
+        yield return new WaitForSeconds(0.5f);
+
+        redBlockRenderer.material.SetColor("_Color", Color.red);
+        blueBlockRenderer.material.SetColor("_Color", Color.red);
+        yellowBlockRenderer.material.SetColor("_Color", Color.red);
+        greenBlockRenderer.material.SetColor("_Color", Color.red);
+        yield return new WaitForSeconds(0.5f);
+
+        redBlockRenderer.material.SetColor("_Color", Color.white);
+        blueBlockRenderer.material.SetColor("_Color", Color.white);
+        yellowBlockRenderer.material.SetColor("_Color", Color.white);
+        greenBlockRenderer.material.SetColor("_Color", Color.white);
+        yield return new WaitForSeconds(0.5f);
+
+        redBlockRenderer.material.SetColor("_Color", Color.red);
+        blueBlockRenderer.material.SetColor("_Color", Color.blue);
+        yellowBlockRenderer.material.SetColor("_Color", Color.yellow);
+        greenBlockRenderer.material.SetColor("_Color", Color.green);
+        
+    }
+
+    IEnumerator Victory()
+    {
+        //for loop that displays the random colour sequence to the player
+
+        redBlockRenderer.material.SetColor("_Color", Color.green);
+        blueBlockRenderer.material.SetColor("_Color", Color.green);
+        yellowBlockRenderer.material.SetColor("_Color", Color.green);
+        greenBlockRenderer.material.SetColor("_Color", Color.green);
+        yield return new WaitForSeconds(0.5f);
+
+        redBlockRenderer.material.SetColor("_Color", Color.white);
+        blueBlockRenderer.material.SetColor("_Color", Color.white);
+        yellowBlockRenderer.material.SetColor("_Color", Color.white);
+        greenBlockRenderer.material.SetColor("_Color", Color.white);
+        yield return new WaitForSeconds(0.5f);
+
+        redBlockRenderer.material.SetColor("_Color", Color.green);
+        blueBlockRenderer.material.SetColor("_Color", Color.green);
+        yellowBlockRenderer.material.SetColor("_Color", Color.green);
+        greenBlockRenderer.material.SetColor("_Color", Color.green);
+        yield return new WaitForSeconds(0.5f);
+
+        redBlockRenderer.material.SetColor("_Color", Color.white);
+        blueBlockRenderer.material.SetColor("_Color", Color.white);
+        yellowBlockRenderer.material.SetColor("_Color", Color.white);
+        greenBlockRenderer.material.SetColor("_Color", Color.white);
+        yield return new WaitForSeconds(0.5f);
+
+        redBlockRenderer.material.SetColor("_Color", Color.green);
+        blueBlockRenderer.material.SetColor("_Color", Color.green);
+        yellowBlockRenderer.material.SetColor("_Color", Color.green);
+        greenBlockRenderer.material.SetColor("_Color", Color.green);
+        yield return new WaitForSeconds(0.5f);
+
+        redBlockRenderer.material.SetColor("_Color", Color.white);
+        blueBlockRenderer.material.SetColor("_Color", Color.white);
+        yellowBlockRenderer.material.SetColor("_Color", Color.white);
+        greenBlockRenderer.material.SetColor("_Color", Color.white);
+        yield return new WaitForSeconds(0.5f);
+
+        redBlockRenderer.material.SetColor("_Color", Color.red);
+        blueBlockRenderer.material.SetColor("_Color", Color.blue);
+        yellowBlockRenderer.material.SetColor("_Color", Color.yellow);
+        greenBlockRenderer.material.SetColor("_Color", Color.green);
+
     }
 }
