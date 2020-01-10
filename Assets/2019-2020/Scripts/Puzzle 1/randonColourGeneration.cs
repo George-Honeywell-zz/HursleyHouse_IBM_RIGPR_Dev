@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Valve.VR;
+using System.Collections.ObjectModel;
 
 public class randonColourGeneration : MonoBehaviour
 {
@@ -30,6 +32,12 @@ public class randonColourGeneration : MonoBehaviour
     Text sequenceText;
     Text victoryText;
 
+    public SteamVR_Input_Sources leftHand;
+    public SteamVR_Input_Sources righthand;
+    
+
+    
+
     //Start function which runs when the script is initialized
     void Start()
     {
@@ -54,11 +62,18 @@ public class randonColourGeneration : MonoBehaviour
     void Update()
     {
         //Plays the current colour sequence to the player when initiated 
-        if (sequencePlayed && Input.GetKeyDown("5"))
+        //if (sequencePlayed && Input.GetKeyDown("5"))
+        //{
+        //    StartCoroutine(ColourSequence());
+        //    sequencePlayed = false;
+        //}
+
+        if(sequencePlayed && SteamVR_Input.GetStateDown("A", righthand))
         {
             StartCoroutine(ColourSequence());
             sequencePlayed = false;
         }
+        
 
         //Runs this code when the player inputs the sequence
         if (playerSequencePos == (currentDifficulty) && !playerMarked)

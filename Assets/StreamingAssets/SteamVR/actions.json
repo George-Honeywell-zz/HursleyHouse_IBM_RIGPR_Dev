@@ -50,6 +50,22 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/A",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/B",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/X",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/Y",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
