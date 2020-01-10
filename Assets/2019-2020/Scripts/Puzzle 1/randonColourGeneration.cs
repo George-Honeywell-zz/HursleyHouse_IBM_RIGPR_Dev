@@ -25,7 +25,7 @@ public class randonColourGeneration : MonoBehaviour
     public GameObject sequenceBlock;
     public GameObject SequenceText;
     public GameObject VictoryText;
-    public GameObject StartInfo;
+
     Renderer redBlockRenderer;
     Renderer blueBlockRenderer;
     Renderer yellowBlockRenderer;
@@ -33,7 +33,7 @@ public class randonColourGeneration : MonoBehaviour
     Renderer sequenceBlockRenderer;
     Text sequenceText;
     Text victoryText;
-    Text startInfo;
+
 
 
     //Start function which runs when the script is initialized
