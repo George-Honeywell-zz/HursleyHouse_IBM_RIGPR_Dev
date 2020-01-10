@@ -25,6 +25,7 @@ public class randonColourGeneration : MonoBehaviour
     public GameObject sequenceBlock;
     public GameObject SequenceText;
     public GameObject VictoryText;
+    public GameObject StartInfo;
     Renderer redBlockRenderer;
     Renderer blueBlockRenderer;
     Renderer yellowBlockRenderer;
@@ -32,6 +33,8 @@ public class randonColourGeneration : MonoBehaviour
     Renderer sequenceBlockRenderer;
     Text sequenceText;
     Text victoryText;
+    Text startInfo;
+
 
     //Start function which runs when the script is initialized
     void Start()
@@ -45,8 +48,12 @@ public class randonColourGeneration : MonoBehaviour
         sequenceText = SequenceText.GetComponent<Text>();
         victoryText = VictoryText.GetComponent<Text>();
 
+
         //Displaying the starting difficulty on screen
         sequenceText.text = "Current Difficulty: " + currentDifficulty;
+
+
+
 
         //Creating the sequence arrays
         sequence = new int[10];
@@ -62,6 +69,9 @@ public class randonColourGeneration : MonoBehaviour
     //Update function which is ran every frame
     void Update()
     {
+
+       
+
         //Plays the current colour sequence to the player when initiated 
         if (sequencePlayed && Input.GetKeyDown("5"))
         {
@@ -91,12 +101,12 @@ public class randonColourGeneration : MonoBehaviour
             //Displays that the player passed
             if (playerPassed)
             {
-                victoryText.text = "Passed, press space to advance";
+                victoryText.text = "Passed, press SPACE to advance";
             }
             //Displays that the player failed
             else
             {
-                victoryText.text = "Failed, press space to retry";
+                victoryText.text = "Failed, press SPACE to retry";
             }
         }
 
