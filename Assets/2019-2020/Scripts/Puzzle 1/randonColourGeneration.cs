@@ -33,7 +33,7 @@ public class randonColourGeneration : MonoBehaviour
     Text victoryText;
 
     public SteamVR_Input_Sources leftHand;
-    public SteamVR_Input_Sources righthand;
+    public SteamVR_Input_Sources rightHand;
     
 
     
@@ -68,7 +68,7 @@ public class randonColourGeneration : MonoBehaviour
         //    sequencePlayed = false;
         //}
 
-        if(sequencePlayed && SteamVR_Input.GetStateDown("A", righthand))
+        if(sequencePlayed && SteamVR_Input.GetStateDown("LeftTrigger", leftHand))
         {
             StartCoroutine(ColourSequence());
             sequencePlayed = false;
@@ -136,28 +136,28 @@ public class randonColourGeneration : MonoBehaviour
             if (!buttonDown)
             {
                 //Code Detecting when the user presses down a button
-                if (Input.GetKeyDown("1"))
+                if (SteamVR_Input.GetStateDown("Y", leftHand))
                 {
                     Debug.Log("1 Is pressed");
                     redBlockRenderer.material.SetColor("_Color", Color.white);
                     onePressed = true;
                     buttonDown = true;
                 }
-                else if (Input.GetKeyDown("2"))
+                else if (SteamVR_Input.GetStateDown("X", leftHand))
                 {
                     Debug.Log("2 Is pressed");
                     yellowBlockRenderer.material.SetColor("_Color", Color.white);
                     twoPressed = true;
                     buttonDown = true;
                 }
-                else if (Input.GetKeyDown("3"))
+                else if (SteamVR_Input.GetStateDown("B", rightHand))
                 {
                     Debug.Log("3 Is pressed");
                     blueBlockRenderer.material.SetColor("_Color", Color.white);
                     threePressed = true;
                     buttonDown = true;
                 }
-                else if (Input.GetKeyDown("4"))
+                else if (SteamVR_Input.GetStateDown("A", rightHand))
                 {
                     Debug.Log("4 Is pressed");
                     greenBlockRenderer.material.SetColor("_Color", Color.white);
@@ -169,7 +169,7 @@ public class randonColourGeneration : MonoBehaviour
             if (buttonDown)
             {
                 //Code Dettecting when the user releases a button
-                if (Input.GetKeyUp("1") && onePressed)
+                if (SteamVR_Input.GetStateDown("Y", leftHand) && onePressed)
                 {
                     Debug.Log("1 Is released");
                     redBlockRenderer.material.SetColor("_Color", Color.red);
@@ -178,7 +178,7 @@ public class randonColourGeneration : MonoBehaviour
                     playerSequence[playerSequencePos] = 0;
                     playerSequencePos++;
                 }
-                else if (Input.GetKeyUp("2") && twoPressed)
+                else if (SteamVR_Input.GetStateDown("X", leftHand) && twoPressed)
                 {
                     Debug.Log("2 Is released");
                     yellowBlockRenderer.material.SetColor("_Color", Color.yellow);
@@ -187,7 +187,7 @@ public class randonColourGeneration : MonoBehaviour
                     playerSequence[playerSequencePos] = 1;
                     playerSequencePos++;
                 }
-                else if (Input.GetKeyUp("3") && threePressed)
+                else if (SteamVR_Input.GetStateDown("B", rightHand) && threePressed)
                 {
                     Debug.Log("3 Is released");
                     blueBlockRenderer.material.SetColor("_Color", Color.blue);
@@ -196,7 +196,7 @@ public class randonColourGeneration : MonoBehaviour
                     playerSequence[playerSequencePos] = 2;
                     playerSequencePos++;
                 }
-                else if (Input.GetKeyUp("4") && fourPressed)
+                else if (SteamVR_Input.GetStateDown("A", rightHand) && fourPressed)
                 {
                     Debug.Log("4 Is released");
                     greenBlockRenderer.material.SetColor("_Color", Color.green);

@@ -4486,7 +4486,7 @@ MonoBehaviour:
   yellowBlock: {fileID: 488816810}
   greenBlock: {fileID: 1848918132}
   leftHand: 0
-  righthand: 0
+  rightHand: 0
 --- !u!4 &695867326
 Transform:
   m_ObjectHideFlags: 0
@@ -13950,6 +13950,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11e88ba39b37fdc4abee57bccbdffb45, type: 3}
+--- !u!1 &2018834450 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 160596, guid: dc06161b6d97feb419f45f03b62e14b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2041990861}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2018834455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018834450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f511c1adaa1e94ebe7ca97bbcabd17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pose: {fileID: 0}
+  interactWithUI:
+    actionPath: /actions/default/in/InteractUI
+    needsReinit: 0
+  active: 1
+  color: {r: 0, g: 1, b: 1, a: 0}
+  thickness: 0.002
+  clickColor: {r: 0, g: 1, b: 0, a: 1}
+  holder: {fileID: 0}
+  pointer: {fileID: 0}
+  addRigidBody: 0
+  reference: {fileID: 0}
 --- !u!1001 &2024477367
 PrefabInstance:
   m_ObjectHideFlags: 0

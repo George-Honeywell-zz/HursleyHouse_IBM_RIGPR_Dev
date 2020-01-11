@@ -66,6 +66,10 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/LeftTrigger",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
