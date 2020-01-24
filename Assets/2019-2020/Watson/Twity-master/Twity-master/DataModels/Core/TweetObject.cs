@@ -10,6 +10,7 @@ namespace Twity.DataModels.Core
         public string id_str;
         public string created_at;
         public string text;
+        public bool truncated;
 
         public string in_reply_to_screen_name;
         public int in_reply_to_status_id;
