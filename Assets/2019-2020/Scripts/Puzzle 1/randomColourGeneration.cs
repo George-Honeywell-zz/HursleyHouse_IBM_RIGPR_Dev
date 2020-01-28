@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Valve.VR;
 using System.Collections.ObjectModel;
 
-public class randonColourGeneration : MonoBehaviour
+public class randomColourGeneration : MonoBehaviour
 {
     //Variable Declerations
     int[] sequence;
