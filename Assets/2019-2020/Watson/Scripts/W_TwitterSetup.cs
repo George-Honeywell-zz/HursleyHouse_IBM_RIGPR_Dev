@@ -25,10 +25,11 @@ public class W_TwitterSetup : MonoBehaviour
         Twity.Oauth.accessToken = AccessToken;
         Twity.Oauth.accessTokenSecret = TokenSecret;
     }
-    public void SearchUserTimeline(string ScreenName)
+    public void SearchUserTimeline(string ScreenName) // Step 1
     {
         SearchComplete = false;
         Dictionary<string, string> parameters = new Dictionary<string, string>();
+        //parameters["Name"] = "";
         parameters["screen_name"] = ScreenName;
         parameters["count"] = "200";
         parameters["include_rts"] = "true";
@@ -38,7 +39,10 @@ public class W_TwitterSetup : MonoBehaviour
     void Callback(bool success, string response)
     {
         StatusesUserTimelineResponse Response = JsonUtility.FromJson<StatusesUserTimelineResponse>(response);
-        
+        content = new Content()
+        {
+            ContentItems = new List<ContentItem>()
+        };
         for (int r = 0; r < Response.items.Length; r++)
         {
             content.ContentItems.Add(
@@ -51,11 +55,11 @@ public class W_TwitterSetup : MonoBehaviour
         }
         SearchComplete = true;
     }
-    bool GetSearchStatus()
+    public bool GetSearchStatus()
     {
         return SearchComplete;
     }
-    public Content GetTwitterContent()
+    public Content GetTwitterContent() // Step 2
     {
         if (GetSearchStatus())
         {
