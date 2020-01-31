@@ -13,14 +13,14 @@ using IBM.Watson.PersonalityInsights.V3.Model;
 public class Trait
 {
     public string name;
-    public long percentile;
+    public float percentile;
     public bool significant;
 }
 [Serializable]
 public class Humour
 {
     public string name;
-    public long percentile;
+    public float percentile;
     public bool significant;
     public Trait[] children = new Trait[6];
 }
@@ -60,11 +60,15 @@ public class W_WatsonSetup : MonoBehaviour
     {
         service.Profile(OnProfile, content: twitter.GetTwitterContent());
     }
-    private void OnProfile(DetailedResponse<Profile> response, IBMError error)
+    void OnProfile(DetailedResponse<Profile> response, IBMError error)
     {
+        Debug.Log(response.Response);
         profile = JsonUtility.FromJson<Personality>(response.Response);
+        for (int q = 0; q < 5; q++)
+            Debug.Log(profile.personality[q].name + " " + profile.personality[q].percentile);
+        AnalysisComplete = true;
     }
-    bool GetAnalysisStatus()
+    public bool GetAnalysisStatus()
     {
         return AnalysisComplete;
     }

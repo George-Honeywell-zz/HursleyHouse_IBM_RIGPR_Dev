@@ -38,7 +38,7 @@ public class W_Hub : MonoBehaviour
                     WBP.GetPentagon(WSA.pp);
                 }
 
-                if (WBP.SetupDone)
+                //if (WBP.SetupDone)
                 {
                     if (GUILayout.Button("Spawn Watson Graph"))
                     {

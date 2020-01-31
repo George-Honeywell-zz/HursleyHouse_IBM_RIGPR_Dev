@@ -30,8 +30,10 @@ public class W_Controller : MonoBehaviour
         if (WTS.GetSearchStatus())
             if (GUILayout.Button("Watson"))
                 WWS.GetPersonalityProfile();
-
-        if (GUILayout.Button("Graph"))
-            WPG.GetPentagon();
+        if (WWS.GetAnalysisStatus())
+            if (GUILayout.Button("Graph"))
+                WPG.GetPentagon(WWS.GetWatsonProfile());
+        if (GUILayout.Button("Show"))
+            WPG.Show();
     }
 }
