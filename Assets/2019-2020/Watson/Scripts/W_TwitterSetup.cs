@@ -25,18 +25,17 @@ public class W_TwitterSetup : MonoBehaviour
         Twity.Oauth.accessToken = AccessToken;
         Twity.Oauth.accessTokenSecret = TokenSecret;
     }
-    public void SearchUserTimeline(string ScreenName) // Step 1
+    public void SearchUserTimeline(string ScreenName)
     {
         SearchComplete = false;
         Dictionary<string, string> parameters = new Dictionary<string, string>();
-        //parameters["Name"] = "";
         parameters["screen_name"] = ScreenName;
         parameters["count"] = "200";
         parameters["include_rts"] = "true";
 
         StartCoroutine(Twity.Client.Get("statuses/user_timeline", parameters, Callback));
     }
-    void Callback(bool success, string response)
+    private void Callback(bool success, string response)
     {
         StatusesUserTimelineResponse Response = JsonUtility.FromJson<StatusesUserTimelineResponse>(response);
         content = new Content()
@@ -59,7 +58,7 @@ public class W_TwitterSetup : MonoBehaviour
     {
         return SearchComplete;
     }
-    public Content GetTwitterContent() // Step 2
+    public Content GetTwitterContent()
     {
         if (GetSearchStatus())
         {

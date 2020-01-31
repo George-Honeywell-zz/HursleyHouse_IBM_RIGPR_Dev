@@ -35,6 +35,7 @@ public class W_WatsonSetup : MonoBehaviour
 {
     private PersonalityInsightsService service;
     private W_TwitterSetup twitter;
+    private Personality profile;
     bool AnalysisComplete = false;
 
     void Start()
@@ -42,8 +43,6 @@ public class W_WatsonSetup : MonoBehaviour
         twitter = gameObject.GetComponent<W_TwitterSetup>();
         Runnable.Run(SetAuthenticator("YnTxEUYrUVRgguKRbtwobHp5f5qQBvLonY_OlDHjtdkC"));
     }
-    // SetAuthenticator("YnTxEUYrUVRgguKRbtwobHp5f5qQBvLonY_OlDHjtdkC");
-
     IEnumerator SetAuthenticator(string APIkey)
     {
         LogSystem.InstallDefaultReactors();
@@ -53,41 +52,32 @@ public class W_WatsonSetup : MonoBehaviour
         while (!authenticator.CanAuthenticate())
             yield return null;
 
-        service = new PersonalityInsightsService("2019-10-11", authenticator); // 11 Oct
+        service = new PersonalityInsightsService("2019-10-11", authenticator);
         service.SetServiceUrl("https://gateway-lon.watsonplatform.net/personality-insights/api");
         service.DisableSslVerification = true;
     }
-    public void GetPersonalityProfile() // Step 3
+    public void GetPersonalityProfile()
     {
         service.Profile(OnProfile, content: twitter.GetTwitterContent());
     }
     private void OnProfile(DetailedResponse<Profile> response, IBMError error)
     {
-        Debug.Log(response.Response);
-        Personality Response = JsonUtility.FromJson<Personality>(response.Response);
-        for (int r = 0; r < 5; r++)
-        {
-            Debug.Log(Response.personality[r].name);
-            for (int t = 0; t < 6; t++)
-            {
-                Debug.Log(Response.personality[r].children[t].name);
-            }
-        }
+        profile = JsonUtility.FromJson<Personality>(response.Response);
     }
     bool GetAnalysisStatus()
     {
         return AnalysisComplete;
     }
-    public void GetWatsonProfile()
+    public Personality GetWatsonProfile()
     {
         if (GetAnalysisStatus())
         {
-            
+            return profile;
         }
         else
         {
-            Debug.Log("Search in progress or failed");
-            //return null;
+            Debug.Log("Analysis in progress or failed");
+            return null;
         }
     }
 }
