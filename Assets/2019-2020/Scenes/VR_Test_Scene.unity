@@ -623,7 +623,7 @@ RectTransform:
   m_GameObject: {fileID: 392667429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.002, y: 0.002, z: 0.002}
+  m_LocalScale: {x: 0.002, y: 0.01, z: 0.002}
   m_Children: []
   m_Father: {fileID: 1974257690}
   m_RootOrder: 0
@@ -1365,7 +1365,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1422,7 +1422,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345ff9f4632868541ae1c1ecc2018d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneIndex: 1
 --- !u!65 &693644638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2114,7 +2113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345ff9f4632868541ae1c1ecc2018d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneIndex: 1
 --- !u!65 &959575339
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2187,6 +2185,49 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &966226776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966226778}
+  - component: {fileID: 966226777}
+  m_Layer: 0
+  m_Name: Scene_Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &966226777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966226776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345ff9f4632868541ae1c1ecc2018d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &966226778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966226776}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.608, y: 4.31, z: -0.24}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &971444411
 GameObject:
@@ -3475,7 +3516,7 @@ Transform:
   m_GameObject: {fileID: 1874273368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.00000011921, z: 0}
-  m_LocalScale: {x: 1, y: 0.17287, z: 0.1585796}
+  m_LocalScale: {x: 1, y: 1.16, z: 0.1585796}
   m_Children: []
   m_Father: {fileID: 1974257690}
   m_RootOrder: 1
@@ -3701,7 +3742,7 @@ GameObject:
   - component: {fileID: 1943611030}
   - component: {fileID: 1943611029}
   - component: {fileID: 1943611028}
-  - component: {fileID: 1943611027}
+  - component: {fileID: 1943611032}
   m_Layer: 0
   m_Name: thick glove
   m_TagString: Untagged
@@ -3730,26 +3771,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.19306612}
   m_SizeDelta: {x: 0.5, y: 0.08}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1943611027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1943611025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05229f3db0d24a4e9df9f11919f341a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHandClick:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: Valve.VR.InteractionSystem.CustomEvents+UnityEventHand, SteamVR, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  leftPrefab: {fileID: 1000011547835092, guid: 8ade79fed86bbd141926d1cd94c98457, type: 3}
-  rightPrefab: {fileID: 1000012617731570, guid: d07386f0ec952ec409dc7753bcf5746b,
-    type: 3}
 --- !u!114 &1943611028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3885,6 +3906,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943611025}
   m_CullTransparentMesh: 0
+--- !u!114 &1943611032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943611025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf6b536e9866884399ba2a13c12dcb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayText: {fileID: 0}
 --- !u!1 &1963460717
 GameObject:
   m_ObjectHideFlags: 0
@@ -3993,7 +4027,6 @@ GameObject:
   - component: {fileID: 1974257694}
   - component: {fileID: 1974257693}
   - component: {fileID: 1974257692}
-  - component: {fileID: 1974257691}
   - component: {fileID: 1974257696}
   m_Layer: 0
   m_Name: change_level
@@ -4010,8 +4043,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974257689}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.001}
+  m_LocalScale: {x: 1, y: 0.11, z: 1}
   m_Children:
   - {fileID: 392667430}
   - {fileID: 1874273369}
@@ -4023,19 +4056,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1974257691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1974257689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 345ff9f4632868541ae1c1ecc2018d99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneIndex: 1
 --- !u!114 &1974257692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4130,7 +4150,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1974257694}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 966226777}
+        m_MethodName: NextLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: VR_Test_Scene2
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1974257694
@@ -4146,7 +4177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4186,13 +4217,13 @@ MonoBehaviour:
   onHandClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 345ff9f4632868541ae1c1ecc2018d99, type: 3}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 966226777}
+        m_MethodName: NextLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
