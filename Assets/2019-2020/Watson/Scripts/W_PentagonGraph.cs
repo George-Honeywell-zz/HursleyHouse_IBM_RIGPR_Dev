@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class W_PentagonGraph : MonoBehaviour
 {
+    // Entities
     GameObject Axis;
     GameObject Graph;
     void Start()
     {
+        // Set Objects
         Axis = new GameObject();
         Axis.name = "Big 5 Axis";
         Axis.transform.parent = this.gameObject.transform;
@@ -18,6 +20,7 @@ public class W_PentagonGraph : MonoBehaviour
 
     public void GetPentagon(Personality player)
     {
+        // Graph Specification
         Vector3[] pentagonA =
         {
             new Vector3(0.0f, 0.0f, 0.0f),
@@ -44,6 +47,7 @@ public class W_PentagonGraph : MonoBehaviour
             Vector3.back,
         };
 
+        // Axis Setup
         Mesh axis = Axis.AddComponent<MeshFilter>().mesh;
         axis.vertices = pentagonA;
         axis.triangles = triangles;
@@ -53,6 +57,7 @@ public class W_PentagonGraph : MonoBehaviour
         Axis.transform.position = (this.gameObject.transform.forward * 2.01f) + this.gameObject.transform.position;
         Axis.SetActive(false);
 
+        // Graph filler setup
         Personality p = player;
         Vector3[] pentagonG =
         {

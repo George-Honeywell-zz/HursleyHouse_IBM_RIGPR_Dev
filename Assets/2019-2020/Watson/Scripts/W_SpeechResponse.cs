@@ -4,119 +4,179 @@ using UnityEngine;
 
 public class W_SpeechResponse : MonoBehaviour
 {
-    double[,] accumulator = new double[5, 7];
+    // Entities
+    double[] Big5Accumulate = new double[5];
+    double[,] FacetAccumulate = new double[5, 6];
     void Start()
     {
+        // Set Accumulators to Zero
         for (int b5 = 0; b5 < 5; b5++)
         {
-            accumulator[b5, 0] = 0.0f;
-            for (int f = 1; f < 7; f++)
-                accumulator[b5, f] = 0.0f;
+            Big5Accumulate[b5] = 0.0f;
+            for (int f = 0; f < 6; f++)
+                FacetAccumulate[b5, f] = 0.0f;
         }
     }
-    public Trait ResponseSelector(Personality player)
+    public void ResponseSelector(Personality player)
     {
         Personality p = player;
+        // Accumulate percentiles
         for (int b5 = 0; b5 < 5; b5++)
         {
-            accumulator[b5, 0] += p.personality[b5].percentile;
-            for (int f = 1; f < 7; f++)
-                accumulator[b5, f] += p.personality[b5].children[f - 1].percentile;
+            Big5Accumulate[b5] += p.personality[b5].percentile;
+            for (int f = 0; f < 6; f++)
+                FacetAccumulate[b5, f] += p.personality[b5].children[f].percentile;
         }
-
+    }
+    public void Big5Selector()
+    {
+        // Big 5 Accumulators Highest Value
         int big5 = 0;
         for (int b5 = 0; b5 < 5; b5++)
         {
-            if (accumulator[big5, 0] < accumulator[b5, 0])
+            if (Big5Accumulate[big5] < Big5Accumulate[b5])
                 big5 = b5;
         }
-        int facet = 1;
-        for (int f = 1; f < 7; f++)
+    }
+    public void FacetSelector(int big5)
+    {
+        // Facets of a single big 5, Accumulators Highest Value
+        int facet = 0;
+        for (int f = 0; f < 6; f++)
         {
-            if (accumulator[big5, facet] < accumulator[big5, f])
+            if (FacetAccumulate[big5, facet] < FacetAccumulate[big5, f])
                 facet = f;
         }
-        accumulator[big5, facet] = 0.0f;
-        accumulator[big5, 0] = 0.0f;
-        return p.personality[big5].children[facet - 1];
+    }
+    public void ClearAccumulate(Trait facet)
+    {
+
+        //FacetAccumulate[big5, facet] = 0.0f;
+        //Big5Accumulate[big5] = 0.0f;
+    }
+    public void AccumulateMatrixLocation(Trait facet)
+    {
+        int big5;
+        if (facet.name == "Adventurousness" ||
+            facet.name == "Artistic interests" ||
+            facet.name == "Emotionality" ||
+            facet.name == "Imagination" ||
+            facet.name == "Intellect" ||
+            facet.name == "Authority-challenging")
+            big5 = 0;
+        if (facet.name == "Achievement striving" ||
+            facet.name == "Cautiousness" ||
+            facet.name == "Dutifulness" ||
+            facet.name == "Orderliness" ||
+            facet.name == "Self-discipline" ||
+            facet.name == "Self-efficacy")
+            big5 = 1;
+        if (facet.name == "Activity level" ||
+            facet.name == "Assertiveness" ||
+            facet.name == "Cheerfulness" ||
+            facet.name == "Excitement-seeking" ||
+            facet.name == "Outgoing" ||
+            facet.name == "Gregariousness")
+            big5 = 2;
+        if (facet.name == "Altruism" ||
+            facet.name == "Cooperation" ||
+            facet.name == "Modesty" ||
+            facet.name == "Uncompromising" ||
+            facet.name == "Sympathy" ||
+            facet.name == "Trust")
+            big5 = 3;
+        if (facet.name == "Fiery" ||
+            facet.name == "Prone to worry" ||
+            facet.name == "Melancholy" ||
+            facet.name == "Immoderation" ||
+            facet.name == "Self-consciousness" ||
+            facet.name == "Susceptible to stress")
+            big5 = 4;
+
+
     }
     public string SpeechOutput(Trait facet)
     {
-        string returnSpeach = "";
+        string returnSpeech = "";
         //Blank
         if (facet == null)
-            returnSpeach = "";
+            returnSpeech = "";
 
         //Openness
         if (facet.name == "Adventurousness")
-            returnSpeach = "Adventure!";
+            returnSpeech = "Adventure!";
         if (facet.name == "Artistic interests")
-            returnSpeach = "Art!";
+            returnSpeech = "Art!";
         if (facet.name == "Emotionality")
-            returnSpeach = "Emotion!";
+            returnSpeech = "Emotion!";
         if (facet.name == "Imagination")
-            returnSpeach = "Imagine!";
+            returnSpeech = "Imagine!";
         if (facet.name == "Intellect")
-            returnSpeach = "Smart Boi";
+            returnSpeech = "Smart Boi";
         if (facet.name == "Authority-challenging")
-            returnSpeach = "Rah Authority";
+            returnSpeech = "Rah Authority";
 
         //Conscientiousness
         if (facet.name == "Achievement striving")
-            returnSpeach = "Yay Success";
+            returnSpeech = "Yay Success";
         if (facet.name == "Cautiousness")
-            returnSpeach = "Danger?";
+            returnSpeech = "Danger?";
         if (facet.name == "Dutifulness")
-            returnSpeach = "I have job to do!";
+            returnSpeech = "I have job to do!";
         if (facet.name == "Orderliness")
-            returnSpeach = "Orderly Fashion... Nice";
+            returnSpeech = "Orderly Fashion... Nice";
         if (facet.name == "Self-discipline")
-            returnSpeach = "Inner Strength";
+            returnSpeech = "Inner Strength";
         if (facet.name == "Self-efficacy")
-            returnSpeach = "Inner Speed";
+            returnSpeech = "Inner Speed";
 
         //Extraversion
         if (facet.name == "Activity level")
-            returnSpeach = "ENERGY!";
+            returnSpeech = "ENERGY!";
         if (facet.name == "Assertiveness")
-            returnSpeach = "My way or the highway.";
+            returnSpeech = "My way or the highway.";
         if (facet.name == "Cheerfulness")
-            returnSpeach = "Wahoo!";
+            returnSpeech = "Wahoo!";
         if (facet.name == "Excitement-seeking")
-            returnSpeach = "the call for Excitement, it speaks to me!";
+            returnSpeech = "the call for Excitement, it speaks to me!";
         if (facet.name == "Outgoing")
-            returnSpeach = "Hey.";
+            returnSpeech = "Hey.";
         if (facet.name == "Gregariousness")
-            returnSpeach = "Where's my followers?";
+            returnSpeech = "Where's my followers?";
 
         //Agreeableness
         if (facet.name == "Altruism")
-            returnSpeach = "I shall die for the player.";
+            returnSpeech = "I shall die for the player.";
         if (facet.name == "Cooperation")
-            returnSpeach = "Now that's teamwork.";
+            returnSpeech = "Now that's teamwork.";
         if (facet.name == "Modesty")
-            returnSpeach = "Could always puzzled faster.";
+            returnSpeech = "Could always puzzled faster.";
         if (facet.name == "Uncompromising")
-            returnSpeach = "I'm always right!";
+            returnSpeech = "I'm always right!";
         if (facet.name == "Sympathy")
-            returnSpeach = "I'm sorry.";
+            returnSpeech = "I'm sorry.";
         if (facet.name == "Trust")
-            returnSpeach = "You believe what I say, right?";
+            returnSpeech = "You believe what I say, right?";
 
         //Emotional range
         if (facet.name == "Fiery")
-            returnSpeach = "AHHHHHH!";
+            returnSpeech = "AHHHHHH!";
         if (facet.name == "Prone to worry")
-            returnSpeach = "Am I doing the right thing?";
+            returnSpeech = "Am I doing the right thing?";
         if (facet.name == "Melancholy")
-            returnSpeach = "SADNESS!... It overwelms thy self...";
+            returnSpeech = "SADNESS!... It overwelms thy self...";
         if (facet.name == "Immoderation")
-            returnSpeach = "I do what I want, when I want";
+            returnSpeech = "I do what I want, when I want";
         if (facet.name == "Self-consciousness")
-            returnSpeach = "Is my body beautiful?... Do I even have a body?";
+            returnSpeech = "Is my body beautiful?... Do I even have a body?";
         if (facet.name == "Susceptible to stress")
-            returnSpeach = "STRESSFUL!";
+            returnSpeech = "STRESSFUL!";
 
-        return returnSpeach;
+        return returnSpeech;
     }
+
 }
+        
+    
+
+    
