@@ -48,15 +48,44 @@ public class W_SpeechResponse : MonoBehaviour
                 facet = f;
         }
     }
-    public void ClearAccumulate(Trait facet)
+    public void FacetSelector(Humour big5)
+    {
+        int b5 = 5;
+        if (big5.name == "Openness")
+            b5 = 0;
+        if (big5.name == "Conscientiousness")
+            b5 = 1;
+        if (big5.name == "Extraversion")
+            b5 = 2;
+        if (big5.name == "Agreeableness")
+            b5 = 3;
+        if (big5.name == "Emotional range")
+            b5 = 4;
+        // Facets of a single big 5, Accumulators Highest Value
+        int facet = 0;
+        for (int f = 0; f < 6; f++)
+        {
+            if (FacetAccumulate[b5, facet] < FacetAccumulate[b5, f])
+                facet = f;
+        }
+    }
+    public void ClearAllAccumulators()
+    {
+        // Set Accumulators to Zero
+        for (int b5 = 0; b5 < 5; b5++)
+        {
+            Big5Accumulate[b5] = 0.0f;
+            for (int f = 0; f < 6; f++)
+                FacetAccumulate[b5, f] = 0.0f;
+        }
+    }
+    public void PersonalitiesInteraction(Personality challenger, Personality target)
     {
 
-        //FacetAccumulate[big5, facet] = 0.0f;
-        //Big5Accumulate[big5] = 0.0f;
     }
-    public void AccumulateMatrixLocation(Trait facet)
+    public int ReturnHumourInteger(Trait facet)
     {
-        int big5;
+        int big5 = 5;
         if (facet.name == "Adventurousness" ||
             facet.name == "Artistic interests" ||
             facet.name == "Emotionality" ||
@@ -92,8 +121,47 @@ public class W_SpeechResponse : MonoBehaviour
             facet.name == "Self-consciousness" ||
             facet.name == "Susceptible to stress")
             big5 = 4;
-
-
+        return big5;
+    }
+    public string ReturnHumourName(Trait facet)
+    {
+        string big5 = "";
+        if (facet.name == "Adventurousness" ||
+            facet.name == "Artistic interests" ||
+            facet.name == "Emotionality" ||
+            facet.name == "Imagination" ||
+            facet.name == "Intellect" ||
+            facet.name == "Authority-challenging")
+            big5 = "Openness";
+        if (facet.name == "Achievement striving" ||
+            facet.name == "Cautiousness" ||
+            facet.name == "Dutifulness" ||
+            facet.name == "Orderliness" ||
+            facet.name == "Self-discipline" ||
+            facet.name == "Self-efficacy")
+            big5 = "Conscientiousness";
+        if (facet.name == "Activity level" ||
+            facet.name == "Assertiveness" ||
+            facet.name == "Cheerfulness" ||
+            facet.name == "Excitement-seeking" ||
+            facet.name == "Outgoing" ||
+            facet.name == "Gregariousness")
+            big5 = "Extraversion";
+        if (facet.name == "Altruism" ||
+            facet.name == "Cooperation" ||
+            facet.name == "Modesty" ||
+            facet.name == "Uncompromising" ||
+            facet.name == "Sympathy" ||
+            facet.name == "Trust")
+            big5 = "Agreeableness";
+        if (facet.name == "Fiery" ||
+            facet.name == "Prone to worry" ||
+            facet.name == "Melancholy" ||
+            facet.name == "Immoderation" ||
+            facet.name == "Self-consciousness" ||
+            facet.name == "Susceptible to stress")
+            big5 = "Emotional range";
+        return big5;
     }
     public string SpeechOutput(Trait facet)
     {

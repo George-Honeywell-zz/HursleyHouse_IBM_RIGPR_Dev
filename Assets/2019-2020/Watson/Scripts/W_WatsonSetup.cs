@@ -1,9 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System;
 using UnityEngine;
 using IBM.Cloud.SDK;
-using IBM.Cloud.SDK.Authentication;
 using IBM.Cloud.SDK.Authentication.Iam;
 using IBM.Cloud.SDK.Utilities;
 using IBM.Watson.PersonalityInsights.V3;
