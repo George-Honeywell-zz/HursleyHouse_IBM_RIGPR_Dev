@@ -1,32 +1,10 @@
 ﻿using System.Collections;
-using System;
 using UnityEngine;
 using IBM.Cloud.SDK;
 using IBM.Cloud.SDK.Authentication.Iam;
 using IBM.Cloud.SDK.Utilities;
 using IBM.Watson.PersonalityInsights.V3;
 using IBM.Watson.PersonalityInsights.V3.Model;
-
-[Serializable]
-public class Trait
-{
-    public string name;
-    public float percentile;
-    public bool significant;
-}
-[Serializable]
-public class Humour
-{
-    public string name;
-    public float percentile;
-    public bool significant;
-    public Trait[] children = new Trait[6];
-}
-[Serializable]
-public class Personality
-{
-    public Humour[] personality = new Humour[5];
-}
 
 [RequireComponent(typeof(W_TwitterSetup))]
 public class W_WatsonSetup : MonoBehaviour
