@@ -5,214 +5,181 @@ using UnityEngine.UI;
 
 public class puzzle2 : MonoBehaviour
 {
-    float clock1Z = 0;
-    float clock2Z = 0;
-    float clock3Z = 0;
-    float clock4Z = 0;
-    float clock5Z = 0;
-    float clock6Z = 0;
-    float clock7Z = 0;
-    float clock8Z = 0;
-    float clock9Z = 0;
-    bool clock1Correct = false;
-    bool clock2Correct = false;
-    bool clock3Correct = false;
-    bool clock4Correct = false;
-    bool clock5Correct = false;
-    bool clock6Correct = false;
-    bool clock7Correct = false;
-    bool clock8Correct = false;
-    bool clock9Correct = false;
-    public GameObject clock1;
-    public GameObject clock2;
-    public GameObject clock3;
-    public GameObject clock4;
-    public GameObject clock5;
-    public GameObject clock6;
-    public GameObject clock7;
-    public GameObject clock8;
-    public GameObject clock9;
-    public GameObject completed;
-    Renderer clock1Renderer;
-    Renderer clock2Renderer;
-    Renderer clock3Renderer;
-    Renderer clock4Renderer;
-    Renderer clock5Renderer;
-    Renderer clock6Renderer;
-    Renderer clock7Renderer;
-    Renderer clock8Renderer;
-    Renderer clock9Renderer;
-    Renderer completedRenderer;
+    float[] clockZAngle = new float[9];
+    bool[] clockPosition = new bool[9];
+    public GameObject[] clocks = new GameObject[10];
+    Renderer[] clockRenderer = new Renderer[10];
 
     void Start()
     {
-        clock1Renderer = clock1.GetComponent<Renderer>();
-        clock2Renderer = clock2.GetComponent<Renderer>();
-        clock3Renderer = clock3.GetComponent<Renderer>();
-        clock4Renderer = clock4.GetComponent<Renderer>();
-        clock5Renderer = clock5.GetComponent<Renderer>();
-        clock6Renderer = clock6.GetComponent<Renderer>();
-        clock7Renderer = clock7.GetComponent<Renderer>();
-        clock8Renderer = clock8.GetComponent<Renderer>();
-        clock9Renderer = clock9.GetComponent<Renderer>();
-        completedRenderer = completed.GetComponent<Renderer>();
+        clockRenderer[0] = clocks[0].GetComponent<Renderer>();
+        clockRenderer[1] = clocks[1].GetComponent<Renderer>();
+        clockRenderer[2] = clocks[2].GetComponent<Renderer>();
+        clockRenderer[3] = clocks[3].GetComponent<Renderer>();
+        clockRenderer[4] = clocks[4].GetComponent<Renderer>();
+        clockRenderer[5] = clocks[5].GetComponent<Renderer>();
+        clockRenderer[6] = clocks[6].GetComponent<Renderer>();
+        clockRenderer[7] = clocks[7].GetComponent<Renderer>();
+        clockRenderer[8] = clocks[8].GetComponent<Renderer>();
+        clockRenderer[9] = clocks[9].GetComponent<Renderer>();
     }
 
     void Update()
     {
-        clock1Z = clock1.transform.rotation.eulerAngles.z;
-        clock2Z = clock2.transform.rotation.eulerAngles.z;
-        clock3Z = clock3.transform.rotation.eulerAngles.z;
-        clock4Z = clock4.transform.rotation.eulerAngles.z;
-        clock5Z = clock5.transform.rotation.eulerAngles.z;
-        clock6Z = clock6.transform.rotation.eulerAngles.z;
-        clock7Z = clock7.transform.rotation.eulerAngles.z;
-        clock8Z = clock8.transform.rotation.eulerAngles.z;
-        clock9Z = clock9.transform.rotation.eulerAngles.z;
+        clockZAngle[0] = clocks[0].transform.rotation.eulerAngles.z;
+        clockZAngle[1] = clocks[1].transform.rotation.eulerAngles.z;
+        clockZAngle[2] = clocks[2].transform.rotation.eulerAngles.z;
+        clockZAngle[3] = clocks[3].transform.rotation.eulerAngles.z;
+        clockZAngle[4] = clocks[4].transform.rotation.eulerAngles.z;
+        clockZAngle[5] = clocks[5].transform.rotation.eulerAngles.z;
+        clockZAngle[6] = clocks[6].transform.rotation.eulerAngles.z;
+        clockZAngle[7] = clocks[7].transform.rotation.eulerAngles.z;
+        clockZAngle[8] = clocks[8].transform.rotation.eulerAngles.z;
 
         if (Input.GetKeyUp("1"))
         {
-            clock1.transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+            clocks[0].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
         }
         else if (Input.GetKeyUp("2"))
         {
-            clock2.transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+            clocks[1].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
         }
         else if (Input.GetKeyUp("3"))
         {
-            clock3.transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+            clocks[2].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
         }
         else if (Input.GetKeyUp("4"))
         {
-            clock4.transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+            clocks[3].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
         }
         else if (Input.GetKeyUp("5"))
         {
-            clock5.transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+            clocks[4].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
         }
         else if (Input.GetKeyUp("6"))
         {
-            clock6.transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+            clocks[5].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
         }
         else if (Input.GetKeyUp("7"))
         {
-            clock7.transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+            clocks[6].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
         }
         else if (Input.GetKeyUp("8"))
         {
-            clock8.transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+            clocks[7].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
         }
         else if (Input.GetKeyUp("9"))
         {
-            clock9.transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+            clocks[8].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
         }
 
-        if(clock1Z < 136 && clock1Z > 134)
+        //Code which checks 
+        if(clockZAngle[0] < 136 && clockZAngle[0] > 134)
         {
-            clock1Renderer.material.SetColor("_Color", Color.green);
-            clock1Correct = true;
+            clockRenderer[0].material.SetColor("_Color", Color.green);
+            clockPosition[0] = true;
         }
         else
         {
-            clock1Renderer.material.SetColor("_Color", Color.red);
-            clock1Correct = false;
+            clockRenderer[0].material.SetColor("_Color", Color.red);
+            clockPosition[0] = false;
         }
 
-        if (clock2Z < 1 && clock2Z > -1)
+        if (clockZAngle[1] < 1 && clockZAngle[1] > -1)
         {
-            clock2Renderer.material.SetColor("_Color", Color.green);
-            clock2Correct = true;
+            clockRenderer[1].material.SetColor("_Color", Color.green);
+            clockPosition[1] = true;
         }
         else
         {
-            clock2Renderer.material.SetColor("_Color", Color.red);
-            clock2Correct = false;
+            clockRenderer[1].material.SetColor("_Color", Color.red);
+            clockPosition[1] = false;
         }
 
-        if (clock3Z < 91 && clock3Z > 89)
+        if (clockZAngle[2] < 91 && clockZAngle[2] > 89)
         {
-            clock3Renderer.material.SetColor("_Color", Color.green);
-            clock3Correct = true;
+            clockRenderer[2].material.SetColor("_Color", Color.green);
+            clockPosition[2] = true;
         }
         else
         {
-            clock3Renderer.material.SetColor("_Color", Color.red);
-            clock3Correct = false;
+            clockRenderer[2].material.SetColor("_Color", Color.red);
+            clockPosition[2] = false;
         }
 
-        if (clock4Z < 46 && clock4Z > 44)
+        if (clockZAngle[3] < 46 && clockZAngle[3] > 44)
         {
-            clock4Renderer.material.SetColor("_Color", Color.green);
-            clock4Correct = true;
+            clockRenderer[3].material.SetColor("_Color", Color.green);
+            clockPosition[3] = true;
         }
         else
         {
-            clock4Renderer.material.SetColor("_Color", Color.red);
-            clock4Correct = false;
+            clockRenderer[3].material.SetColor("_Color", Color.red);
+            clockPosition[3] = false;
         }
 
-        if (clock5Z < 91 && clock5Z > 89)
+        if (clockZAngle[4] < 91 && clockZAngle[4] > 89)
         {
-            clock5Renderer.material.SetColor("_Color", Color.green);
-            clock5Correct = true;
+            clockRenderer[4].material.SetColor("_Color", Color.green);
+            clockPosition[4] = true;
         }
         else
         {
-            clock5Renderer.material.SetColor("_Color", Color.red);
-            clock5Correct = false;
+            clockRenderer[4].material.SetColor("_Color", Color.red);
+            clockPosition[4] = false;
         }
 
-        if (clock6Z < 181 && clock6Z > 179)
+        if (clockZAngle[5] < 181 && clockZAngle[5] > 179)
         {
-            clock6Renderer.material.SetColor("_Color", Color.green);
-            clock6Correct = true;
+            clockRenderer[5].material.SetColor("_Color", Color.green);
+            clockPosition[5] = true;
         }
         else
         {
-            clock6Renderer.material.SetColor("_Color", Color.red);
-            clock6Correct = false;
+            clockRenderer[5].material.SetColor("_Color", Color.red);
+            clockPosition[5] = false;
         }
 
-        if (clock7Z < 91 && clock7Z > 89)
+        if (clockZAngle[6] < 91 && clockZAngle[6] > 89)
         {
-            clock7Renderer.material.SetColor("_Color", Color.green);
-            clock7Correct = true;
+            clockRenderer[6].material.SetColor("_Color", Color.green);
+            clockPosition[6] = true;
         }
         else
         {
-            clock7Renderer.material.SetColor("_Color", Color.red);
-            clock7Correct = false;
+            clockRenderer[6].material.SetColor("_Color", Color.red);
+            clockPosition[6] = false;
         }
 
-        if (clock8Z < 91 && clock8Z > 89)
+        if (clockZAngle[7] < 91 && clockZAngle[7] > 89)
         {
-            clock8Renderer.material.SetColor("_Color", Color.green);
-            clock8Correct = true;
+            clockRenderer[7].material.SetColor("_Color", Color.green);
+            clockPosition[7] = true;
         }
         else
         {
-            
-            clock8Correct = false;
+            clockRenderer[7].material.SetColor("_Color", Color.red);
+            clockPosition[7] = false;
         }
 
-        if (clock9Z < 46 && clock9Z > 44)
+        if (clockZAngle[8] < 46 && clockZAngle[8] > 44)
         {
-            clock9Renderer.material.SetColor("_Color", Color.green);
-            clock9Correct = true;
+            clockRenderer[8].material.SetColor("_Color", Color.green);
+            clockPosition[8] = true;
         }
         else
         {
-            clock9Renderer.material.SetColor("_Color", Color.red);
-            clock9Correct = false;
+            clockRenderer[8].material.SetColor("_Color", Color.red);
+            clockPosition[8] = false;
         }
 
-        if(clock1Correct && clock2Correct && clock3Correct && clock4Correct && clock5Correct && clock6Correct & clock7Correct && clock8Correct && clock9Correct)
+        if (clockPosition[0] && clockPosition[1] && clockPosition[2] && clockPosition[3] && clockPosition[4] && clockPosition[5] && clockPosition[6] && clockPosition[7] && clockPosition[8])
         {
-            completedRenderer.material.SetColor("_Color", Color.green);
+            clockRenderer[9].material.SetColor("_Color", Color.green);
         }
         else
         {
-            completedRenderer.material.SetColor("_Color", Color.red);
+            clockRenderer[9].material.SetColor("_Color", Color.red);
         }
     }
 }
