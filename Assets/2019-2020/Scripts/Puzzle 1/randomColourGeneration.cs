@@ -33,7 +33,11 @@ public class randomColourGeneration : MonoBehaviour
     Text victoryText;
 
     public SteamVR_Input_Sources leftHand;
-    public SteamVR_Input_Sources rightHand;
+    //public SteamVR_Input_Sources rightHand;
+    /*public*/ Button red_button;
+    /*public*/ Button yellow_button;
+    /*public*/ Button blue_button;
+    /*public*/ Button green_button;
     
 
     
@@ -68,7 +72,21 @@ public class randomColourGeneration : MonoBehaviour
         //    sequencePlayed = false;
         //}
 
-        if(sequencePlayed && SteamVR_Input.GetStateDown("LeftTrigger", leftHand))
+        //---------------------------------------------------------------------------------------//
+        //~~~ Debugging for PC Testing                                                           //
+        //~~~ Uncomment this out, and comment the 'IF' statement below to use the VR Controller. //
+        //---------------------------------------------------------------------------------------//
+        //if(sequencePlayed && SteamVR_Input.GetStateDown("LeftTrigger", leftHand))
+        //{
+        //    StartCoroutine(ColourSequence());
+        //    sequencePlayed = false;
+        //}
+
+        //---------------------------------------------------------------------------------------//
+        //~~~ Debugging for PC Testing                                                           //
+        //~~~ Comment this out, and uncomment the 'IF' statement above to use the VR Controller. //
+        //---------------------------------------------------------------------------------------//
+        if (sequencePlayed && Input.GetKeyDown(KeyCode.O))
         {
             StartCoroutine(ColourSequence());
             sequencePlayed = false;
@@ -143,68 +161,77 @@ public class randomColourGeneration : MonoBehaviour
                     onePressed = true;
                     buttonDown = true;
                 }
-                else if (SteamVR_Input.GetStateDown("X", leftHand))
-                {
-                    Debug.Log("2 Is pressed");
-                    yellowBlockRenderer.material.SetColor("_Color", Color.white);
-                    twoPressed = true;
-                    buttonDown = true;
-                }
-                else if (SteamVR_Input.GetStateDown("B", rightHand))
-                {
-                    Debug.Log("3 Is pressed");
-                    blueBlockRenderer.material.SetColor("_Color", Color.white);
-                    threePressed = true;
-                    buttonDown = true;
-                }
-                else if (SteamVR_Input.GetStateDown("A", rightHand))
-                {
-                    Debug.Log("4 Is pressed");
-                    greenBlockRenderer.material.SetColor("_Color", Color.white);
-                    fourPressed = true;
-                    buttonDown = true;
-                }
+
+
+
+                //else if (SteamVR_Input.GetStateDown("X", leftHand))
+                //{
+                //    Debug.Log("2 Is pressed");
+                //    yellowBlockRenderer.material.SetColor("_Color", Color.white);
+                //    twoPressed = true;
+                //    buttonDown = true;
+                //}
+                //else if (SteamVR_Input.GetStateDown("B", rightHand))
+                //{
+                //    Debug.Log("3 Is pressed");
+                //    blueBlockRenderer.material.SetColor("_Color", Color.white);
+                //    threePressed = true;
+                //    buttonDown = true;
+                //}
+                //else if (SteamVR_Input.GetStateDown("A", rightHand))
+                //{
+                //    Debug.Log("4 Is pressed");
+                //    greenBlockRenderer.material.SetColor("_Color", Color.white);
+                //    fourPressed = true;
+                //    buttonDown = true;
+                //}
             }
 
             if (buttonDown)
             {
                 //Code Dettecting when the user releases a button
-                if (SteamVR_Input.GetStateDown("Y", leftHand) && onePressed)
+                //if (SteamVR_Input.GetStateDown("Y", leftHand) && onePressed)
+                //{
+                //    Debug.Log("1 Is released");
+                //    redBlockRenderer.material.SetColor("_Color", Color.red);
+                //    onePressed = false;
+                //    buttonDown = false;
+                //    playerSequence[playerSequencePos] = 0;
+                //    playerSequencePos++;
+                //}
+
+                if (red_button)
                 {
-                    Debug.Log("1 Is released");
-                    redBlockRenderer.material.SetColor("_Color", Color.red);
-                    onePressed = false;
-                    buttonDown = false;
-                    playerSequence[playerSequencePos] = 0;
-                    playerSequencePos++;
+                    Debug.Log("Test");
                 }
-                else if (SteamVR_Input.GetStateDown("X", leftHand) && twoPressed)
-                {
-                    Debug.Log("2 Is released");
-                    yellowBlockRenderer.material.SetColor("_Color", Color.yellow);
-                    twoPressed = false;
-                    buttonDown = false;
-                    playerSequence[playerSequencePos] = 1;
-                    playerSequencePos++;
-                }
-                else if (SteamVR_Input.GetStateDown("B", rightHand) && threePressed)
-                {
-                    Debug.Log("3 Is released");
-                    blueBlockRenderer.material.SetColor("_Color", Color.blue);
-                    threePressed = false;
-                    buttonDown = false;
-                    playerSequence[playerSequencePos] = 2;
-                    playerSequencePos++;
-                }
-                else if (SteamVR_Input.GetStateDown("A", rightHand) && fourPressed)
-                {
-                    Debug.Log("4 Is released");
-                    greenBlockRenderer.material.SetColor("_Color", Color.green);
-                    fourPressed = false;
-                    buttonDown = false;
-                    playerSequence[playerSequencePos] = 3;
-                    playerSequencePos++;
-                }
+
+                //else if (SteamVR_Input.GetStateDown("X", leftHand) && twoPressed)
+                //{
+                //    Debug.Log("2 Is released");
+                //    yellowBlockRenderer.material.SetColor("_Color", Color.yellow);
+                //    twoPressed = false;
+                //    buttonDown = false;
+                //    playerSequence[playerSequencePos] = 1;
+                //    playerSequencePos++;
+                //}
+                //else if (SteamVR_Input.GetStateDown("B", rightHand) && threePressed)
+                //{
+                //    Debug.Log("3 Is released");
+                //    blueBlockRenderer.material.SetColor("_Color", Color.blue);
+                //    threePressed = false;
+                //    buttonDown = false;
+                //    playerSequence[playerSequencePos] = 2;
+                //    playerSequencePos++;
+                //}
+                //else if (SteamVR_Input.GetStateDown("A", rightHand) && fourPressed)
+                //{
+                //    Debug.Log("4 Is released");
+                //    greenBlockRenderer.material.SetColor("_Color", Color.green);
+                //    fourPressed = false;
+                //    buttonDown = false;
+                //    playerSequence[playerSequencePos] = 3;
+                //    playerSequencePos++;
+                //}
             }
         }
     }
