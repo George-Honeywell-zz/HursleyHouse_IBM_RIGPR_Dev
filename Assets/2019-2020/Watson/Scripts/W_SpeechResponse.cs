@@ -7,6 +7,10 @@ public class W_SpeechResponse : MonoBehaviour
     // Entities
     double[] Big5Accumulate = new double[5];
     double[,] FacetAccumulate = new double[5, 6];
+    public double GetBigAccumulate(int big5)
+    {
+        return Big5Accumulate[big5];
+    }
     void Start()
     {
         // Set Accumulators to Zero
@@ -28,46 +32,27 @@ public class W_SpeechResponse : MonoBehaviour
                 FacetAccumulate[b5, f] += p.personality[b5].children[f].percentile;
         }
     }
-    public void Big5Selector()
+    public int Big5Selector()
     {
         // Big 5 Accumulators Highest Value
         int big5 = 0;
-        for (int b5 = 0; b5 < 5; b5++)
+        for (int b5 = 1; b5 < 5; b5++)
         {
             if (Big5Accumulate[big5] < Big5Accumulate[b5])
                 big5 = b5;
         }
+        return big5;
     }
-    public void FacetSelector(int big5)
+    public int FacetSelector(int big5)
     {
         // Facets of a single big 5, Accumulators Highest Value
         int facet = 0;
-        for (int f = 0; f < 6; f++)
+        for (int f = 1; f < 6; f++)
         {
             if (FacetAccumulate[big5, facet] < FacetAccumulate[big5, f])
                 facet = f;
         }
-    }
-    public void FacetSelector(Humour big5)
-    {
-        int b5 = 5;
-        if (big5.name == "Openness")
-            b5 = 0;
-        if (big5.name == "Conscientiousness")
-            b5 = 1;
-        if (big5.name == "Extraversion")
-            b5 = 2;
-        if (big5.name == "Agreeableness")
-            b5 = 3;
-        if (big5.name == "Emotional range")
-            b5 = 4;
-        // Facets of a single big 5, Accumulators Highest Value
-        int facet = 0;
-        for (int f = 0; f < 6; f++)
-        {
-            if (FacetAccumulate[b5, facet] < FacetAccumulate[b5, f])
-                facet = f;
-        }
+        return facet;
     }
     public void ClearAllAccumulators()
     {
@@ -79,89 +64,31 @@ public class W_SpeechResponse : MonoBehaviour
                 FacetAccumulate[b5, f] = 0.0f;
         }
     }
-    public void PersonalitiesInteraction(Personality challenger, Personality target)
+    public string PersonalityChallenge(Personality player, W_SpeechResponse target)
     {
-
+        ResponseSelector(player);
+        int big5 = Big5Selector();
+        int facet;
+        // Dialogue
+        if (Big5Accumulate[big5] > target.GetBigAccumulate(big5))
+        {
+            facet = FacetSelector(big5);
+            Big5Accumulate[big5] = 0.0f;
+            FacetAccumulate[big5, facet] = 0.0f;
+            return SpeechOutput(big5, facet);
+        } 
+        // Debate
+        //if (Big5Accumulate[big5] <= target.GetBigAccumulate(big5))
+        return "No!";
     }
-    public int ReturnHumourInteger(Trait facet)
+    public string PersonalityOutburst(Personality player)
     {
-        int big5 = 5;
-        if (facet.name == "Adventurousness" ||
-            facet.name == "Artistic interests" ||
-            facet.name == "Emotionality" ||
-            facet.name == "Imagination" ||
-            facet.name == "Intellect" ||
-            facet.name == "Authority-challenging")
-            big5 = 0;
-        if (facet.name == "Achievement striving" ||
-            facet.name == "Cautiousness" ||
-            facet.name == "Dutifulness" ||
-            facet.name == "Orderliness" ||
-            facet.name == "Self-discipline" ||
-            facet.name == "Self-efficacy")
-            big5 = 1;
-        if (facet.name == "Activity level" ||
-            facet.name == "Assertiveness" ||
-            facet.name == "Cheerfulness" ||
-            facet.name == "Excitement-seeking" ||
-            facet.name == "Outgoing" ||
-            facet.name == "Gregariousness")
-            big5 = 2;
-        if (facet.name == "Altruism" ||
-            facet.name == "Cooperation" ||
-            facet.name == "Modesty" ||
-            facet.name == "Uncompromising" ||
-            facet.name == "Sympathy" ||
-            facet.name == "Trust")
-            big5 = 3;
-        if (facet.name == "Fiery" ||
-            facet.name == "Prone to worry" ||
-            facet.name == "Melancholy" ||
-            facet.name == "Immoderation" ||
-            facet.name == "Self-consciousness" ||
-            facet.name == "Susceptible to stress")
-            big5 = 4;
-        return big5;
-    }
-    public string ReturnHumourName(Trait facet)
-    {
-        string big5 = "";
-        if (facet.name == "Adventurousness" ||
-            facet.name == "Artistic interests" ||
-            facet.name == "Emotionality" ||
-            facet.name == "Imagination" ||
-            facet.name == "Intellect" ||
-            facet.name == "Authority-challenging")
-            big5 = "Openness";
-        if (facet.name == "Achievement striving" ||
-            facet.name == "Cautiousness" ||
-            facet.name == "Dutifulness" ||
-            facet.name == "Orderliness" ||
-            facet.name == "Self-discipline" ||
-            facet.name == "Self-efficacy")
-            big5 = "Conscientiousness";
-        if (facet.name == "Activity level" ||
-            facet.name == "Assertiveness" ||
-            facet.name == "Cheerfulness" ||
-            facet.name == "Excitement-seeking" ||
-            facet.name == "Outgoing" ||
-            facet.name == "Gregariousness")
-            big5 = "Extraversion";
-        if (facet.name == "Altruism" ||
-            facet.name == "Cooperation" ||
-            facet.name == "Modesty" ||
-            facet.name == "Uncompromising" ||
-            facet.name == "Sympathy" ||
-            facet.name == "Trust")
-            big5 = "Agreeableness";
-        if (facet.name == "Fiery" ||
-            facet.name == "Prone to worry" ||
-            facet.name == "Melancholy" ||
-            facet.name == "Immoderation" ||
-            facet.name == "Self-consciousness" ||
-            facet.name == "Susceptible to stress")
-            big5 = "Emotional range";
-        return big5;
+        ResponseSelector(player);
+        int big5 = Big5Selector();
+        int facet = FacetSelector(big5);
+        Big5Accumulate[big5] = 0.0f;
+        FacetAccumulate[big5, facet] = 0.0f;
+        return SpeechOutput(big5, facet);
     }
     public string SpeechOutput(Trait facet)
     {
@@ -242,7 +169,97 @@ public class W_SpeechResponse : MonoBehaviour
 
         return returnSpeech;
     }
+    public string SpeechOutput(int big5, int facet)
+    {
+        string returnSpeech = "";
+        //Openness
+        if (big5 == 0)
+        {
+            if (facet == 0)
+                returnSpeech = "Adventure!";
+            if (facet == 1)
+                returnSpeech = "Art!";
+            if (facet == 2)
+                returnSpeech = "Emotion!";
+            if (facet == 3)
+                returnSpeech = "Imagine!";
+            if (facet == 4)
+                returnSpeech = "Smart Boi";
+            if (facet == 5)
+                returnSpeech = "Rah Authority";
+        }
+        
 
+        //Conscientiousness
+        if (big5 == 1)
+        {
+            if (facet == 0)
+                returnSpeech = "Yay Success";
+            if (facet == 1)
+                returnSpeech = "Danger?";
+            if (facet == 2)
+                returnSpeech = "I have job to do!";
+            if (facet == 3)
+                returnSpeech = "Orderly Fashion... Nice";
+            if (facet == 4)
+                returnSpeech = "Inner Strength";
+            if (facet == 5)
+                returnSpeech = "Inner Speed";
+        }
+
+        //Extraversion
+        if (big5 == 2)
+        {
+            if (facet == 0)
+                returnSpeech = "ENERGY!";
+            if (facet == 1)
+                returnSpeech = "My way or the highway.";
+            if (facet == 2)
+                returnSpeech = "Wahoo!";
+            if (facet == 3)
+                returnSpeech = "the call for Excitement, it speaks to me!";
+            if (facet == 4)
+                returnSpeech = "Hey.";
+            if (facet == 5)
+                returnSpeech = "Where's my followers?";
+        }
+
+        //Agreeableness
+        if (big5 == 3)
+        {
+            if (facet == 0)
+                returnSpeech = "I shall die for the player.";
+            if (facet == 1)
+                returnSpeech = "Now that's teamwork.";
+            if (facet == 2)
+                returnSpeech = "Could always puzzled faster.";
+            if (facet == 3)
+                returnSpeech = "I'm always right!";
+            if (facet == 4)
+                returnSpeech = "I'm sorry.";
+            if (facet == 5)
+                returnSpeech = "You believe what I say, right?";
+        }
+
+        //Emotional range
+        if (big5 == 4)
+        {
+            if (facet == 0)
+                returnSpeech = "AHHHHHH!";
+            if (facet == 1)
+                returnSpeech = "Am I doing the right thing?";
+            if (facet == 2)
+                returnSpeech = "SADNESS!... It overwelms thy self...";
+            if (facet == 3)
+                returnSpeech = "I do what I want, when I want";
+            if (facet == 4)
+                returnSpeech = "Is my body beautiful?... Do I even have a body?";
+            if (facet == 5)
+                returnSpeech = "STRESSFUL!";
+        }
+
+        return returnSpeech;
+    }
 }
         
     
