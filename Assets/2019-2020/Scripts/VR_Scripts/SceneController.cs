@@ -5,14 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    public int sceneIndex;
-
-    private void OnTriggerEnter(Collider other)
+    public void NextLevel(int sceneIndex)
     {
-        if (other.CompareTag("Player")) 
-        {
-            SceneManager.LoadScene(sceneIndex);
-            Debug.Log("New scene loaded");
-        }
+        SceneManager.LoadScene(sceneIndex);
+
     }
 }
