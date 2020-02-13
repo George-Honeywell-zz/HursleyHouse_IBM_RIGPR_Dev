@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class W_PaintingPerson : MonoBehaviour
 {
+    public GameObject blank;
+    GameObject painting;
     Personality personality;
-    W_PaintingPerson(Personality analysis)
+    public W_PaintingPerson(string Name, Personality Profile)
     {
-        personality = analysis;
+        painting = Instantiate(blank);
+        painting.name = Name;
+        personality = Profile;
+        painting.AddComponent<W_SpeechResponse>();
+        painting.AddComponent<W_PentagonGraph>();
     }
-
+    public Personality GetPersonality()
+    {
+        return personality;
+    }
 }

@@ -19,20 +19,5 @@ public class Personality
 {
     public Humour[] personality = new Humour[5];
 }
-[Serializable]
-public class PersonalityPainting
-{
-    public string name;
-    public Personality personality;
-}
-[Serializable]
-public class PaintingList
-{
-    public PersonalityPainting[] paintings;
-}
-[Serializable]
-public class GamePersonality
-{
-    public PersonalityPainting PC;
-    public PaintingList NPCs;
-}
+
+
