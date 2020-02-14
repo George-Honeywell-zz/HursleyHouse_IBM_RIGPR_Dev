@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25ea671b39e4494aa725b106a0a5852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stringToEdit: Hello World
+  prefab: {fileID: 1104741627665558435, guid: caab155c1c78bf54780783e3c72e7c94, type: 3}
 --- !u!114 &1359171872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,7 +350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb5a3a1de2905e43a51f09b0a891ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blank: {fileID: 1104741627665558435, guid: caab155c1c78bf54780783e3c72e7c94, type: 3}
 --- !u!114 &1359171873
 MonoBehaviour:
   m_ObjectHideFlags: 0

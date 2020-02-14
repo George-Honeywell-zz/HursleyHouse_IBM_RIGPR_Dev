@@ -16,13 +16,14 @@ public class W_PaintingController : MonoBehaviour
     W_WatsonSetup watson;
     W_PaintingPerson consciousness;
     GameObject parent;
-    public string stringToEdit = "Hello World";
+    string stringToEdit = "Hello World";
     bool TextBox = false;
     bool Action = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        this.name = "Controller";
         twitter = gameObject.GetComponent<W_TwitterSetup>();
         watson = gameObject.GetComponent<W_WatsonSetup>();
         consciousness = gameObject.GetComponent<W_PaintingPerson>();
