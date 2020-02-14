@@ -7,6 +7,11 @@ using IBM.Cloud.SDK.Utilities;
 [RequireComponent(typeof(W_PaintingPerson))]
 public class W_PaintingController : MonoBehaviour
 {
+    public GameObject prefab;
+    public GameObject NewBlank()
+    {
+        return Instantiate(prefab);
+    }
     W_TwitterSetup twitter;
     W_WatsonSetup watson;
     W_PaintingPerson consciousness;
@@ -69,7 +74,8 @@ public class W_PaintingController : MonoBehaviour
         watson.GetPersonalityProfile();
         while (!watson.GetAnalysisStatus())
             yield return null;
-        consciousness = new W_PaintingPerson(ScreenName, watson.GetWatsonProfile());
+        this.name = ScreenName;
+        consciousness.SetPersonality(watson.GetWatsonProfile());
         consciousness.transform.SetParent(parent.transform);
     }
     public IEnumerator ADD(string ScreenName)
@@ -80,8 +86,10 @@ public class W_PaintingController : MonoBehaviour
         watson.GetPersonalityProfile();
         while (!watson.GetAnalysisStatus())
             yield return null;
-        W_PaintingPerson painting = new W_PaintingPerson(ScreenName, watson.GetWatsonProfile());
-        painting.gameObject.transform.SetParent(parent.transform);
+        W_PaintingPerson NPC = NewBlank().AddComponent<W_PaintingPerson>();
+        NPC.name = ScreenName;
+        NPC.SetPersonality(watson.GetWatsonProfile());
+        NPC.transform.SetParent(parent.transform);
     }
     public void SavePrefabs()
     {
@@ -134,19 +142,19 @@ public class W_PaintingController : MonoBehaviour
     public void LoadPrefab(string filename)
     {
         string directory = "./Assets/2019-2020/Watson/" + filename + ".json";
-        W_PaintingPerson painting = new W_PaintingPerson(filename, JsonUtility.FromJson<Personality>(File.ReadAllText(directory)));
-        painting.gameObject.transform.SetParent(parent.transform);
+        //W_PaintingPerson painting = new W_PaintingPerson(filename, JsonUtility.FromJson<Personality>(File.ReadAllText(directory)));
+        //painting.gameObject.transform.SetParent(parent.transform);
     }
     void LoadPrefab(string filename, string folder)
     {
         string directory = "./Assets/2019-2020/Watson/" + folder + "/" + filename + ".json";
-        W_PaintingPerson painting = new W_PaintingPerson(filename, JsonUtility.FromJson<Personality>(File.ReadAllText(directory)));
-        painting.gameObject.transform.SetParent(parent.transform);
+        //W_PaintingPerson painting = new W_PaintingPerson(filename, JsonUtility.FromJson<Personality>(File.ReadAllText(directory)));
+        //painting.gameObject.transform.SetParent(parent.transform);
     }
     void LoadPrefab(string prefix, string filename, string folder)
     {
         string directory = prefix + folder + "/" + filename + ".json";
-        W_PaintingPerson painting = new W_PaintingPerson(filename, JsonUtility.FromJson<Personality>(File.ReadAllText(directory)));
-        painting.gameObject.transform.SetParent(parent.transform);
+        //W_PaintingPerson painting = new W_PaintingPerson(filename, JsonUtility.FromJson<Personality>(File.ReadAllText(directory)));
+        //painting.gameObject.transform.SetParent(parent.transform);
     }
 }
