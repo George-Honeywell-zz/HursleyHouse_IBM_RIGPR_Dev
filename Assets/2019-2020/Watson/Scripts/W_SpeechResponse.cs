@@ -4,91 +4,181 @@ using UnityEngine;
 
 public class W_SpeechResponse : MonoBehaviour
 {
-    // Entities
-    double[] Big5Accumulate = new double[5];
-    double[,] FacetAccumulate = new double[5, 6];
-    public double GetBigAccumulate(int big5)
+    string[] Blank = { "" };
+
+    // Big5
+    string[] Openness = { "" }; // 0
+    string[] Conscientiousness = { "" }; // 1
+    string[] Extraversion = { "" }; // 2
+    string[] Agreeableness = { "" }; // 3
+    string[] EmotionalRange = { "" }; // 4
+
+    // Openness
+    string[] Adventurousness = { "" };
+    string[] ArtisticInerests = { "" };
+    string[] Emotionality = { "" };
+    string[] Imagination = { "" };
+    string[] Intellect = { "" };
+    string[] AuthorityChallenging = { "" };
+
+    // Conscientiousness
+    string[] AchievementStriving = { "" };
+    string[] Cautiousness = { "" };
+    string[] Dutifulness = { "" };
+    string[] Orderliness = { "" };
+    string[] SelfDiscipline = { "" };
+    string[] SelfEfficacy = { "" };
+
+    // Extraversion
+    string[] ActivityLevel = { "" };
+    string[] Assertiveness = { "" };
+    string[] Cheerfulness = { "" };
+    string[] ExcitementSeeking = { "" };
+    string[] Outgoing = { "" };
+    string[] Gregariousness = { "" };
+
+    // Agreeableness
+    string[] Altruism = { "" };
+    string[] Cooperation = { "" };
+    string[] Modesty = { "" };
+    string[] Uncompromising = { "" };
+    string[] Sympathy = { "" };
+    string[] Trust = { "" };
+
+    // Emotional Range
+    string[] Fiery = { "" };
+    string[] ProneToWorry = { "" };
+    string[] Melancholy = { "" };
+    string[] Immoderation = { "" };
+    string[] SelfConsciousness = { "" };
+    string[] SusceptibleToStress = { "" };
+
+    public string[] GetSpeechArray(int Big5)
     {
-        return Big5Accumulate[big5];
-    }
-    void Start()
-    {
-        // Set Accumulators to Zero
-        for (int b5 = 0; b5 < 5; b5++)
+        switch (Big5)
         {
-            Big5Accumulate[b5] = 0.0f;
-            for (int f = 0; f < 6; f++)
-                FacetAccumulate[b5, f] = 0.0f;
+            case 0:
+                return Openness;
+            case 1:
+                return Conscientiousness;
+            case 2:
+                return Extraversion;
+            case 3:
+                return Agreeableness;
+            case 4:
+                return EmotionalRange;
+            default:
+                return Blank;
         }
     }
-    public void ResponseSelector(Personality player)
+    public string[] GetSpeechArray(int Big5, int Facet)
     {
-        Personality p = player;
-        // Accumulate percentiles
-        for (int b5 = 0; b5 < 5; b5++)
+        if (Big5 == 0)
         {
-            Big5Accumulate[b5] += p.personality[b5].percentile;
-            for (int f = 0; f < 6; f++)
-                FacetAccumulate[b5, f] += p.personality[b5].children[f].percentile;
+            switch (Facet)
+            {
+                case 0:
+                    return Adventurousness;
+                case 1:
+                    return ArtisticInerests;
+                case 2:
+                    return Emotionality;
+                case 3:
+                    return Imagination;
+                case 4:
+                    return Intellect;
+                case 5:
+                    return AuthorityChallenging;
+                default:
+                    return Blank;
+            }
         }
-    }
-    public int Big5Selector()
-    {
-        // Big 5 Accumulators Highest Value
-        int big5 = 0;
-        for (int b5 = 1; b5 < 5; b5++)
+        else if (Big5 == 1)
         {
-            if (Big5Accumulate[big5] < Big5Accumulate[b5])
-                big5 = b5;
+            switch (Facet)
+            {
+                case 0:
+                    return AchievementStriving;
+                case 1:
+                    return Cautiousness;
+                case 2:
+                    return Dutifulness;
+                case 3:
+                    return Orderliness;
+                case 4:
+                    return SelfDiscipline;
+                case 5:
+                    return SelfEfficacy;
+                default:
+                    return Blank;
+            }
         }
-        return big5;
-    }
-    public int FacetSelector(int big5)
-    {
-        // Facets of a single big 5, Accumulators Highest Value
-        int facet = 0;
-        for (int f = 1; f < 6; f++)
+        else if (Big5 == 2)
         {
-            if (FacetAccumulate[big5, facet] < FacetAccumulate[big5, f])
-                facet = f;
+            switch (Facet)
+            {
+                case 0:
+                    return ActivityLevel;
+                case 1:
+                    return Assertiveness;
+                case 2:
+                    return Cheerfulness;
+                case 3:
+                    return ExcitementSeeking;
+                case 4:
+                    return Outgoing;
+                case 5:
+                    return Gregariousness;
+                default:
+                    return Blank;
+            }
         }
-        return facet;
-    }
-    public void ClearAllAccumulators()
-    {
-        // Set Accumulators to Zero
-        for (int b5 = 0; b5 < 5; b5++)
+        else if (Big5 == 3)
         {
-            Big5Accumulate[b5] = 0.0f;
-            for (int f = 0; f < 6; f++)
-                FacetAccumulate[b5, f] = 0.0f;
+            switch (Facet)
+            {
+                case 0:
+                    return Altruism;
+                case 1:
+                    return Cooperation;
+                case 2:
+                    return Modesty;
+                case 3:
+                    return Uncompromising;
+                case 4:
+                    return Sympathy;
+                case 5:
+                    return Trust;
+                default:
+                    return Blank;
+            }
         }
-    }
-    public string PersonalityChallenge(Personality player, W_SpeechResponse target)
-    {
-        ResponseSelector(player);
-        int big5 = Big5Selector();
-        int facet;
-        // Dialogue
-        if (Big5Accumulate[big5] > target.GetBigAccumulate(big5))
+        else if (Big5 == 4)
         {
-            facet = FacetSelector(big5);
-            Big5Accumulate[big5] = 0.0f;
-            FacetAccumulate[big5, facet] = 0.0f;
-            return SpeechOutput(big5, facet);
-        } 
-        // Debate
-        //if (Big5Accumulate[big5] <= target.GetBigAccumulate(big5))
-        return "No!";
+            switch (Facet)
+            {
+                case 0:
+                    return Fiery;
+                case 1:
+                    return ProneToWorry;
+                case 2:
+                    return Melancholy;
+                case 3:
+                    return Immoderation;
+                case 4:
+                    return SelfConsciousness;
+                case 5:
+                    return SusceptibleToStress;
+                default:
+                    return Blank;
+            }
+        }
+        else
+            return Blank;
     }
-    public string PersonalityOutburst(Personality player)
+    public string RandomSelect(string[] Phrases)
     {
-        ResponseSelector(player);
-        int big5 = Big5Selector();
-        int facet = FacetSelector(big5);
-        Big5Accumulate[big5] = 0.0f;
-        FacetAccumulate[big5, facet] = 0.0f;
-        return SpeechOutput(big5, facet);
+        return Phrases[Random.Range(0, Phrases.Length)];
     }
     public string SpeechOutput(Trait facet)
     {

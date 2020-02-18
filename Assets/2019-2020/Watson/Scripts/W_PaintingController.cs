@@ -28,6 +28,7 @@ public class W_PaintingController : MonoBehaviour
         watson = gameObject.GetComponent<W_WatsonSetup>();
         consciousness = gameObject.GetComponent<W_PaintingPerson>();
         parent = new GameObject("Personality List");
+        parent.AddComponent<W_SpeechResponse>();
     }
     void OnGUI()
     {
@@ -76,8 +77,8 @@ public class W_PaintingController : MonoBehaviour
         while (!watson.GetAnalysisStatus())
             yield return null;
         this.name = ScreenName;
-        consciousness.SetPersonality(watson.GetWatsonProfile());
         consciousness.transform.SetParent(parent.transform);
+        consciousness.SetPersonality(watson.GetWatsonProfile());
     }
     public IEnumerator ADD(string ScreenName)
     {
@@ -89,8 +90,8 @@ public class W_PaintingController : MonoBehaviour
             yield return null;
         W_PaintingPerson NPC = NewBlank().AddComponent<W_PaintingPerson>();
         NPC.name = ScreenName;
-        NPC.SetPersonality(watson.GetWatsonProfile());
         NPC.transform.SetParent(parent.transform);
+        NPC.SetPersonality(watson.GetWatsonProfile());
     }
     public void SavePrefabs()
     {
