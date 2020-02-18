@@ -32,12 +32,12 @@ public class randomColourGeneration : MonoBehaviour
     Text sequenceText;
     Text victoryText;
 
-    public SteamVR_Input_Sources leftHand;
-    //public SteamVR_Input_Sources rightHand;
-    /*public*/ Button red_button;
-    /*public*/ Button yellow_button;
-    /*public*/ Button blue_button;
-    /*public*/ Button green_button;
+    SteamVR_Input_Sources leftHand;
+    //SteamVR_Input_Sources rightHand;
+    Button red_button;
+    Button yellow_button;
+    Button blue_button;
+    Button green_button;
     
 
     
