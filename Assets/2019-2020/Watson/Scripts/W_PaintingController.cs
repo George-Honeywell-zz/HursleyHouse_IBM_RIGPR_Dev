@@ -18,7 +18,10 @@ public class W_PaintingController : MonoBehaviour
     GameObject parent;
     string stringToEdit = "Hello World";
     bool TextBox = false;
-    bool Action = false;
+    bool AddedSelf = false;
+    bool AddedOther = false;
+    bool GraphActive = false;
+    int CurrentIndex = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -34,28 +37,67 @@ public class W_PaintingController : MonoBehaviour
     {
         GUIStyle fontSize = new GUIStyle(GUI.skin.GetStyle("label"));
         fontSize.fontSize = 16;
+        
         if (!TextBox)
-            if (GUILayout.Button("TextBox"))
+            if (GUILayout.Button("ADD"))
                 TextBox = true;
+        
         if (TextBox)
         {
             stringToEdit = GUI.TextField(new Rect(100, 100, 200, 20), stringToEdit, 25);
-            if (GUILayout.Button("Enter"))
-            {
-                TextBox = false;
-                Action = true;
-            }
-        }
-        if (Action)
-        {
-            if (GUILayout.Button("SetSelf"))
+            if (GUILayout.Button("Set Self"))
             {
                 Runnable.Run(SetSelf(stringToEdit));
+                TextBox = false;
             }
-            if (GUILayout.Button("ADD"))
+            if (GUILayout.Button("Add Other"))
             {
-                Runnable.Run(ADD(stringToEdit));
+                Runnable.Run(Add(stringToEdit));
+                TextBox = false;
             }
+        }
+        if (AddedSelf || AddedOther)
+        {
+            if (!GraphActive)
+            if (GUILayout.Button("Show Graph"))
+            {
+                if (AddedSelf)
+                {
+                    transform.SetAsFirstSibling();
+                    consciousness.GetGraph().Show();
+                    GraphActive = true;
+                }
+                if (AddedOther && !AddedSelf)
+                {
+                    parent.transform.GetChild(0).GetComponent<W_PaintingPerson>().GetGraph().Show();
+                    GraphActive = true;
+                }
+            }
+            if (GraphActive)
+            {
+                if (GUILayout.Button("Next"))
+                {
+                    parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Hide();
+                    CurrentIndex++;
+                    if (CurrentIndex >= parent.transform.childCount)
+                        CurrentIndex = 0;
+                    parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Show();
+                }
+                if (GUILayout.Button("Back"))
+                {
+                    parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Hide();
+                    CurrentIndex--;
+                    if (CurrentIndex >= parent.transform.childCount)
+                        CurrentIndex = 0;
+                    parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Show();
+                }
+                if (GUILayout.Button("Hide Graph"))
+                {
+                    parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Hide();
+                }
+            }
+            
+                
         }
 
 
@@ -79,8 +121,9 @@ public class W_PaintingController : MonoBehaviour
         this.name = ScreenName;
         consciousness.transform.SetParent(parent.transform);
         consciousness.SetPersonality(watson.GetWatsonProfile());
+        AddedSelf = true;
     }
-    public IEnumerator ADD(string ScreenName)
+    public IEnumerator Add(string ScreenName)
     {
         twitter.SearchUserTimeline(ScreenName);
         while (!twitter.GetSearchStatus())
@@ -92,6 +135,7 @@ public class W_PaintingController : MonoBehaviour
         NPC.name = ScreenName;
         NPC.transform.SetParent(parent.transform);
         NPC.SetPersonality(watson.GetWatsonProfile());
+        AddedOther = true;
     }
     public void SavePrefabs()
     {

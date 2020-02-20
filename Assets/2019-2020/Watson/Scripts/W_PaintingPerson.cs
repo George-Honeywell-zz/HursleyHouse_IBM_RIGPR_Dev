@@ -4,6 +4,7 @@ public class W_PaintingPerson : MonoBehaviour
     Personality personality;
     double[] Big5Accumulate = new double[5];
     double[,] FacetAccumulate = new double[5, 6];
+    W_PentagonGraph graph;
     W_SpeechResponse parentspeech;
     public void SetPersonality(Personality Profile)
     {
@@ -15,11 +16,17 @@ public class W_PaintingPerson : MonoBehaviour
             for (int f = 0; f < 6; f++)
                 FacetAccumulate[b5, f] = 0.0f;
         }
+        graph = gameObject.AddComponent<W_PentagonGraph>();
+        graph.GetPentagon(Profile);
         parentspeech = GetComponentInParent<W_SpeechResponse>();
     }
     public Personality GetPersonality()
     {
         return personality;
+    }
+    public W_PentagonGraph GetGraph()
+    {
+        return graph;
     }
     public double GetAccumulate(int Big5)
     {
@@ -50,7 +57,7 @@ public class W_PaintingPerson : MonoBehaviour
         }
         return big5;
     }
-    public void InitiateInteraction(W_PaintingPerson other)
+    /*public void InitiateInteraction(W_PaintingPerson other)
     {
         // Accumulate
         Accumulate();
@@ -62,7 +69,7 @@ public class W_PaintingPerson : MonoBehaviour
 
         }
 
-    }
+    }*/
     public int FacetSelector(int big5)
     {
         // Facets of a single big 5, Accumulators Highest Value
