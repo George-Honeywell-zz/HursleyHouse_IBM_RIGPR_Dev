@@ -94,6 +94,7 @@ public class W_PaintingController : MonoBehaviour
                 if (GUILayout.Button("Hide Graph"))
                 {
                     parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Hide();
+                    GraphActive = false;
                 }
             }
             

@@ -16,8 +16,8 @@ public class W_PaintingPerson : MonoBehaviour
             for (int f = 0; f < 6; f++)
                 FacetAccumulate[b5, f] = 0.0f;
         }
-        graph = gameObject.AddComponent<W_PentagonGraph>();
-        graph.GetPentagon(Profile);
+        gameObject.AddComponent<W_GraphSetup>();
+        gameObject.AddComponent<W_PentagonGraph>();
         parentspeech = GetComponentInParent<W_SpeechResponse>();
     }
     public Personality GetPersonality()
