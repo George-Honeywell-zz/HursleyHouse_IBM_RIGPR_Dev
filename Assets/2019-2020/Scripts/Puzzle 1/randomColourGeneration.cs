@@ -62,8 +62,7 @@ public class randomColourGeneration : MonoBehaviour
         }
     }
 
-    //Update function which is ran every frame
-    void Update()
+    public void checkColour()
     {
         //Plays the current colour sequence to the player when initiated 
         //if (sequencePlayed && Input.GetKeyDown("5"))
@@ -91,7 +90,7 @@ public class randomColourGeneration : MonoBehaviour
             StartCoroutine(ColourSequence());
             sequencePlayed = false;
         }
-        
+
 
         //Runs this code when the player inputs the sequence
         if (playerSequencePos == (currentDifficulty) && !playerMarked)
@@ -127,7 +126,7 @@ public class randomColourGeneration : MonoBehaviour
         //Runs this code when the player has finished the sequence
         else if (playerMarked)
         {
-            
+
             //If the player passed the previous difficulty, proceeds to the next
             if (playerPassed)
             {
@@ -145,7 +144,7 @@ public class randomColourGeneration : MonoBehaviour
                 playerSequencePos = 0;
                 playerPassed = true;
             }
-            
+
         }
 
         //Runs this code if no other conditions are met
@@ -234,6 +233,12 @@ public class randomColourGeneration : MonoBehaviour
                 //}
             }
         }
+    }
+
+    //Update function which is ran every frame
+    void Update()
+    {
+        checkColour();
     }
 
     //CoRoutine that displays the current sequence
