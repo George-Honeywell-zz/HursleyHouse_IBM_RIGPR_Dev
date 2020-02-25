@@ -34,9 +34,10 @@ public class W_TwitterSetup : MonoBehaviour
 
         StartCoroutine(Twity.Client.Get("statuses/user_timeline", parameters, Callback));
     }
-    private void Callback(bool success, string response)
+    void Callback(bool success, string response)
     {
         StatusesUserTimelineResponse Response = JsonUtility.FromJson<StatusesUserTimelineResponse>(response);
+        Debug.Log(Response);
         content = new Content()
         {
             ContentItems = new List<ContentItem>()

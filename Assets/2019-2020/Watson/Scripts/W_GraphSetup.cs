@@ -1,21 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+[RequireComponent(typeof(W_PaintingPerson))]
 public class W_GraphSetup : MonoBehaviour
 {
+    GameObject Graph;
     void Start()
     {
-        GameObject Axis = new GameObject("Axis");
-        Axis.transform.parent = this.gameObject.transform;
+        Personality personality = GetComponent<W_PaintingPerson>().GetPersonality();
+        // Set Objects
+        Graph = new GameObject("Graph");
+        Graph.transform.parent = this.gameObject.transform;
+        // Graph Specification
         Vector3[] pentagon =
         {
             new Vector3(0.0f, 0.0f, 0.0f),
-            new Vector3(0.0f, 1.0f, 0.0f),
-            Quaternion.Euler(0.0f, 0.0f, -72.0f) * new Vector3(0.0f, 1.0f, 0.0f),
-            Quaternion.Euler(0.0f, 0.0f, -144.0f) * new Vector3(0.0f, 1.0f, 0.0f),
-            Quaternion.Euler(0.0f, 0.0f, -216.0f) * new Vector3(0.0f, 1.0f, 0.0f),
-            Quaternion.Euler(0.0f, 0.0f, -288.0f) * new Vector3(0.0f, 1.0f, 0.0f),
+            new Vector3(0.0f, personality.personality[0].percentile, 0.0f),
+            Quaternion.Euler(0.0f, 0.0f, -72.0f) * new Vector3(0.0f, personality.personality[1].percentile, 0.0f),
+            Quaternion.Euler(0.0f, 0.0f, -144.0f) * new Vector3(0.0f, personality.personality[2].percentile, 0.0f),
+            Quaternion.Euler(0.0f, 0.0f, -216.0f) * new Vector3(0.0f, personality.personality[3].percentile, 0.0f),
+            Quaternion.Euler(0.0f, 0.0f, -288.0f) * new Vector3(0.0f, personality.personality[4].percentile, 0.0f),
+
         };
         int[] triangles = {
             0, 1, 2,
@@ -33,14 +36,18 @@ public class W_GraphSetup : MonoBehaviour
             Vector3.back,
             Vector3.back,
         };
-        // Axis Setup
-        Mesh axis = Axis.AddComponent<MeshFilter>().mesh;
-        axis.vertices = pentagon;
-        axis.triangles = triangles;
-        axis.normals = normals;
-        Material materiala = Axis.AddComponent<MeshRenderer>().material;
-        materiala.color = Color.green;
-        Axis.transform.position += (this.gameObject.transform.forward * 2.01f);
-        Axis.SetActive(false);
+        // Graph Setup
+        Mesh graph = Graph.AddComponent<MeshFilter>().mesh;
+        graph.vertices = pentagon;
+        graph.triangles = triangles;
+        graph.normals = normals;
+        Material materiala = Graph.AddComponent<MeshRenderer>().material;
+        materiala.color = Color.cyan;
+        Graph.transform.position = this.gameObject.transform.position + (this.gameObject.transform.forward * 2.0f);
+        Graph.SetActive(false);
+    }
+    public GameObject Get()
+    {
+        return Graph;
     }
 }

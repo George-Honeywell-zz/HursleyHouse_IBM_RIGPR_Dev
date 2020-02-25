@@ -4,7 +4,7 @@ public class W_PaintingPerson : MonoBehaviour
     Personality personality;
     double[] Big5Accumulate = new double[5];
     double[,] FacetAccumulate = new double[5, 6];
-    W_PentagonGraph graph;
+    W_VisualPentagon pentagon;
     W_SpeechResponse parentspeech;
     public void SetPersonality(Personality Profile)
     {
@@ -16,17 +16,16 @@ public class W_PaintingPerson : MonoBehaviour
             for (int f = 0; f < 6; f++)
                 FacetAccumulate[b5, f] = 0.0f;
         }
-        gameObject.AddComponent<W_GraphSetup>();
-        gameObject.AddComponent<W_PentagonGraph>();
+        pentagon = gameObject.AddComponent<W_VisualPentagon>();
         parentspeech = GetComponentInParent<W_SpeechResponse>();
     }
     public Personality GetPersonality()
     {
         return personality;
     }
-    public W_PentagonGraph GetGraph()
+    public W_VisualPentagon GetGraph()
     {
-        return graph;
+        return pentagon;
     }
     public double GetAccumulate(int Big5)
     {

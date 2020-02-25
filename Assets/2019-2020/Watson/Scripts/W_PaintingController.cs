@@ -87,8 +87,8 @@ public class W_PaintingController : MonoBehaviour
                 {
                     parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Hide();
                     CurrentIndex--;
-                    if (CurrentIndex >= parent.transform.childCount)
-                        CurrentIndex = 0;
+                    if (CurrentIndex < 0)
+                        CurrentIndex = parent.transform.childCount - 1;
                     parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Show();
                 }
                 if (GUILayout.Button("Hide Graph"))
@@ -189,7 +189,7 @@ public class W_PaintingController : MonoBehaviour
     public void LoadPrefab(string filename)
     {
         string directory = "./Assets/2019-2020/Watson/" + filename + ".json";
-        //W_PaintingPerson painting = new W_PaintingPerson(filename, JsonUtility.FromJson<Personality>(File.ReadAllText(directory)));
+        //Personality painting = new W_PaintingPerson(filename, JsonUtility.FromJson<Personality>(File.ReadAllText(directory)));
         //painting.gameObject.transform.SetParent(parent.transform);
     }
     void LoadPrefab(string filename, string folder)
