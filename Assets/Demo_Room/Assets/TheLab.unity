@@ -4093,7 +4093,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 521062777}
-  - component: {fileID: 521062776}
   - component: {fileID: 521062778}
   m_Layer: 0
   m_Name: random_colour_generation
@@ -4102,22 +4101,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &521062776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521062775}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a90ce367e0bbe94b84718f717b45675, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  redBlock: {fileID: 998160259}
-  blueBlock: {fileID: 1903867119}
-  yellowBlock: {fileID: 488816810}
-  greenBlock: {fileID: 1848918132}
 --- !u!4 &521062777
 Transform:
   m_ObjectHideFlags: 0

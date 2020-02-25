@@ -11,7 +11,7 @@ public class colour_generation : MonoBehaviour
     int player_sequence_position = 0;
 
     //Setting this number will determine how many colours are in a sequence.
-    int current_difficulty = 0;
+    int current_difficulty = 3;
     bool sequence_played = true;
 
     //Button Presses
@@ -141,7 +141,7 @@ public class colour_generation : MonoBehaviour
         {
             Debug.Log("2 Is PRESSED");
             yellow_block_renderer.material.SetColor("_Color", Color.white);
-            one_pressed = true;
+            two_pressed = true;
             button_down = true;
             check_buttons_released(2);
         }
@@ -150,7 +150,7 @@ public class colour_generation : MonoBehaviour
         {
             Debug.Log("3 Is PRESSED");
             blue_block_renderer.material.SetColor("_Color", Color.white);
-            one_pressed = true;
+            three_pressed = true;
             button_down = true;
             check_buttons_released(3);
         }
@@ -159,7 +159,7 @@ public class colour_generation : MonoBehaviour
         {
             Debug.Log("4 Is PRESSED");
             green_block_renderer.material.SetColor("_Color", Color.white);
-            one_pressed = true;
+            four_pressed = true;
             button_down = true;
             check_buttons_released(4);
         }
