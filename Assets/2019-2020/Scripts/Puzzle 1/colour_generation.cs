@@ -78,11 +78,6 @@ public class colour_generation : MonoBehaviour
 
     public void player_input_sequence()
     {
-        //if (sequence_played && Input.GetKeyDown(KeyCode.O))
-        //{
-        //    StartCoroutine(colour_sequence());
-        //    sequence_played = false;
-        //}
 
         if (player_sequence_position == (current_difficulty) && !player_marked)
         {
@@ -90,11 +85,11 @@ public class colour_generation : MonoBehaviour
             {
                 if(player_sequence[i] == sequence[i])
                 {
-                    Debug.Log("Sequence Successfully Completed!");
+                    Debug.Log("<color=green>Sequence Successfully Completed!</color>");
                 }
                 else
                 {
-                    Debug.Log("Sequence Unsuccessfully Completed!");
+                    Debug.Log("<color=red>Sequence Unsuccessfully Completed!</color>");
                     player_passed = false;
                 }
             }
@@ -148,6 +143,7 @@ public class colour_generation : MonoBehaviour
             yellow_block_renderer.material.SetColor("_Color", Color.white);
             one_pressed = true;
             button_down = true;
+            check_buttons_released(2);
         }
 
         else if (button_id == 3)
@@ -156,6 +152,7 @@ public class colour_generation : MonoBehaviour
             blue_block_renderer.material.SetColor("_Color", Color.white);
             one_pressed = true;
             button_down = true;
+            check_buttons_released(3);
         }
 
         else if (button_id == 4)
@@ -164,6 +161,7 @@ public class colour_generation : MonoBehaviour
             green_block_renderer.material.SetColor("_Color", Color.white);
             one_pressed = true;
             button_down = true;
+            check_buttons_released(4);
         }
     }
 
