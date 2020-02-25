@@ -86,6 +86,7 @@ public class colour_generation : MonoBehaviour
                 if(player_sequence[i] == sequence[i])
                 {
                     Debug.Log("<color=green>Sequence Successfully Completed!</color>");
+                    //Code here to unlock the Teleport point. 
                 }
                 else
                 {
