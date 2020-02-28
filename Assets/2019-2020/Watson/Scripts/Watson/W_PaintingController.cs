@@ -23,6 +23,15 @@ public class W_PaintingController : MonoBehaviour
     bool GraphActive = false;
     int CurrentIndex = 0;
 
+    bool tutorial = true;
+    bool start = false;
+    bool play = false;
+    bool options = false;
+    bool exit = false;
+    bool pause = false;
+    string input = "";
+    bool personality = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,44 +46,42 @@ public class W_PaintingController : MonoBehaviour
     {
         GUIStyle fontSize = new GUIStyle(GUI.skin.GetStyle("label"));
         fontSize.fontSize = 16;
-        
-        if (!TextBox)
-            if (GUILayout.Button("ADD"))
-                TextBox = true;
-        
-        if (TextBox)
+        if (tutorial)
         {
-            stringToEdit = GUI.TextField(new Rect(100, 100, 200, 20), stringToEdit, 25);
-            if (GUILayout.Button("Set Self"))
+            input = GUI.TextField(new Rect(100, 100, 200, 20), input, 25);
+            if (GUILayout.Button("Enter"))
             {
-                Runnable.Run(SetSelf(stringToEdit));
-                TextBox = false;
+                Runnable.Run(SetSelf(input));
+                tutorial = false;
+                start = true;
+            }  
+        }
+        if (start)
+        {
+            if (GUILayout.Button("Start"))
+            {
+                // Go to start screen
             }
-            if (GUILayout.Button("Add Other"))
+            if (GUILayout.Button("Options"))
             {
-                Runnable.Run(Add(stringToEdit));
-                TextBox = false;
+                options = true;
+                start = false;
+            }
+            if (GUILayout.Button("Exit"))
+            {
+                // End
             }
         }
-        if (AddedSelf || AddedOther)
+        if (options)
         {
-            if (!GraphActive)
-            if (GUILayout.Button("Show Graph"))
+            if (GUILayout.Button("Personality"))
             {
-                if (AddedSelf)
-                {
-                    transform.SetAsFirstSibling();
-                    consciousness.GetGraph().Show();
-                    GraphActive = true;
-                }
-                if (AddedOther && !AddedSelf)
-                {
-                    parent.transform.GetChild(0).GetComponent<W_PaintingPerson>().GetGraph().Show();
-                    GraphActive = true;
-                }
+                parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Show();
+                personality = true;
             }
-            if (GraphActive)
+            if (personality)
             {
+                parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Show();
                 if (GUILayout.Button("Next"))
                 {
                     parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Hide();
@@ -91,25 +98,35 @@ public class W_PaintingController : MonoBehaviour
                         CurrentIndex = parent.transform.childCount - 1;
                     parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Show();
                 }
-                if (GUILayout.Button("Hide Graph"))
+                if (GUILayout.Button("Exit"))
                 {
                     parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Hide();
-                    GraphActive = false;
+                    personality = false;
                 }
             }
             
-                
+            // And Game Options
+            if (GUILayout.Button("Exit"))
+            {
+                start = true;
+                options = false;
+            }
         }
-
-
-        /*if (WWS.GetAnalysisStatus())
+        if (pause)
         {
-            WPG.GetPentagon(WPP.GetPCpersonality());
-            if (GUILayout.Button("Show"))
-                WPG.Show();
-            if (GUILayout.Button("Hide"))
-                WPG.Hide();
-        }*/
+            if (GUILayout.Button("Continue"))
+            {
+                // Go to start screen
+            }
+            if (GUILayout.Button("Options"))
+            {
+                options = true;
+            }
+            if (GUILayout.Button("Exit"))
+            {
+                // End
+            }
+        }
     }
     public IEnumerator SetSelf(string ScreenName)
     {

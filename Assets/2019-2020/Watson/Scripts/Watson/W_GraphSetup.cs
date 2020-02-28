@@ -43,7 +43,7 @@ public class W_GraphSetup : MonoBehaviour
         graph.normals = normals;
         Material materiala = Graph.AddComponent<MeshRenderer>().material;
         materiala.color = Color.cyan;
-        Graph.transform.position = this.gameObject.transform.position + (this.gameObject.transform.forward * 2.0f);
+        Graph.transform.position = GameObject.FindWithTag("Player").transform.position + (this.gameObject.transform.forward * 2.0f);
         Graph.SetActive(false);
     }
     public GameObject Get()

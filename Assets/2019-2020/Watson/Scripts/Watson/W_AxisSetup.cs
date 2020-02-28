@@ -41,7 +41,7 @@ public class W_AxisSetup : MonoBehaviour
         axis.normals = normals;
         Material materiala = Axis.AddComponent<MeshRenderer>().material;
         materiala.color = Color.grey;
-        Axis.transform.position = this.gameObject.transform.position + (this.gameObject.transform.forward * 2.01f);
+        Axis.transform.position = GameObject.FindWithTag("Player").transform.position + (this.gameObject.transform.forward * 2.01f);
         Axis.SetActive(false);
     }
     public GameObject Get()
