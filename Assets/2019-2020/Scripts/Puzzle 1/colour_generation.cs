@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using Valve.VR.InteractionSystem;
 
 public class colour_generation : MonoBehaviour
 {
+
+    //Teleport Variables
+    public Teleport teleport_point;
+    public bool teleport_unlocked = false;
+
     //Set Arrays for SEQUENCE & PLAYER_SEQUENCE
     int[] sequence;
     int[] player_sequence;
@@ -87,6 +93,7 @@ public class colour_generation : MonoBehaviour
                 {
                     Debug.Log("<color=green>Sequence Successfully Completed!</color>");
                     //Code here to unlock the Teleport point. 
+                    //teleport_base.locked = false;
                 }
                 else
                 {
