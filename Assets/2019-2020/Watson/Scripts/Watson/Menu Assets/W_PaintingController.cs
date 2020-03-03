@@ -16,14 +16,10 @@ public class W_PaintingController : MonoBehaviour
     W_WatsonSetup watson;
     W_PaintingPerson consciousness;
     GameObject parent;
-    string stringToEdit = "Hello World";
-    bool TextBox = false;
-    bool AddedSelf = false;
-    bool AddedOther = false;
     bool GraphActive = false;
     int CurrentIndex = 0;
 
-    bool tutorial = true;
+    bool textinput = false;
     bool start = false;
     bool play = false;
     bool options = false;
@@ -46,30 +42,30 @@ public class W_PaintingController : MonoBehaviour
     {
         GUIStyle fontSize = new GUIStyle(GUI.skin.GetStyle("label"));
         fontSize.fontSize = 16;
-        if (tutorial)
+        if (textinput)
         {
             input = GUI.TextField(new Rect(100, 100, 200, 20), input, 25);
             if (GUILayout.Button("Enter"))
             {
-                Runnable.Run(SetSelf(input));
-                tutorial = false;
-                start = true;
-            }  
+                textinput = false;
+                options = true;
+                personality = true;
+            }
         }
         if (start)
         {
             if (GUILayout.Button("Start"))
             {
-                // Go to start screen
+                if (CurrentIndex == 0)
+                {
+                    textinput = true;
+                    start = false;
+                }
             }
             if (GUILayout.Button("Options"))
             {
                 options = true;
                 start = false;
-            }
-            if (GUILayout.Button("Exit"))
-            {
-                // End
             }
         }
         if (options)
@@ -90,7 +86,7 @@ public class W_PaintingController : MonoBehaviour
                         CurrentIndex = 0;
                     parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Show();
                 }
-                if (GUILayout.Button("Back"))
+                if (GUILayout.Button("Prev"))
                 {
                     parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Hide();
                     CurrentIndex--;
@@ -98,19 +94,12 @@ public class W_PaintingController : MonoBehaviour
                         CurrentIndex = parent.transform.childCount - 1;
                     parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Show();
                 }
-                if (GUILayout.Button("Exit"))
+                if (GUILayout.Button("New"))
                 {
-                    parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Hide();
-                    personality = false;
+
                 }
             }
             
-            // And Game Options
-            if (GUILayout.Button("Exit"))
-            {
-                start = true;
-                options = false;
-            }
         }
         if (pause)
         {
@@ -122,13 +111,33 @@ public class W_PaintingController : MonoBehaviour
             {
                 options = true;
             }
-            if (GUILayout.Button("Exit"))
+        }
+        if (GUILayout.Button("Exit"))
+        {
+            if (start)
             {
-                // End
+                Application.Quit();
+            }
+            if (options)
+            {
+                if (personality)
+                {
+                    parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Hide();
+                    personality = false;
+                }
+                else
+                {
+                    start = true;
+                    options = false;
+                }   
+            }
+            if (pause)
+            {
+                Application.Quit();
             }
         }
     }
-    public IEnumerator SetSelf(string ScreenName)
+    public IEnumerator AddSelf(string ScreenName)
     {
         twitter.SearchUserTimeline(ScreenName);
         while (!twitter.GetSearchStatus())
@@ -139,7 +148,7 @@ public class W_PaintingController : MonoBehaviour
         this.name = ScreenName;
         consciousness.transform.SetParent(parent.transform);
         consciousness.SetPersonality(watson.GetWatsonProfile());
-        AddedSelf = true;
+        //AddedSelf = true;
     }
     public IEnumerator Add(string ScreenName)
     {
@@ -153,7 +162,12 @@ public class W_PaintingController : MonoBehaviour
         NPC.name = ScreenName;
         NPC.transform.SetParent(parent.transform);
         NPC.SetPersonality(watson.GetWatsonProfile());
-        AddedOther = true;
+        //AddedOther = true;
+    }
+    public void SetSelf(string ObjectName)
+    {
+        W_PaintingPerson NPC = GameObject.Find(ObjectName).GetComponent<W_PaintingPerson>();
+        consciousness = NPC;
     }
     public void SavePrefabs()
     {
