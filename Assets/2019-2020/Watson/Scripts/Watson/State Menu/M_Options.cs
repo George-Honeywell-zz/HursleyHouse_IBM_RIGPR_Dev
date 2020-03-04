@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OptionsButton : MonoBehaviour
+public class M_Options : State<Menu>
 {
+    State<Menu> tab;
     // Start is called before the first frame update
     void Start()
     {
