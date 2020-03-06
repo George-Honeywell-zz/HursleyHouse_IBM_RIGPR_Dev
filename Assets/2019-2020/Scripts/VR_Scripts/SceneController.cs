@@ -8,6 +8,5 @@ public class SceneController : MonoBehaviour
     public void NextLevel(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
-
     }
 }

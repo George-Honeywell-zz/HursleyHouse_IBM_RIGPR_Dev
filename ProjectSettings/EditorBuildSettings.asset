@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/2019-2020/Scenes/VR_Test_Scene2.unity
     guid: 05f0e103fae28db4e8ec6a05e8f286f4
+  - enabled: 1
+    path: Assets/Demo_Room/Assets/TheLab.unity
+    guid: 33b53060ef470dd4783aa46a4398b251
   m_configObjects: {}

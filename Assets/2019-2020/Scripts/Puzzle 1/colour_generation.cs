@@ -8,10 +8,9 @@ public class colour_generation : MonoBehaviour
 {
 
     //Teleport Variables
-    public GameObject teleportPoint;
-    public Transform teleportSpawn;
+    public GameObject teleportPoint_Unlocked;
+    public GameObject teleportPoint_Locked;
 
-    public SpawnTeleport spawnTele; 
 
     //Set Arrays for SEQUENCE & PLAYER_SEQUENCE
     int[] sequence;
@@ -76,7 +75,8 @@ public class colour_generation : MonoBehaviour
         check_buttons_pressed(0);
         check_buttons_released(0);
 
-        if (sequence_played && Input.GetKeyDown(KeyCode.O))
+        //if (sequence_played && Input.GetKeyDown(KeyCode.O))
+        if(sequence_played && SteamVR_Input.GetStateDown("LeftTrigger", left_hand))
         {
             StartCoroutine(colour_sequence());
             sequence_played = false;
@@ -94,7 +94,8 @@ public class colour_generation : MonoBehaviour
                 if(player_sequence[i] == sequence[i])
                 {
                     Debug.Log("<color=green>Sequence Successfully Completed!</color>");
-                    Instantiate(teleportPoint, teleportSpawn.position, teleportSpawn.rotation);
+                    teleportPoint_Locked.SetActive(false);
+                    teleportPoint_Unlocked.SetActive(true);
                 }
                 else
                 {
