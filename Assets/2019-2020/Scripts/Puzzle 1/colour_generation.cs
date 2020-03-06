@@ -8,8 +8,10 @@ public class colour_generation : MonoBehaviour
 {
 
     //Teleport Variables
-    public Teleport teleport_point;
-    public bool teleport_unlocked = false;
+    public GameObject teleportPoint;
+    public Transform teleportSpawn;
+
+    public SpawnTeleport spawnTele; 
 
     //Set Arrays for SEQUENCE & PLAYER_SEQUENCE
     int[] sequence;
@@ -92,8 +94,7 @@ public class colour_generation : MonoBehaviour
                 if(player_sequence[i] == sequence[i])
                 {
                     Debug.Log("<color=green>Sequence Successfully Completed!</color>");
-                    //Code here to unlock the Teleport point. 
-                    //teleport_base.locked = false;
+                    Instantiate(teleportPoint, teleportSpawn.position, teleportSpawn.rotation);
                 }
                 else
                 {

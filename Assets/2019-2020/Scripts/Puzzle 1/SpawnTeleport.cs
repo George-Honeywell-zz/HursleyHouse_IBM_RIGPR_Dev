@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class SpawnTeleport : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject teleportPoint;
+    public Transform teleportSpawn;
 
     // Update is called once per frame
-    void Update()
+
+    public void TeleportSpawn()
     {
-        
+        Instantiate(teleportPoint, teleportSpawn.position, teleportSpawn.rotation);
     }
 }
