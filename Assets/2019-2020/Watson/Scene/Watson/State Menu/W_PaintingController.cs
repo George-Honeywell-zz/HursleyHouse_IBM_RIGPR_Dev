@@ -20,7 +20,7 @@ public class W_PaintingController : MonoBehaviour
     int CurrentIndex = 0;
 
     bool textinput = false;
-    bool start = false;
+    bool start = true;
     bool play = false;
     bool options = false;
     bool exit = false;
