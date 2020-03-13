@@ -20,7 +20,7 @@ public class colour_generation : MonoBehaviour
     int player_sequence_position = 0;
 
     //Setting this number will determine how many colours are in a sequence.
-    int current_difficulty = 3;
+    int current_difficulty = 1;
     bool sequence_played = true;
 
     //Button Presses
@@ -85,14 +85,7 @@ public class colour_generation : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Trigger Scene Entered");
-            scene.NextLevel(0);
-        }
-    }
+
 
     public void player_input_sequence()
     {
@@ -104,9 +97,10 @@ public class colour_generation : MonoBehaviour
                 if(player_sequence[i] == sequence[i])
                 {
                     Debug.Log("<color=green>Sequence Successfully Completed!</color>");
-                    teleportPoint_Locked.SetActive(false);
-                    teleportPoint_Unlocked.SetActive(true);
-                    sceneChanger.SetActive(true);
+                    SteamVR_LoadLevel.Begin("Outdoor_Area");
+                    //teleportPoint_Locked.SetActive(false);
+                    //teleportPoint_Unlocked.SetActive(true);
+                    //sceneChanger.SetActive(true);
                 }
                 else
                 {
