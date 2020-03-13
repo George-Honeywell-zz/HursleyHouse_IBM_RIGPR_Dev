@@ -6,10 +6,12 @@ using Valve.VR.InteractionSystem;
 
 public class colour_generation : MonoBehaviour
 {
+    SceneController scene;
 
     //Teleport Variables
     public GameObject teleportPoint_Unlocked;
     public GameObject teleportPoint_Locked;
+    public GameObject sceneChanger;
 
 
     //Set Arrays for SEQUENCE & PLAYER_SEQUENCE
@@ -76,13 +78,21 @@ public class colour_generation : MonoBehaviour
         check_buttons_released(0);
 
         //if (sequence_played && Input.GetKeyDown(KeyCode.O))
-        if(sequence_played && SteamVR_Input.GetStateDown("LeftTrigger", left_hand))
+        if(sequence_played && SteamVR_Input.GetStateDown("LeftTrigger", left_hand) || Input.GetKeyDown(KeyCode.O))
         {
             StartCoroutine(colour_sequence());
             sequence_played = false;
         }
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Trigger Scene Entered");
+            scene.NextLevel(0);
+        }
+    }
 
     public void player_input_sequence()
     {
@@ -96,6 +106,7 @@ public class colour_generation : MonoBehaviour
                     Debug.Log("<color=green>Sequence Successfully Completed!</color>");
                     teleportPoint_Locked.SetActive(false);
                     teleportPoint_Unlocked.SetActive(true);
+                    sceneChanger.SetActive(true);
                 }
                 else
                 {
