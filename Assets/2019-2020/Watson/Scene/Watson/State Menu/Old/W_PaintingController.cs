@@ -47,6 +47,7 @@ public class W_PaintingController : MonoBehaviour
             input = GUI.TextField(new Rect(100, 100, 200, 20), input, 25);
             if (GUILayout.Button("Enter"))
             {
+                Runnable.Run(AddSelf(input));
                 textinput = false;
                 options = true;
                 personality = true;
@@ -60,6 +61,7 @@ public class W_PaintingController : MonoBehaviour
                 {
                     textinput = true;
                     start = false;
+                    
                 }
             }
             if (GUILayout.Button("Options"))

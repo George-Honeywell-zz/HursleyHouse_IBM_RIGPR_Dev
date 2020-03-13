@@ -6,17 +6,17 @@ public class State <M> : MonoBehaviour
 {
     M menu;
     public GameObject canvas;
-    public virtual void Initialise()
-    {
-        // Set Up GameObject Buttons
-        // Attach Components
-    }
+    public bool input;
     public virtual void Activate()
     {
-        // Show Buttons
+        // Show canvas
+    }
+    public virtual void Action()
+    {
+        // Return button input
     }
     public virtual void Deactivate()
     {
-
+        // Hide canvas
     }
 }
