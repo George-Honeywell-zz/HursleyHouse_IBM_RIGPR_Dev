@@ -6,16 +6,16 @@ public class M_TextInput : State<Menu>
 {
     //string output
     // VR keyboard
-    public override void Initiate()
-    {
+    //public override void Initiate()
+    //{
 
-    }
+    //}
     public override void Activate()
     {
 
     }
-    public override void Transition()
-    {
+    //public override void Transition()
+    //{
 
-    }
+    //}
 }

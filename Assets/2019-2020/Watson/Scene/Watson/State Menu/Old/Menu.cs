@@ -27,9 +27,9 @@ public class Menu : MonoBehaviour
     public IEnumerator Instance()
     {
         current.Activate();
-        while (!current.input)
+        //while (!current.input)
             yield return null;
-        current.Transition();
+        //current.Transition();
         
     }
 }

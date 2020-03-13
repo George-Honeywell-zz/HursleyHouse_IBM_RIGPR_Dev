@@ -5,7 +5,7 @@ using UnityEngine;
 public class State <M> : MonoBehaviour
 {
     M menu;
-    public bool input;
+    public GameObject canvas;
     public virtual void Initialise()
     {
         // Set Up GameObject Buttons
@@ -14,5 +14,9 @@ public class State <M> : MonoBehaviour
     public virtual void Activate()
     {
         // Show Buttons
+    }
+    public virtual void Deactivate()
+    {
+
     }
 }

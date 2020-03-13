@@ -77,7 +77,7 @@ public class W_PaintingController : MonoBehaviour
             }
             if (personality)
             {
-                parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Show();
+                //parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Show();
                 if (GUILayout.Button("Next"))
                 {
                     parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Hide();

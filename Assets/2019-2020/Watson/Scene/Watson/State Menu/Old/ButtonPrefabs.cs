@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ButtonList : MonoBehaviour
 {
-    // Start Menu
+    /*// Start Menu
     public Button Start;
     public Button Options;
     // Options Menu
@@ -17,5 +17,5 @@ public class ButtonList : MonoBehaviour
     public Button SaveButton;
     public Button SaveAsButton;
     public Button DeleteButton;
-    public Button LoadButton;
+    public Button LoadButton;*/
 }
