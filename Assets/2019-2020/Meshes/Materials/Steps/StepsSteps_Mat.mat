@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Door_Mat
+  m_Name: StepsSteps_Mat
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 4
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: d10cb0c0e970466458e60937bb572e19, type: 3}
+        m_Texture: {fileID: 2800000, guid: ebb11bf9dcf0bf143bd4721ea30434d3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -40,15 +40,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 292ab40dfefec5a4fab30b17d3828314, type: 3}
+        m_Texture: {fileID: 2800000, guid: 87bb8e4babe994a43bca397cd7b75899, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: c159829d87b154d4e9edb0a8e14d8ad1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7f25aa5fc9ef26e4498324b2a8c951b9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 35b7baa6fcf640744a40da4de3d0f6c0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9a82b87ca15db634697913f14d05e4ae, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
