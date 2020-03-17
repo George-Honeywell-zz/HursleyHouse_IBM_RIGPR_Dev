@@ -78,11 +78,11 @@ public class colour_generation : MonoBehaviour
         check_buttons_released(0);
 
         //if (sequence_played && Input.GetKeyDown(KeyCode.O))
-        if(sequence_played && SteamVR_Input.GetStateDown("LeftTrigger", left_hand) || Input.GetKeyDown(KeyCode.O))
-        {
-            StartCoroutine(colour_sequence());
-            sequence_played = false;
-        }
+        //if(sequence_played && SteamVR_Input.GetStateDown("LeftTrigger", left_hand) || Input.GetKeyDown(KeyCode.O))
+        //{
+        //    StartCoroutine(colour_sequence());
+        //    sequence_played = false;
+        //}
     }
 
 
@@ -143,6 +143,12 @@ public class colour_generation : MonoBehaviour
 
     public void check_buttons_pressed(int button_id)
     {
+        if (button_id == 5)
+        {
+            StartCoroutine(colour_sequence());
+            sequence_played = false;
+        }
+
         if (button_id == 1)
         {
             Debug.Log("1 Is PRESSED");
