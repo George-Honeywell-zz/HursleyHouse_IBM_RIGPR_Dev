@@ -20,7 +20,7 @@ public class colour_generation : MonoBehaviour
     int player_sequence_position = 0;
 
     //Setting this number will determine how many colours are in a sequence.
-    int current_difficulty = 1;
+    int current_difficulty = 3;
     bool sequence_played = true;
 
     //Button Presses

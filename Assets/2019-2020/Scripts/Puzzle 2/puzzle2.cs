@@ -30,60 +30,61 @@ public class puzzle2 : MonoBehaviour
     //Update function which is ran every frame
     void Update()
     {
-        //Checks to see if the "1" button is being released
-        if (Input.GetKeyUp("1"))
-        {
-            //Rotates the clock on the z axis
-            clocks[0].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
-        }
-        //Checks to see if the "2" button is being released
-        else if (Input.GetKeyUp("2"))
-        {
-            //Rotates the clock on the z axis
-            clocks[1].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
-        }
-        //Checks to see if the "3" button is being released
-        else if (Input.GetKeyUp("3"))
-        {
-            //Rotates the clock on the z axis
-            clocks[2].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
-        }
-        //Checks to see if the "4" button is being released
-        else if (Input.GetKeyUp("4"))
-        {
-            //Rotates the clock on the z axis
-            clocks[3].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
-        }
-        //Checks to see if the "5" button is being released
-        else if (Input.GetKeyUp("5"))
-        {
-            //Rotates the clock on the z axis
-            clocks[4].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
-        }
-        //Checks to see if the "6" button is being released
-        else if (Input.GetKeyUp("6"))
-        {
-            //Rotates the clock on the z axis
-            clocks[5].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
-        }
-        //Checks to see if the "7" button is being released
-        else if (Input.GetKeyUp("7"))
-        {
-            //Rotates the clock on the z axis
-            clocks[6].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
-        }
-        //Checks to see if the "8" button is being released
-        else if (Input.GetKeyUp("8"))
-        {
-            //Rotates the clock on the z axis
-            clocks[7].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
-        }
-        //Checks to see if the "9" button is being released
-        else if (Input.GetKeyUp("9"))
-        {
-            //Rotates the clock on the z axis
-            clocks[8].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
-        }
+        ControlClocks(0);
+        ////Checks to see if the "1" button is being released
+        //if (Input.GetKeyUp("1"))
+        //{
+        //    //Rotates the clock on the z axis
+        //    clocks[0].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        //}
+        ////Checks to see if the "2" button is being released
+        //else if (Input.GetKeyUp("2"))
+        //{
+        //    //Rotates the clock on the z axis
+        //    clocks[1].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        //}
+        ////Checks to see if the "3" button is being released
+        //else if (Input.GetKeyUp("3"))
+        //{
+        //    //Rotates the clock on the z axis
+        //    clocks[2].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        //}
+        ////Checks to see if the "4" button is being released
+        //else if (Input.GetKeyUp("4"))
+        //{
+        //    //Rotates the clock on the z axis
+        //    clocks[3].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        //}
+        ////Checks to see if the "5" button is being released
+        //else if (Input.GetKeyUp("5"))
+        //{
+        //    //Rotates the clock on the z axis
+        //    clocks[4].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        //}
+        ////Checks to see if the "6" button is being released
+        //else if (Input.GetKeyUp("6"))
+        //{
+        //    //Rotates the clock on the z axis
+        //    clocks[5].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        //}
+        ////Checks to see if the "7" button is being released
+        //else if (Input.GetKeyUp("7"))
+        //{
+        //    //Rotates the clock on the z axis
+        //    clocks[6].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        //}
+        ////Checks to see if the "8" button is being released
+        //else if (Input.GetKeyUp("8"))
+        //{
+        //    //Rotates the clock on the z axis
+        //    clocks[7].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        //}
+        ////Checks to see if the "9" button is being released
+        //else if (Input.GetKeyUp("9"))
+        //{
+        //    //Rotates the clock on the z axis
+        //    clocks[8].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        //}
 
         //Retrieves the current Z rotation of each clock GameObject 
         clockZAngle[0] = clocks[0].transform.rotation.eulerAngles.z;
@@ -250,6 +251,64 @@ public class puzzle2 : MonoBehaviour
         {
             //Changes the puzzle marker colour to red
             clockRenderer[9].material.SetColor("_Color", Color.red);
+        }
+    }
+
+    public void ControlClocks(int buttonID)
+    {
+        //Checks to see if the "1" button is being released
+        if (buttonID == 1)
+        {
+            //Rotates the clock on the z axis
+            clocks[0].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        }
+        //Checks to see if the "2" button is being released
+        else if (buttonID == 2)
+        {
+            //Rotates the clock on the z axis
+            clocks[1].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        }
+        //Checks to see if the "3" button is being released
+        else if (buttonID == 3)
+        {
+            //Rotates the clock on the z axis
+            clocks[2].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        }
+        //Checks to see if the "4" button is being released
+        else if (buttonID == 4)
+        {
+            //Rotates the clock on the z axis
+            clocks[3].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        }
+        //Checks to see if the "5" button is being released
+        else if (buttonID == 5)
+        {
+            //Rotates the clock on the z axis
+            clocks[4].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        }
+        //Checks to see if the "6" button is being released
+        else if (buttonID == 6)
+        {
+            //Rotates the clock on the z axis
+            clocks[5].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        }
+        //Checks to see if the "7" button is being released
+        else if (buttonID == 7)
+        {
+            //Rotates the clock on the z axis
+            clocks[6].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        }
+        //Checks to see if the "8" button is being released
+        else if (buttonID == 8)
+        {
+            //Rotates the clock on the z axis
+            clocks[7].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
+        }
+        //Checks to see if the "9" button is being released
+        else if (buttonID == 9)
+        {
+            //Rotates the clock on the z axis
+            clocks[8].transform.Rotate(0.0f, 0.0f, 45f, Space.Self);
         }
     }
 }
