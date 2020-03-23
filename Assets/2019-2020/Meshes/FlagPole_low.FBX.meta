@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1e5a6f8ae11252f439021cb3b05abca4
+guid: d4f971ab6cf5ae8499f181653467e748
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -7,28 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: front
-    second: {fileID: 2100000, guid: 2cebd52ce4fb8024ba924d54dccac124, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: left
-    second: {fileID: 2100000, guid: 29ab44c9c88b17a45b0151d8e3c43f0d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: right
-    second: {fileID: 2100000, guid: 383b8e8992da0834fb747ffa6bb6fd04, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: top
-    second: {fileID: 2100000, guid: 29ab44c9c88b17a45b0151d8e3c43f0d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: windows
-    second: {fileID: 2100000, guid: 469358362c3907648a9acf66f291dc3b, type: 2}
+      name: No Name
+    second: {fileID: 2100000, guid: 39adb55841a00b248b6a8f48da087d06, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
