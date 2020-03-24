@@ -31,7 +31,6 @@ public class W_PaintingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.name = "Controller";
         twitter = gameObject.GetComponent<W_TwitterSetup>();
         watson = gameObject.GetComponent<W_WatsonSetup>();
         consciousness = gameObject.GetComponent<W_PaintingPerson>();
