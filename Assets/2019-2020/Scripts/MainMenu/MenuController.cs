@@ -23,11 +23,8 @@ public class MenuController : MonoBehaviour
 
         if(buttonID == 2)
         {
-            //mainMenu.SetActive(false);
-            //optionsMenu.SetActive(true);
             mainMenu.transform.position = teleportOut.transform.position;
             optionsMenu.transform.position = teleportIn.transform.position;
-
         }
 
         if (buttonID == 3)
