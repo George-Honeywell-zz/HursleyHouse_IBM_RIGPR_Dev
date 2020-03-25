@@ -1,41 +1,54 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Valve.VR;
 public class M_ButtonFunctions : MonoBehaviour
 {
+    GameObject startmenu;
+    GameObject optionsmenu;
+    GameObject personalitymenu;
+    void Start()
+    {
+        startmenu = GameObject.Find("Start");
+        optionsmenu = GameObject.Find("Options");
+        optionsmenu.gameObject.SetActive(false);
+        personalitymenu = GameObject.Find("Personality");
+        personalitymenu.gameObject.SetActive(false);
+    }
     // Start Menu
     public void StartBF()
     {
         // If no personality selected; go to creation
         // Scene Transition to Tutorial Screne
+        SteamVR_LoadLevel.Begin("Outdoor_Area");
     }
     public void OptionsBF()
     {
         // Menu Transition to Options Menu
-        GameObject.Find("Start").SetActive(false);
-        GameObject.Find("Options").SetActive(true);
+        startmenu.gameObject.SetActive(false);
+        optionsmenu.gameObject.SetActive(true);
+        
     }
     public void QuitBF()
     {
         // Exit Game
+        Application.Quit();
     }
     // Options Menu
     public void GameplayTF()
     {
         // Tab Transition to Gameplay Personality Menu
-        GameObject.Find("Personality").SetActive(true);
+        personalitymenu.gameObject.SetActive(true);
     }
     public void SettingsTF()
     {
         // Tab Transition to Other Settings (typical game settings)
-        GameObject.Find("Personality").SetActive(false);
     }
     public void BackBF()
     {
         // Menu Transition to Start Menu
-        GameObject.Find("Options").SetActive(false);
-        GameObject.Find("Start").SetActive(true);
+        optionsmenu.gameObject.SetActive(false);
+        startmenu.gameObject.SetActive(true);
     }
     // Gameplay Personality Menu
     public void NextBF()
