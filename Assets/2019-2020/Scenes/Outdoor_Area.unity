@@ -25538,7 +25538,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 54
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -25563,13 +25563,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1619336060}
-  m_LocalRotation: {x: -0.04654862, y: -0.024570234, z: -0.0022063153, w: 0.9986114}
-  m_LocalPosition: {x: 9.952, y: -2.93, z: -70.36}
+  m_LocalRotation: {x: -0.01913146, y: 0.0021058465, z: -0.00006277336, w: 0.9998148}
+  m_LocalPosition: {x: -7.3, y: -2.18, z: -67.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -5.341, y: -2.8130002, z: -0.12200001}
+  m_LocalEulerAnglesHint: {x: -2.1920002, y: 0.24200001, z: -0.012}
 --- !u!4 &1627429704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4226137650773904046, guid: 2ff6fd0b07b9a044e965654270b2a86e,
@@ -34077,7 +34077,7 @@ GameObject:
   - component: {fileID: 6804227822000488713}
   - component: {fileID: 4212843864416072376}
   m_Layer: 0
-  m_Name: Box058
+  m_Name: SideBuilding1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34485,7 +34485,7 @@ GameObject:
   - component: {fileID: 2594150032050572008}
   - component: {fileID: 5050640179332390923}
   m_Layer: 0
-  m_Name: Box059
+  m_Name: SideBuilding2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34773,7 +34773,7 @@ GameObject:
   - component: {fileID: 2455889069160483614}
   - component: {fileID: 1631312685982439276}
   m_Layer: 0
-  m_Name: Box061
+  m_Name: SideBuilding4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34843,7 +34843,7 @@ GameObject:
   - component: {fileID: 2013499510009328529}
   - component: {fileID: 8771096671687152238}
   m_Layer: 0
-  m_Name: Box060
+  m_Name: SideBuilding3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
