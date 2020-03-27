@@ -7,8 +7,13 @@ public class M_ButtonFunctions : MonoBehaviour
     GameObject startmenu;
     GameObject optionsmenu;
     GameObject personalitymenu;
+    
+
+    W_PaintingController OKB;
     void Start()
     {
+        OKB = GameObject.Find("Controller").GetComponent<W_PaintingController>();
+
         startmenu = GameObject.Find("Start");
         optionsmenu = GameObject.Find("Options");
         optionsmenu.gameObject.SetActive(false);
@@ -49,6 +54,8 @@ public class M_ButtonFunctions : MonoBehaviour
         // Menu Transition to Start Menu
         optionsmenu.gameObject.SetActive(false);
         startmenu.gameObject.SetActive(true);
+        if (personalitymenu.activeInHierarchy)
+            personalitymenu.SetActive(false);
     }
     // Gameplay Personality Menu
     public void NextBF()
@@ -62,10 +69,11 @@ public class M_ButtonFunctions : MonoBehaviour
     public void SetSelfBF()
     {
         // select personality for play
+        OKB.PeopleMaker = true;
     }
     public void NewPersonBF()
     {
-        // Create new personality
+        OKB.keyboard = true;
     }
     public void SaveBF()
     {

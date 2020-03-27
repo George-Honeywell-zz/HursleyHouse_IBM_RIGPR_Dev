@@ -7,16 +7,63 @@ using IBM.Cloud.SDK.Utilities;
 [RequireComponent(typeof(W_PaintingPerson))]
 public class W_PaintingController : MonoBehaviour
 {
+    public string KEYBOARD;
+    public bool keyboard;
+    public bool PeopleMaker = false;
+    // Watson Controller
     public GameObject prefab;
     public GameObject NewBlank()
     {
         return Instantiate(prefab);
     }
+    public IEnumerator WaitForFalse(bool boolean)
+    {
+        while (boolean)
+            yield return null;
+    }
     W_TwitterSetup twitter;
     W_WatsonSetup watson;
     W_PaintingPerson consciousness;
     GameObject parent;
-    bool GraphActive = false;
+    void Start()
+    {
+        // Watson
+        twitter = gameObject.GetComponent<W_TwitterSetup>();
+        watson = gameObject.GetComponent<W_WatsonSetup>();
+        consciousness = gameObject.GetComponent<W_PaintingPerson>();
+        parent = new GameObject("Personality List");
+        parent.AddComponent<W_SpeechResponse>();
+    }
+    void OnGUI()
+    {
+        if (keyboard)
+        {
+            KEYBOARD = GUI.TextField(new Rect(100, 100, 200, 20), KEYBOARD, 25);
+            if (GUILayout.Button("Enter"))
+                keyboard = false;
+        }
+        if (PeopleMaker)
+        {
+            Debug.Log("Gate");
+            Runnable.Run(Add(KEYBOARD));
+            PeopleMaker = false;
+        } 
+    }
+    public IEnumerator Add(string ScreenName)
+    {
+        twitter.SearchUserTimeline(ScreenName);
+        while (!twitter.GetSearchStatus())
+            yield return null;
+        watson.GetPersonalityProfile();
+        while (!watson.GetAnalysisStatus())
+            yield return null;
+        W_PaintingPerson NPC = NewBlank().AddComponent<W_PaintingPerson>();
+        NPC.name = ScreenName;
+        NPC.transform.SetParent(parent.transform);
+        NPC.SetPersonality(watson.GetWatsonProfile());
+    }
+}
+    /*bool GraphActive = false;
     int CurrentIndex = 0;
 
     bool textinput = false;
@@ -31,11 +78,7 @@ public class W_PaintingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        twitter = gameObject.GetComponent<W_TwitterSetup>();
-        watson = gameObject.GetComponent<W_WatsonSetup>();
-        consciousness = gameObject.GetComponent<W_PaintingPerson>();
-        parent = new GameObject("Personality List");
-        parent.AddComponent<W_SpeechResponse>();
+        
     }
     void OnGUI()
     {
@@ -236,4 +279,4 @@ public class W_PaintingController : MonoBehaviour
         //W_PaintingPerson painting = new W_PaintingPerson(filename, JsonUtility.FromJson<Personality>(File.ReadAllText(directory)));
         //painting.gameObject.transform.SetParent(parent.transform);
     }
-}
+    */
