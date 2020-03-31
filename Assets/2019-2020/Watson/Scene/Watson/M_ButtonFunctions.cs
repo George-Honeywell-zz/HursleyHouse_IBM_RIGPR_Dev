@@ -10,10 +10,10 @@ public class M_ButtonFunctions : MonoBehaviour
     
 
     W_PaintingController OKB;
+    int CurrentIndex;
     void Start()
     {
         OKB = GameObject.Find("Controller").GetComponent<W_PaintingController>();
-
         startmenu = GameObject.Find("Start");
         optionsmenu = GameObject.Find("Options");
         optionsmenu.gameObject.SetActive(false);
@@ -44,6 +44,7 @@ public class M_ButtonFunctions : MonoBehaviour
     {
         // Tab Transition to Gameplay Personality Menu
         personalitymenu.gameObject.SetActive(true);
+        OKB.GetList().transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Show();
     }
     public void SettingsTF()
     {

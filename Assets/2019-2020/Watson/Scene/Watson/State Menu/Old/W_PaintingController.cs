@@ -2,9 +2,9 @@
 using System.IO;
 using UnityEngine;
 using IBM.Cloud.SDK.Utilities;
-[RequireComponent(typeof(W_TwitterSetup))]
-[RequireComponent(typeof(W_WatsonSetup))]
-[RequireComponent(typeof(W_PaintingPerson))]
+//[RequireComponent(typeof(W_TwitterSetup))]
+//[RequireComponent(typeof(W_WatsonSetup))]
+//[RequireComponent(typeof(W_PaintingPerson))]
 public class W_PaintingController : MonoBehaviour
 {
     public string KEYBOARD;
@@ -16,11 +16,7 @@ public class W_PaintingController : MonoBehaviour
     {
         return Instantiate(prefab);
     }
-    public IEnumerator WaitForFalse(bool boolean)
-    {
-        while (boolean)
-            yield return null;
-    }
+    
     W_TwitterSetup twitter;
     W_WatsonSetup watson;
     W_PaintingPerson consciousness;
@@ -61,6 +57,10 @@ public class W_PaintingController : MonoBehaviour
         NPC.name = ScreenName;
         NPC.transform.SetParent(parent.transform);
         NPC.SetPersonality(watson.GetWatsonProfile());
+    }
+    public GameObject GetList()
+    {
+        return parent;
     }
 }
     /*bool GraphActive = false;
