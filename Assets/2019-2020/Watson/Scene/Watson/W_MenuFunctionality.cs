@@ -5,9 +5,9 @@ using IBM.Cloud.SDK.Utilities;
 using Valve.VR;
 [RequireComponent(typeof(W_TwitterSetup))]
 [RequireComponent(typeof(W_WatsonSetup))]
-[RequireComponent(typeof(W_PaintingPerson))]
 public class W_MenuFunctionality : MonoBehaviour
 {
+    public string TextInput;
     int CurrentIndex;
     // Watson Controller
     public GameObject prefab;
@@ -58,7 +58,10 @@ public class W_MenuFunctionality : MonoBehaviour
     {
         // If no personality selected; go to creation
         // Scene Transition to Tutorial Screne
-        SteamVR_LoadLevel.Begin("Outdoor_Area");
+        startmenu.SetActive(false);
+        personalitymenu.gameObject.SetActive(true);
+        if (CurrentIndex >= 0)
+            parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Show();
     }
     public void OptionsBF()
     {
@@ -73,26 +76,6 @@ public class W_MenuFunctionality : MonoBehaviour
         Application.Quit();
     }
     // Options Menu
-    public void GameplayTF()
-    {
-        // Tab Transition to Gameplay Personality Menu
-        //settingsmenu.gameObject.SetActive(false);
-        personalitymenu.gameObject.SetActive(true);
-        if (CurrentIndex != 0)
-            parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>().GetGraph().Show();
-    }
-    public void SettingsTF()
-    {
-        // Tab Transition to Other Settings (typical game settings)
-    }
-    public void BackBF()
-    {
-        // Menu Transition to Start Menu
-        optionsmenu.gameObject.SetActive(false);
-        startmenu.gameObject.SetActive(true);
-        if (personalitymenu.activeInHierarchy)
-            personalitymenu.SetActive(false);
-    }
     // Gameplay Personality Menu
     public void NextBF()
     {
@@ -115,11 +98,14 @@ public class W_MenuFunctionality : MonoBehaviour
     public void SetSelfBF()
     {
         // select personality for play
-
+        personalitymenu.SetActive(false);
+        SteamVR_LoadLevel.Begin("Outdoor_Area");
+        //consciousness = parent.transform.GetChild(CurrentIndex).GetComponent<W_PaintingPerson>();
+        
     }
     public void NewPersonBF()
     {
-
+        Add(TextInput);
     }
     public void SaveBF()
     {
@@ -136,5 +122,20 @@ public class W_MenuFunctionality : MonoBehaviour
     public void DeleteBF()
     {
         // Delete personality
+    }
+    // General Utilities
+    public void BackBF()
+    {
+        // Menu Transition to Start Menu
+        if (personalitymenu.activeInHierarchy)
+        {
+            personalitymenu.SetActive(false);
+            startmenu.SetActive(true);
+        }
+        else if (optionsmenu.activeInHierarchy)
+        {
+            optionsmenu.SetActive(false);
+            startmenu.SetActive(true);
+        }
     }
 }
