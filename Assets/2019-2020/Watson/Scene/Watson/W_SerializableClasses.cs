@@ -20,4 +20,3 @@ public class Personality
     public Humour[] personality = new Humour[5];
 }
 
-
