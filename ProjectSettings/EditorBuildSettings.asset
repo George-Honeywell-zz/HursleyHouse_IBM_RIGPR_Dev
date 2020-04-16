@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/2019-2020/Scenes/VR_Test_Scene2.unity
     guid: 05f0e103fae28db4e8ec6a05e8f286f4
+  - enabled: 1
+    path: Assets/2019-2020/Scenes/Outdoor_Area.unity
+    guid: f390f3d28547166448b26779daa1d3ab
   m_configObjects: {}
