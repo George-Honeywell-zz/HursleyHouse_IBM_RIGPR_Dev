@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/2019-2020/Scenes/MainMenu.unity
+    path: Assets/2019-2020/Scenes/MainMenu_Scrapped.unity
     guid: 54c77980510837c419a781d6f6aabdc4
   - enabled: 1
     path: Assets/Demo_Room/Assets/TheLab.unity
@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/2019-2020/Scenes/Outdoor_Area.unity
     guid: f390f3d28547166448b26779daa1d3ab
+  - enabled: 1
+    path: Assets/2019-2020/Scenes/MainMenu2.unity
+    guid: 8d60476a69fcfda4ea534880dd7db75e
   m_configObjects: {}

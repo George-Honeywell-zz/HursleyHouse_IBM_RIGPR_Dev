@@ -2,41 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
 
-    public Transform teleportOut;
-    public Transform teleportIn; 
-    public GameObject player;
+    //public Transform teleportOut;
+    //public Transform teleportIn; 
+    //public GameObject player;
 
-    public GameObject mainMenu;
-    public GameObject optionsMenu;
+    //public GameObject mainMenu;
+    //public GameObject optionsMenu;
 
-    public void MenuButtons(int buttonID)
+    public void MenuButtons(int sceneIndex)
     {
-        //Main Menu
-        if(buttonID == 1)
-        {
-            SteamVR_LoadLevel.Begin("TheLab");
-        }
 
-        if(buttonID == 2)
-        {
-            mainMenu.transform.position = teleportOut.transform.position;
-            optionsMenu.transform.position = teleportIn.transform.position;
-        }
+        //Debug.Log("Button Pressed");
+        //SteamVR_LoadLevel.Begin("TheLab");
+        SceneManager.LoadScene(sceneIndex);
+        
 
-        if (buttonID == 3)
-        {
-            Application.Quit();
-        }
+        //if(buttonID == 2)
+        //{
+        //    mainMenu.transform.position = teleportOut.transform.position;
+        //    optionsMenu.transform.position = teleportIn.transform.position;
+        //}
 
-        //Options Menu
-        if (buttonID == 4)
-        {
-            mainMenu.transform.position = teleportIn.transform.position;
-            optionsMenu.transform.position = teleportOut.transform.position;
-        }
+        //if (buttonID == 3)
+        //{
+        //    Application.Quit();
+        //}
+
+        ////Options Menu
+        //if (buttonID == 4)
+        //{
+        //    mainMenu.transform.position = teleportIn.transform.position;
+        //    optionsMenu.transform.position = teleportOut.transform.position;
+        //}
     }
 }
