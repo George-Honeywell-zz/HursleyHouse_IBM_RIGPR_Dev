@@ -56,19 +56,6 @@ public class W_PaintingPerson : MonoBehaviour
         }
         return big5;
     }
-    /*public void InitiateInteraction(W_PaintingPerson other)
-    {
-        // Accumulate
-        Accumulate();
-        other.Accumulate();
-
-        int big5 = Big5Selector();
-        if (GetAccumulate(big5) > other.GetAccumulate(big5))
-        {
-
-        }
-
-    }*/
     public int FacetSelector(int big5)
     {
         // Facets of a single big 5, Accumulators Highest Value
