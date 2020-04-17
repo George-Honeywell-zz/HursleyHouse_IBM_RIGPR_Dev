@@ -29,12 +29,12 @@ public class W_GraphSetup : MonoBehaviour
         };
         Vector3[] normals =
         {
-            Vector3.back,
-            Vector3.back,
-            Vector3.back,
-            Vector3.back,
-            Vector3.back,
-            Vector3.back,
+            Vector3.forward,
+            Vector3.forward,
+            Vector3.forward,
+            Vector3.forward,
+            Vector3.forward,
+            Vector3.forward,
         };
         // Graph Setup
         Mesh graph = Graph.AddComponent<MeshFilter>().mesh;
