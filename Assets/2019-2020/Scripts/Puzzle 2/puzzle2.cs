@@ -8,8 +8,8 @@ public class puzzle2 : MonoBehaviour
     //Variable decleration
     float[] clockZAngle = new float[9];
     bool[] clockPosition = new bool[9];
-    public GameObject[] clocks = new GameObject[10];
-    Renderer[] clockRenderer = new Renderer[10];
+    public GameObject[] clocks = new GameObject[11];
+    Renderer[] clockRenderer = new Renderer[11];
 
     //Start function which runs when the script is initialized
     void Start()
@@ -25,6 +25,8 @@ public class puzzle2 : MonoBehaviour
         clockRenderer[7] = clocks[7].GetComponentInChildren<Renderer>();
         clockRenderer[8] = clocks[8].GetComponentInChildren<Renderer>();
         clockRenderer[9] = clocks[9].GetComponentInChildren<Renderer>();
+        clockRenderer[10] = clocks[10].GetComponentInChildren<Renderer>();
+
     }
 
     //Update function which is ran every frame
@@ -98,7 +100,7 @@ public class puzzle2 : MonoBehaviour
         clockZAngle[8] = clocks[8].transform.rotation.eulerAngles.z;
 
         //Checks if the clocks z axis is the correct rotation
-        if (clockZAngle[0] < 136 && clockZAngle[0] > 134)
+        if (clockZAngle[0] > 269 && clockZAngle[0] < 271)
         {
             //Changes the clocks colour to green 
             clockRenderer[0].material.SetColor("_Color", Color.green);
@@ -114,7 +116,7 @@ public class puzzle2 : MonoBehaviour
         }
 
         //Checks if the clocks z axis is the correct rotation
-        if (clockZAngle[1] < 1 && clockZAngle[1] > -1)
+        if (clockZAngle[1] > 89 && clockZAngle[1] < 91)
         {
             //Changes the clocks colour to green 
             clockRenderer[1].material.SetColor("_Color", Color.green);
@@ -130,7 +132,7 @@ public class puzzle2 : MonoBehaviour
         }
 
         //Checks if the clocks z axis is the correct rotation
-        if (clockZAngle[2] < 91 && clockZAngle[2] > 89)
+        if (clockZAngle[2] > 89 && clockZAngle[2] < 91)
         {
             //Changes the clocks colour to green 
             clockRenderer[2].material.SetColor("_Color", Color.green);
@@ -146,7 +148,7 @@ public class puzzle2 : MonoBehaviour
         }
 
         //Checks if the clocks z axis is the correct rotation
-        if (clockZAngle[3] < 46 && clockZAngle[3] > 44)
+        if (clockZAngle[3] > 89 && clockZAngle[3] < 91)
         {
             //Changes the clocks colour to green 
             clockRenderer[3].material.SetColor("_Color", Color.green);
@@ -162,7 +164,7 @@ public class puzzle2 : MonoBehaviour
         }
 
         //Checks if the clocks z axis is the correct rotation
-        if (clockZAngle[4] < 91 && clockZAngle[4] > 89)
+        if (clockZAngle[4] > 361 && clockZAngle[4] < 362)
         {
             //Changes the clocks colour to green 
             clockRenderer[4].material.SetColor("_Color", Color.green);
@@ -178,7 +180,7 @@ public class puzzle2 : MonoBehaviour
         }
 
         //Checks if the clocks z axis is the correct rotation
-        if (clockZAngle[5] < 181 && clockZAngle[5] > 179)
+        if (clockZAngle[5] > 361 && clockZAngle[5] < 362)
         {
             //Changes the clocks colour to green 
             clockRenderer[5].material.SetColor("_Color", Color.green);
@@ -194,7 +196,7 @@ public class puzzle2 : MonoBehaviour
         }
 
         //Checks if the clocks z axis is the correct rotation
-        if (clockZAngle[6] < 91 && clockZAngle[6] > 89)
+        if (clockZAngle[6] > 89 && clockZAngle[6] < 91)
         {
             //Changes the clocks colour to green 
             clockRenderer[6].material.SetColor("_Color", Color.green);
@@ -210,7 +212,7 @@ public class puzzle2 : MonoBehaviour
         }
 
         //Checks if the clocks z axis is the correct rotation
-        if (clockZAngle[7] < 91 && clockZAngle[7] > 89)
+        if (clockZAngle[7] > 361 && clockZAngle[7] < 362)
         {
             //Changes the clocks colour to green 
             clockRenderer[7].material.SetColor("_Color", Color.green);
@@ -226,7 +228,7 @@ public class puzzle2 : MonoBehaviour
         }
 
         //Checks if the clocks z axis is the correct rotation
-        if (clockZAngle[8] < 46 && clockZAngle[8] > 44)
+        if (clockZAngle[8] > 361 && clockZAngle[8] < 362)
         {
             //Changes the clocks colour to green 
             clockRenderer[8].material.SetColor("_Color", Color.green);
@@ -242,15 +244,17 @@ public class puzzle2 : MonoBehaviour
         }
 
         //Checks if the clocks are all in the right position
-        if (clockPosition[0] && clockPosition[1] && clockPosition[2] && clockPosition[3] && clockPosition[4] && clockPosition[5] && clockPosition[6] && clockPosition[7] && clockPosition[8])
+        if (clockPosition[0] && clockPosition[1] && clockPosition[2] && clockPosition[3] && clockPosition[6])
         {
             //Changes the puzzle marker colour to green
             clockRenderer[9].material.SetColor("_Color", Color.green);
+            clockRenderer[10].material.SetColor("_Color", Color.green);
         }
         else
         {
             //Changes the puzzle marker colour to red
             clockRenderer[9].material.SetColor("_Color", Color.red);
+            clockRenderer[10].material.SetColor("_Color", Color.red);
         }
     }
 
