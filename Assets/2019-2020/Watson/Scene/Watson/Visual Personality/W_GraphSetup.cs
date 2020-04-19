@@ -8,7 +8,6 @@ public class W_GraphSetup : MonoBehaviour
         Personality personality = GetComponent<W_PaintingPerson>().GetPersonality();
         // Set Objects
         Graph = new GameObject("Graph");
-        Graph.transform.parent = this.gameObject.transform;
         // Graph Specification
         Vector3[] pentagon =
         {
@@ -29,12 +28,12 @@ public class W_GraphSetup : MonoBehaviour
         };
         Vector3[] normals =
         {
-            Vector3.forward,
-            Vector3.forward,
-            Vector3.forward,
-            Vector3.forward,
-            Vector3.forward,
-            Vector3.forward,
+            Vector3.back,
+            Vector3.back,
+            Vector3.back,
+            Vector3.back,
+            Vector3.back,
+            Vector3.back,
         };
         // Graph Setup
         Mesh graph = Graph.AddComponent<MeshFilter>().mesh;
@@ -42,9 +41,9 @@ public class W_GraphSetup : MonoBehaviour
         graph.triangles = triangles;
         graph.normals = normals;
         Material materiala = Graph.AddComponent<MeshRenderer>().material;
-        materiala.color = Color.cyan;
-        Graph.transform.position = GameObject.FindWithTag("Player").transform.position + (this.gameObject.transform.forward * 2.0f);
-        Graph.SetActive(false);
+        materiala.color = Color.black;
+        Graph.transform.position = GameObject.Find("WatsonPrePlayerCharacter").transform.position;
+        Graph.transform.rotation = Quaternion.Euler(0, 180, 0);
     }
     public GameObject Get()
     {

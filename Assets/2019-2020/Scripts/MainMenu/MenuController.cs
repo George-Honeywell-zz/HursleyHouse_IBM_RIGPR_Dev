@@ -41,7 +41,7 @@ public class MenuController : MonoBehaviour
         while (!watson.GetAnalysisStatus())
             yield return null;
         consciousness = NewBlank().AddComponent<W_PaintingPerson>();
-        consciousness.gameObject.name = "Player";
+        consciousness.gameObject.name = "Player Personality";
         consciousness.SetPersonality(watson.GetWatsonProfile());
     }
     public GameObject GetWatson()
@@ -54,7 +54,7 @@ public class MenuController : MonoBehaviour
         //Debug.Log("Button Pressed");
         //SteamVR_LoadLevel.Begin("TheLab");
         SceneManager.LoadScene(sceneIndex);
-        
+        NewBlank();
 
         //if(buttonID == 2)
         //{
@@ -79,4 +79,22 @@ public class MenuController : MonoBehaviour
         mainmenu.SetActive(false);
         twitterInput.Activate(true);
     }
+    public void DeleteButton()
+    {
+        Destroy(GameObject.Find("Player Personality"));
+        consciousness = null;
+        twitterInput.Activate(true);
+    }
+    public void BackButton()
+    {
+        Debug.Log("1");
+        Destroy(GameObject.Find("Player Personality"));
+        Debug.Log("1");
+        consciousness = null;
+        Debug.Log("1");
+        watsonmenu.SetActive(false);
+        Debug.Log("1");
+        mainmenu.SetActive(true);
+    }
+
 }

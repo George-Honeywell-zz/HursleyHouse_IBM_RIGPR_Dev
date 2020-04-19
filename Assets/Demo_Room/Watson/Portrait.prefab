@@ -105,10 +105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4b326c410622449acff118c48a377d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type1: 
+  Type1Success: 
+  Type1Failure: 
   Type2: 
-  Type3:
-  - 
+  Type3Success: 
+  Type3Failure: 
   Type4: 
-  Type5:
-  - 
+  Type5Success: 
+  Type5Failure: 

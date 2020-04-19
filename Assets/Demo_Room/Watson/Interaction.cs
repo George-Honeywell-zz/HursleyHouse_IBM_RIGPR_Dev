@@ -12,16 +12,21 @@ public class Interaction : MonoBehaviour
         painting = this.gameObject.GetComponent<W_PaintingPerson>();
     }
     // string or string array
-    public string Type1;
+    public string Type1Success;
+    public string Type1Failure;
     public string Type2;
-    public string[] Type3 = { "" };
+    public string Type3Success;
+    public string Type3Failure;
     public string Type4;
-    public string[] Type5 = { "" };
+    public string Type5Success;
+    public string Type5Failure;
 
     // Type 1
     public void WhoAreYou()
     {
-        Debug.Log(Type1);
+        if (BroadPersonalTest())
+            Debug.Log(Type1Success);
+        else Debug.Log(Type1Failure);
     }
     // Type 2
     public void PuzzleDescription()
@@ -31,7 +36,9 @@ public class Interaction : MonoBehaviour
     // Type 3
     public void Hint()
     {
-        Debug.Log(Type3[Random.Range(0, (Type3.Length - 1))]);
+        if (BroadPersonalTest())
+            Debug.Log(Type3Success);
+        else Debug.Log(Type3Failure);
     }
     // Type 4
     public void AboutHouse()
@@ -41,22 +48,25 @@ public class Interaction : MonoBehaviour
     // Type 5
     public void Goodbye()
     {
-        Debug.Log(Type5[Random.Range(0, (Type3.Length - 1))]);
+        if (BroadPersonalTest())
+            Debug.Log(Type5Success);
+        else Debug.Log(Type5Failure);
     }
 
-    public void BroadPersonalTest()
+    public bool BroadPersonalTest()
     {
         int testParameter = player.Big5Selector();
         // player
         if (player.GetPersonality().personality[testParameter].percentile > painting.GetPersonality().personality[testParameter].percentile)
         {
-
+            return true;
         }
         // painting
         if (player.GetPersonality().personality[testParameter].percentile < painting.GetPersonality().personality[testParameter].percentile)
         {
-
+            return false;
         }
+        return false;
     }
     public void NarrowPersonalTest(int BIG5)
     {
