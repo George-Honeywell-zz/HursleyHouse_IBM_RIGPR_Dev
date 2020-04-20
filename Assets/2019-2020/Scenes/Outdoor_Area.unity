@@ -9692,6 +9692,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43a1d23cbf42585469b73b35218238c2, type: 3}
+--- !u!1 &501424907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: b5a3f479db2a9bc42b3699c5eada8423,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275655203}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &504165495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16513,15 +16519,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.915
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.4028
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 15.272
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -16529,7 +16535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalRotation.z
@@ -16537,7 +16543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_RootOrder
@@ -16549,7 +16555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -21674,6 +21680,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.39080122
       objectReference: {fileID: 0}
+    - target: {fileID: 3534530737625748801, guid: 83efa8ef93967ee49909feb199655cf1,
+        type: 3}
+      propertyPath: spitfireWings_Low
+      value: 
+      objectReference: {fileID: 1243954476}
+    - target: {fileID: 3534530737625748801, guid: 83efa8ef93967ee49909feb199655cf1,
+        type: 3}
+      propertyPath: spitfireBody_Low
+      value: 
+      objectReference: {fileID: 501424907}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83efa8ef93967ee49909feb199655cf1, type: 3}
 --- !u!1001 &1198317575
@@ -22238,6 +22254,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 356056064}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1243954476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 1ea52449ecf068e498512bb70a5e4c43,
+    type: 3}
+  m_PrefabInstance: {fileID: 1282926123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1244046076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22759,6 +22781,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpitfireBody_low
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: b5a3f479db2a9bc42b3699c5eada8423,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: b5a3f479db2a9bc42b3699c5eada8423,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23002,6 +23029,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpitfireWings_low
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 1ea52449ecf068e498512bb70a5e4c43,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 1ea52449ecf068e498512bb70a5e4c43,
         type: 3}
@@ -30723,6 +30755,16 @@ PrefabInstance:
       propertyPath: clockCorrectPosition.Array.data[8]
       value: 362
       objectReference: {fileID: 0}
+    - target: {fileID: 6841451760366872018, guid: 1e946403c69f01b4ab3774c5e805f374,
+        type: 3}
+      propertyPath: spitfireWings_Low
+      value: 
+      objectReference: {fileID: 1243954476}
+    - target: {fileID: 6841451760366872018, guid: 1e946403c69f01b4ab3774c5e805f374,
+        type: 3}
+      propertyPath: spitfireBody_Low
+      value: 
+      objectReference: {fileID: 501424907}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e946403c69f01b4ab3774c5e805f374, type: 3}
 --- !u!1001 &1707572222

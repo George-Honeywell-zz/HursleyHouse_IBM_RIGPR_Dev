@@ -4,65 +4,54 @@ using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
-public class colour_generation : MonoBehaviour
+public class ColourGeneration : MonoBehaviour
 {
-    SceneController scene;
-
-    //Teleport Variables
-    public GameObject teleportPoint_Unlocked;
-    public GameObject teleportPoint_Locked;
-    public GameObject sceneChanger;
-
-
     //Set Arrays for SEQUENCE & PLAYER_SEQUENCE
     int[] sequence;
-    int[] player_sequence;
-    int player_sequence_position = 0;
+    int[] playerSequence;
+    int playerSequencePosition = 0;
 
     //Setting this number will determine how many colours are in a sequence.
-    int current_difficulty = 3;
-    bool sequence_played = true;
+    int currentDifficulty = 3;
+    bool sequencePlayed = true;
 
     //Button Presses
-    bool one_pressed = false;
-    bool two_pressed = false;
-    bool three_pressed = false;
-    bool four_pressed = false;
-    bool button_down = false;
+    bool onePressed = false;
+    bool twoPressed = false;
+    bool threePressed = false;
+    bool fourPressed = false;
+    bool buttonDown = false;
 
     //Player Marked or Passed
-    bool player_marked = false;
-    bool player_passed = true;
+    bool playerMarked = false;
+    bool playerPassed = true;
 
     //Public GameObjects
-    public GameObject red_block;
-    public GameObject blue_block;
-    public GameObject yellow_block;
-    public GameObject green_block;
+    public GameObject redBlock;
+    public GameObject blueBlock;
+    public GameObject yellowBlock;
+    public GameObject greenBlock;
     
 
     //Block Renderers
-    Renderer red_block_renderer;
-    Renderer blue_block_renderer;
-    Renderer yellow_block_renderer;
-    Renderer green_block_renderer;
-    Renderer sequence_block_renderer;
+    Renderer redBlockRenderer;
+    Renderer blueBlockRenderer;
+    Renderer yellowBlockRenderer;
+    Renderer greenBlockRenderer;
+    Renderer sequenceBlockRenderer;
 
-    //SteamVR Input Variables
-    SteamVR_Input_Sources left_hand;
-    SteamVR_Input_Sources right_hand;
 
     void Start()
     {
         //Getting the components from the scene
-        red_block_renderer = red_block.GetComponent<Renderer>();
-        yellow_block_renderer = yellow_block.GetComponent<Renderer>();
-        blue_block_renderer = blue_block.GetComponent<Renderer>();
-        green_block_renderer = green_block.GetComponent<Renderer>();
+        redBlockRenderer = redBlock.GetComponent<Renderer>();
+        yellowBlockRenderer = yellowBlock.GetComponent<Renderer>();
+        blueBlockRenderer = blueBlock.GetComponent<Renderer>();
+        greenBlockRenderer = greenBlock.GetComponent<Renderer>();
 
         //Creating the Sequence Arrays
         sequence = new int[10];
-        player_sequence = new int[10];
+        playerSequence = new int[10];
 
         //Assigning the sequence array values corresponding to the random colour order
         for (int i = 0; i < 10; i++)
@@ -73,45 +62,35 @@ public class colour_generation : MonoBehaviour
 
     void Update()
     {
-        player_input_sequence();
-        check_buttons_pressed(0);
-        check_buttons_released(0);
-
-        //if (sequence_played && Input.GetKeyDown(KeyCode.O))
-        //if(sequence_played && SteamVR_Input.GetStateDown("LeftTrigger", left_hand) || Input.GetKeyDown(KeyCode.O))
-        //{
-        //    StartCoroutine(colour_sequence());
-        //    sequence_played = false;
-        //}
+        PlayerInputSequence();
+        CheckButtonsPressed(0);
+        CheckButtonsReleased(0);
     }
 
 
 
-    public void player_input_sequence()
+    public void PlayerInputSequence()
     {
 
-        if (player_sequence_position == (current_difficulty) && !player_marked)
+        if (playerSequencePosition == (currentDifficulty) && !playerMarked)
         {
-            for(int i = 0; i < current_difficulty; i++)
+            for(int i = 0; i < currentDifficulty; i++)
             {
-                if(player_sequence[i] == sequence[i])
+                if(playerSequence[i] == sequence[i])
                 {
                     Debug.Log("<color=green>Sequence Successfully Completed!</color>");
                     SteamVR_LoadLevel.Begin("Outdoor_Area");
-                    //teleportPoint_Locked.SetActive(false);
-                    //teleportPoint_Unlocked.SetActive(true);
-                    //sceneChanger.SetActive(true);
                 }
                 else
                 {
                     Debug.Log("<color=red>Sequence Unsuccessfully Completed!</color>");
-                    player_passed = false;
+                    playerPassed = false;
                 }
             }
 
-            player_marked = true;
+            playerMarked = true;
 
-            if (player_passed)
+            if (playerPassed)
             {
                 StartCoroutine(Victory());
             }
@@ -121,206 +100,206 @@ public class colour_generation : MonoBehaviour
             }
         }
 
-        else if (player_marked)
+        else if (playerMarked)
         {
-            if (player_passed)
+            if (playerPassed)
             {
-                player_marked = false;
-                current_difficulty++;
-                player_sequence = new int[10];
-                player_sequence_position = 0;
-                player_passed = true;
+                playerMarked = false;
+                currentDifficulty++;
+                playerSequence = new int[10];
+                playerSequencePosition = 0;
+                playerPassed = true;
             }
             else
             {
-                player_marked = false;
-                player_sequence = new int[10];
-                player_sequence_position = 0;
-                player_passed = true;
+                playerMarked = false;
+                playerSequence = new int[10];
+                playerSequencePosition = 0;
+                playerPassed = true;
             }
         }
     }
 
-    public void check_buttons_pressed(int button_id)
+    public void CheckButtonsPressed(int buttonID)
     {
-        if (button_id == 5)
+        if (buttonID == 5)
         {
-            StartCoroutine(colour_sequence());
-            sequence_played = false;
+            StartCoroutine(ColourSequence());
+            sequencePlayed = false;
         }
 
-        if (button_id == 1)
+        if (buttonID == 1)
         {
             Debug.Log("1 Is PRESSED");
-            red_block_renderer.material.SetColor("_Color", Color.white);
-            one_pressed = true;
-            button_down = true;
-            check_buttons_released(1);
+            redBlockRenderer.material.SetColor("_Color", Color.white);
+            onePressed = true;
+            buttonDown = true;
+            CheckButtonsReleased(1);
         }
 
-        else if (button_id == 2)
+        else if (buttonID == 2)
         {
             Debug.Log("2 Is PRESSED");
-            yellow_block_renderer.material.SetColor("_Color", Color.white);
-            two_pressed = true;
-            button_down = true;
-            check_buttons_released(2);
+            yellowBlockRenderer.material.SetColor("_Color", Color.white);
+            twoPressed = true;
+            buttonDown = true;
+            CheckButtonsReleased(2);
         }
 
-        else if (button_id == 3)
+        else if (buttonID == 3)
         {
             Debug.Log("3 Is PRESSED");
-            blue_block_renderer.material.SetColor("_Color", Color.white);
-            three_pressed = true;
-            button_down = true;
-            check_buttons_released(3);
+            blueBlockRenderer.material.SetColor("_Color", Color.white);
+            threePressed = true;
+            buttonDown = true;
+            CheckButtonsReleased(3);
         }
 
-        else if (button_id == 4)
+        else if (buttonID == 4)
         {
             Debug.Log("4 Is PRESSED");
-            green_block_renderer.material.SetColor("_Color", Color.white);
-            four_pressed = true;
-            button_down = true;
-            check_buttons_released(4);
+            greenBlockRenderer.material.SetColor("_Color", Color.white);
+            fourPressed = true;
+            buttonDown = true;
+            CheckButtonsReleased(4);
         }
     }
 
-    public void check_buttons_released(int button_id)
+    public void CheckButtonsReleased(int buttonID)
     {
 
-        if (button_id == 1 && one_pressed)
+        if (buttonID == 1 && onePressed)
         {
             Debug.Log("1 Is RELEASED");
-            red_block_renderer.material.SetColor("_Color", Color.red);
-            one_pressed = false;
-            button_down = false;
-            player_sequence[player_sequence_position] = 0;
-            player_sequence_position++;
+            redBlockRenderer.material.SetColor("_Color", Color.red);
+            onePressed = false;
+            buttonDown = false;
+            playerSequence[playerSequencePosition] = 0;
+            playerSequencePosition++;
         }
 
-        else if (button_id == 2 && two_pressed)
+        else if (buttonID == 2 && twoPressed)
         {
             Debug.Log("2 is RELEASED");
-            yellow_block_renderer.material.SetColor("_Color", Color.yellow);
-            two_pressed = false;
-            button_down = false;
-            player_sequence[player_sequence_position] = 1;
-            player_sequence_position++;
+            yellowBlockRenderer.material.SetColor("_Color", Color.yellow);
+            twoPressed = false;
+            buttonDown = false;
+            playerSequence[playerSequencePosition] = 1;
+            playerSequencePosition++;
         }
-        else if (button_id == 3 && three_pressed)
+        else if (buttonID == 3 && threePressed)
         {
             Debug.Log("3 is RELEASED");
-            blue_block_renderer.material.SetColor("_Color", Color.blue);
-            three_pressed = false;
-            button_down = false;
-            player_sequence[player_sequence_position] = 2;
-            player_sequence_position++;
+            blueBlockRenderer.material.SetColor("_Color", Color.blue);
+            threePressed = false;
+            buttonDown = false;
+            playerSequence[playerSequencePosition] = 2;
+            playerSequencePosition++;
         }
-        else if (button_id == 4 && four_pressed)
+        else if (buttonID == 4 && fourPressed)
         {
             Debug.Log("4 is RELEASED");
-            green_block_renderer.material.SetColor("_Color", Color.green);
-            four_pressed = false;
-            button_down = false;
-            player_sequence[player_sequence_position] = 3;
-            player_sequence_position++;
+            greenBlockRenderer.material.SetColor("_Color", Color.green);
+            fourPressed = false;
+            buttonDown = false;
+            playerSequence[playerSequencePosition] = 3;
+            playerSequencePosition++;
         }
     }
 
-    IEnumerator colour_sequence()
+    IEnumerator ColourSequence()
     {
-        for(int i = 0; i < current_difficulty; i++)
+        for(int i = 0; i < currentDifficulty; i++)
         {
             if (sequence[i] == 0)
             {
-                red_block_renderer.material.SetColor("_Color", Color.red);
-                blue_block_renderer.material.SetColor("_Color", Color.red);
-                yellow_block_renderer.material.SetColor("_Color", Color.red);
-                green_block_renderer.material.SetColor("_Color", Color.red);
+                redBlockRenderer.material.SetColor("_Color", Color.red);
+                blueBlockRenderer.material.SetColor("_Color", Color.red);
+                yellowBlockRenderer.material.SetColor("_Color", Color.red);
+                greenBlockRenderer.material.SetColor("_Color", Color.red);
                 Debug.Log("Number " + (i + 1) + " in sequence is red");
                 yield return new WaitForSeconds(1);
             }
             if (sequence[i] == 1)
             {
-                red_block_renderer.material.SetColor("_Color", Color.yellow);
-                blue_block_renderer.material.SetColor("_Color", Color.yellow);
-                yellow_block_renderer.material.SetColor("_Color", Color.yellow);
-                green_block_renderer.material.SetColor("_Color", Color.yellow);
+                redBlockRenderer.material.SetColor("_Color", Color.yellow);
+                blueBlockRenderer.material.SetColor("_Color", Color.yellow);
+                yellowBlockRenderer.material.SetColor("_Color", Color.yellow);
+                greenBlockRenderer.material.SetColor("_Color", Color.yellow);
                 Debug.Log("Number " + (i + 1) + " in sequence is yellow");
                 yield return new WaitForSeconds(1);
             }
             if (sequence[i] == 2)
             {
-                red_block_renderer.material.SetColor("_Color", Color.blue);
-                blue_block_renderer.material.SetColor("_Color", Color.blue);
-                yellow_block_renderer.material.SetColor("_Color", Color.blue);
-                green_block_renderer.material.SetColor("_Color", Color.blue);
+                redBlockRenderer.material.SetColor("_Color", Color.blue);
+                blueBlockRenderer.material.SetColor("_Color", Color.blue);
+                yellowBlockRenderer.material.SetColor("_Color", Color.blue);
+                greenBlockRenderer.material.SetColor("_Color", Color.blue);
                 Debug.Log("Number " + (i + 1) + " in sequence is blue");
                 yield return new WaitForSeconds(1);
             }
             if (sequence[i] == 3)
             {
-                red_block_renderer.material.SetColor("_Color", Color.green);
-                blue_block_renderer.material.SetColor("_Color", Color.green);
-                yellow_block_renderer.material.SetColor("_Color", Color.green);
-                green_block_renderer.material.SetColor("_Color", Color.green);
+                redBlockRenderer.material.SetColor("_Color", Color.green);
+                blueBlockRenderer.material.SetColor("_Color", Color.green);
+                yellowBlockRenderer.material.SetColor("_Color", Color.green);
+                greenBlockRenderer.material.SetColor("_Color", Color.green);
                 Debug.Log("Number " + (i + 1) + " in sequence is green");
                 yield return new WaitForSeconds(1);
             }
         }
-        red_block_renderer.material.SetColor("_Color", Color.red);
-        blue_block_renderer.material.SetColor("_Color", Color.blue);
-        yellow_block_renderer.material.SetColor("_Color", Color.yellow);
-        green_block_renderer.material.SetColor("_Color", Color.green);
+        redBlockRenderer.material.SetColor("_Color", Color.red);
+        blueBlockRenderer.material.SetColor("_Color", Color.blue);
+        yellowBlockRenderer.material.SetColor("_Color", Color.yellow);
+        greenBlockRenderer.material.SetColor("_Color", Color.green);
         //Sets the suquence boolean to true, allowing the player to replay the boolean
-        sequence_played = true;
+        sequencePlayed = true;
     }
 
     IEnumerator Failure()
     {
         //for loop that displays the random colour sequence to the player
 
-        red_block_renderer.material.SetColor("_Color", Color.red);
-        blue_block_renderer.material.SetColor("_Color", Color.red);
-        yellow_block_renderer.material.SetColor("_Color", Color.red);
-        green_block_renderer.material.SetColor("_Color", Color.red);
+        redBlockRenderer.material.SetColor("_Color", Color.red);
+        blueBlockRenderer.material.SetColor("_Color", Color.red);
+        yellowBlockRenderer.material.SetColor("_Color", Color.red);
+        greenBlockRenderer.material.SetColor("_Color", Color.red);
         yield return new WaitForSeconds(0.5f);
 
-        red_block_renderer.material.SetColor("_Color", Color.white);
-        blue_block_renderer.material.SetColor("_Color", Color.white);
-        yellow_block_renderer.material.SetColor("_Color", Color.white);
-        green_block_renderer.material.SetColor("_Color", Color.white);
+        redBlockRenderer.material.SetColor("_Color", Color.white);
+        blueBlockRenderer.material.SetColor("_Color", Color.white);
+        yellowBlockRenderer.material.SetColor("_Color", Color.white);
+        greenBlockRenderer.material.SetColor("_Color", Color.white);
         yield return new WaitForSeconds(0.5f);
 
-        red_block_renderer.material.SetColor("_Color", Color.red);
-        blue_block_renderer.material.SetColor("_Color", Color.red);
-        yellow_block_renderer.material.SetColor("_Color", Color.red);
-        green_block_renderer.material.SetColor("_Color", Color.red);
+        redBlockRenderer.material.SetColor("_Color", Color.red);
+        blueBlockRenderer.material.SetColor("_Color", Color.red);
+        yellowBlockRenderer.material.SetColor("_Color", Color.red);
+        greenBlockRenderer.material.SetColor("_Color", Color.red);
         yield return new WaitForSeconds(0.5f);
 
-        red_block_renderer.material.SetColor("_Color", Color.white);
-        blue_block_renderer.material.SetColor("_Color", Color.white);
-        yellow_block_renderer.material.SetColor("_Color", Color.white);
-        green_block_renderer.material.SetColor("_Color", Color.white);
+        redBlockRenderer.material.SetColor("_Color", Color.white);
+        blueBlockRenderer.material.SetColor("_Color", Color.white);
+        yellowBlockRenderer.material.SetColor("_Color", Color.white);
+        greenBlockRenderer.material.SetColor("_Color", Color.white);
         yield return new WaitForSeconds(0.5f);
 
-        red_block_renderer.material.SetColor("_Color", Color.red);
-        blue_block_renderer.material.SetColor("_Color", Color.red);
-        yellow_block_renderer.material.SetColor("_Color", Color.red);
-        green_block_renderer.material.SetColor("_Color", Color.red);
+        redBlockRenderer.material.SetColor("_Color", Color.red);
+        blueBlockRenderer.material.SetColor("_Color", Color.red);
+        yellowBlockRenderer.material.SetColor("_Color", Color.red);
+        greenBlockRenderer.material.SetColor("_Color", Color.red);
         yield return new WaitForSeconds(0.5f);
 
-        red_block_renderer.material.SetColor("_Color", Color.white);
-        blue_block_renderer.material.SetColor("_Color", Color.white);
-        yellow_block_renderer.material.SetColor("_Color", Color.white);
-        green_block_renderer.material.SetColor("_Color", Color.white);
+        redBlockRenderer.material.SetColor("_Color", Color.white);
+        blueBlockRenderer.material.SetColor("_Color", Color.white);
+        yellowBlockRenderer.material.SetColor("_Color", Color.white);
+        greenBlockRenderer.material.SetColor("_Color", Color.white);
         yield return new WaitForSeconds(0.5f);
 
-        red_block_renderer.material.SetColor("_Color", Color.red);
-        blue_block_renderer.material.SetColor("_Color", Color.blue);
-        yellow_block_renderer.material.SetColor("_Color", Color.yellow);
-        green_block_renderer.material.SetColor("_Color", Color.green);
+        redBlockRenderer.material.SetColor("_Color", Color.red);
+        blueBlockRenderer.material.SetColor("_Color", Color.blue);
+        yellowBlockRenderer.material.SetColor("_Color", Color.yellow);
+        greenBlockRenderer.material.SetColor("_Color", Color.green);
 
     }
 
@@ -328,46 +307,46 @@ public class colour_generation : MonoBehaviour
     {
         //for loop that displays the random colour sequence to the player
 
-        red_block_renderer.material.SetColor("_Color", Color.green);
-        blue_block_renderer.material.SetColor("_Color", Color.green);
-        yellow_block_renderer.material.SetColor("_Color", Color.green);
-        green_block_renderer.material.SetColor("_Color", Color.green);
+        redBlockRenderer.material.SetColor("_Color", Color.green);
+        blueBlockRenderer.material.SetColor("_Color", Color.green);
+        yellowBlockRenderer.material.SetColor("_Color", Color.green);
+        greenBlockRenderer.material.SetColor("_Color", Color.green);
         yield return new WaitForSeconds(0.5f);
 
-        red_block_renderer.material.SetColor("_Color", Color.white);
-        blue_block_renderer.material.SetColor("_Color", Color.white);
-        yellow_block_renderer.material.SetColor("_Color", Color.white);
-        green_block_renderer.material.SetColor("_Color", Color.white);
+        redBlockRenderer.material.SetColor("_Color", Color.white);
+        blueBlockRenderer.material.SetColor("_Color", Color.white);
+        yellowBlockRenderer.material.SetColor("_Color", Color.white);
+        greenBlockRenderer.material.SetColor("_Color", Color.white);
         yield return new WaitForSeconds(0.5f);
 
-        red_block_renderer.material.SetColor("_Color", Color.green);
-        blue_block_renderer.material.SetColor("_Color", Color.green);
-        yellow_block_renderer.material.SetColor("_Color", Color.green);
-        green_block_renderer.material.SetColor("_Color", Color.green);
+        redBlockRenderer.material.SetColor("_Color", Color.green);
+        blueBlockRenderer.material.SetColor("_Color", Color.green);
+        yellowBlockRenderer.material.SetColor("_Color", Color.green);
+        greenBlockRenderer.material.SetColor("_Color", Color.green);
         yield return new WaitForSeconds(0.5f);
 
-        red_block_renderer.material.SetColor("_Color", Color.white);
-        blue_block_renderer.material.SetColor("_Color", Color.white);
-        yellow_block_renderer.material.SetColor("_Color", Color.white);
-        green_block_renderer.material.SetColor("_Color", Color.white);
+        redBlockRenderer.material.SetColor("_Color", Color.white);
+        blueBlockRenderer.material.SetColor("_Color", Color.white);
+        yellowBlockRenderer.material.SetColor("_Color", Color.white);
+        greenBlockRenderer.material.SetColor("_Color", Color.white);
         yield return new WaitForSeconds(0.5f);
 
-        red_block_renderer.material.SetColor("_Color", Color.green);
-        blue_block_renderer.material.SetColor("_Color", Color.green);
-        yellow_block_renderer.material.SetColor("_Color", Color.green);
-        green_block_renderer.material.SetColor("_Color", Color.green);
+        redBlockRenderer.material.SetColor("_Color", Color.green);
+        blueBlockRenderer.material.SetColor("_Color", Color.green);
+        yellowBlockRenderer.material.SetColor("_Color", Color.green);
+        greenBlockRenderer.material.SetColor("_Color", Color.green);
         yield return new WaitForSeconds(0.5f);
 
-        red_block_renderer.material.SetColor("_Color", Color.white);
-        blue_block_renderer.material.SetColor("_Color", Color.white);
-        yellow_block_renderer.material.SetColor("_Color", Color.white);
-        green_block_renderer.material.SetColor("_Color", Color.white);
+        redBlockRenderer.material.SetColor("_Color", Color.white);
+        blueBlockRenderer.material.SetColor("_Color", Color.white);
+        yellowBlockRenderer.material.SetColor("_Color", Color.white);
+        greenBlockRenderer.material.SetColor("_Color", Color.white);
         yield return new WaitForSeconds(0.5f);
 
-        red_block_renderer.material.SetColor("_Color", Color.red);
-        blue_block_renderer.material.SetColor("_Color", Color.blue);
-        yellow_block_renderer.material.SetColor("_Color", Color.yellow);
-        green_block_renderer.material.SetColor("_Color", Color.green);
+        redBlockRenderer.material.SetColor("_Color", Color.red);
+        blueBlockRenderer.material.SetColor("_Color", Color.blue);
+        yellowBlockRenderer.material.SetColor("_Color", Color.yellow);
+        greenBlockRenderer.material.SetColor("_Color", Color.green);
 
     }
 }
