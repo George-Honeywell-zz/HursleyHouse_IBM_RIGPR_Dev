@@ -28,9 +28,7 @@ public class puzzle2 : MonoBehaviour
         clockRenderer[6] = clocks[6].GetComponentInChildren<Renderer>();
         clockRenderer[7] = clocks[7].GetComponentInChildren<Renderer>();
         clockRenderer[8] = clocks[8].GetComponentInChildren<Renderer>();
-        //clockRenderer[9] = clocks[9].GetComponentInChildren<Renderer>();
-        //clockRenderer[10] = clocks[10].GetComponentInChildren<Renderer>();
-
+        clockRenderer[9] = clocks[9].GetComponentInChildren<Renderer>();
     }
 
     //Update function which is ran every frame
@@ -197,7 +195,6 @@ public class puzzle2 : MonoBehaviour
         {
             //Changes the puzzle marker colour to green
             clockRenderer[9].material.SetColor("_Color", Color.green);
-            clockRenderer[10].material.SetColor("_Color", Color.green);
             spitfireWings_Low.SetActive(true);
             spitfireBody_Low.SetActive(true);
         }
@@ -205,7 +202,6 @@ public class puzzle2 : MonoBehaviour
         {
             //Changes the puzzle marker colour to red
             clockRenderer[9].material.SetColor("_Color", Color.red);
-            clockRenderer[10].material.SetColor("_Color", Color.red);
         }
     }
 
